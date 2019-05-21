@@ -1,5 +1,7 @@
 export default {
-  title: 'Docz Typescript',
+  dest: '/site',
+  base: '/dora-ui',
+  title: 'dora',
   codeSandbox: false,
   typescript: true,
   modifyBundlerConfig: config => {
