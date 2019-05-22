@@ -12,7 +12,8 @@
     "sourceMap": false,
     "outDir": "./dist/lib",
     "jsx": "react",
-    "strict": true
+    "strict": true,
+    "esModuleInterop": true
   },
   "exclude": ["node_modules"]
 }

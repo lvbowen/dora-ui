@@ -1,6 +1,6 @@
 {
   "name": "@xmly/dora-ui",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A React.js Mobile UI Library",
   "repository": "https://github.com/worldzhao/dora-ui",
   "homepage": "https://worldzhao.github.io/dora-ui",
@@ -11,20 +11,22 @@
     "email": "zhiwen.zhao@ximalaya.com"
   },
   "files": [
+    "lib",
+    "es",
     "dist",
     "LICENSE"
   ],
-  "main": "dist/lib/index.js",
-  "module": "dist/es/index.js",
+  "main": "lib/index.js",
+  "module": "es/index.js",
   "scripts": {
     "start": "yarn dev",
     "dev": "docz dev",
-    "clean": "rimraf dist",
+    "clean": "rimraf dist lib es",
     "build:doc": "docz build",
     "deploy:doc": "gh-pages -d site",
     "publish:doc": "yarn build:doc && yarn deploy:doc",
     "build:cjs": "tsc -P tsconfig.json",
-    "build:esm": "tsc -P tsconfig.json --module ES6 --outDir dist/esm",
+    "build:esm": "tsc -P tsconfig.json --module ES6 --outDir es",
     "build:css": "gulp",
     "build": "yarn clean && yarn build:cjs; yarn build:esm && yarn build:css",
     "commit": "git cz",
@@ -97,7 +99,8 @@
     }
   },
   "dependencies": {
-    "classnames": "^2.2.6"
+    "classnames": "^2.2.6",
+    "react-icons": "^3.7.0"
   },
   "config": {
     "commitizen": {
