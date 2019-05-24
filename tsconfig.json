@@ -10,10 +10,11 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "sourceMap": false,
-    "outDir": "./dist/lib",
+    "outDir": "./lib",
     "jsx": "react",
     "strict": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "lib": ["es2015", "es2016", "es2017", "dom"]
   },
   "exclude": ["node_modules"]
 }

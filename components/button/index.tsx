@@ -32,7 +32,7 @@ const Button: React.FC<ButtonProps> = function(userProps, ref: any) {
   const { size, type, prefixCls } = props;
   const sizeCls = sizeClsMap[size];
   const typeCls = typeClsMap[type];
-  const cls = cx({ [sizeCls]: true, [typeCls]: true, [prefixCls]: true });
+  const cls = cx(sizeCls, typeCls, prefixCls);
   return (
     <button ref={ref} type="button" className={cls}>
       {props.children}

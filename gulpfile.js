@@ -14,15 +14,17 @@ const cssnano = require('gulp-cssnano');
 const size = require('gulp-filesize');
 const sourcemaps = require('gulp-sourcemaps');
 const browserList = ['last 2 versions', 'Android >= 4.0', 'Firefox ESR', 'not ie < 9'];
-
+const rename = require('gulp-rename');
+const name = 'dora-ui';
 const DIR = {
   less: path.resolve(__dirname, './components/**/*.less'),
   buildSrc: [
-    path.resolve(__dirname, './components/**/style.less'),
-    path.resolve(__dirname, './components/**/index.less')
+    path.resolve(__dirname, './components/**/*/*.less'),
+    path.resolve(__dirname, './components/**/*.less')
   ],
-  lib: path.resolve(__dirname, './dist/lib'),
-  es: path.resolve(__dirname, './dist/esm')
+  lib: path.resolve(__dirname, './lib'),
+  es: path.resolve(__dirname, './es'),
+  styles: path.resolve(__dirname, './dist')
 };
 
 gulp.task('copyLess', () => {
@@ -48,4 +50,32 @@ gulp.task('copyCss', () => {
     .pipe(gulp.dest(DIR.es));
 });
 
-gulp.task('default', ['copyLess', 'copyCss']);
+gulp.task('styles', () => {
+  return gulp
+    .src(DIR.buildSrc)
+    .pipe(sourcemaps.init())
+    .pipe(
+      less({
+        outputStyle: 'compressed'
+      })
+    )
+    .pipe(autoprefixer({ browsers: browserList }))
+    .pipe(concat(`${name}.css`))
+    .pipe(size())
+    .pipe(gulp.dest(DIR.styles))
+    .pipe(sourcemaps.write())
+    .pipe(rename(`${name}.css.map`))
+    .pipe(size())
+    .pipe(gulp.dest(DIR.styles))
+
+    .pipe(cssnano())
+    .pipe(concat(`${name}.min.css`))
+    .pipe(size())
+    .pipe(gulp.dest(DIR.styles))
+    .pipe(sourcemaps.write())
+    .pipe(rename(`${name}.min.css.map`))
+    .pipe(size())
+    .pipe(gulp.dest(DIR.styles));
+});
+
+gulp.task('default', ['copyLess', 'copyCss', 'styles']);
