@@ -4,9 +4,29 @@ menu: Components
 ---
 
 import { Playground, Props } from 'docz';
-import { Icon } from '../../components';
-import '../../components/icon/style.less';
+import { Icon } from 'components';
+import 'components/icon/style.less';
+
+# Icon
+
+基于 react-icons，本库默认内置 5 种 icon，并扩展相应 API。
+
+更多自定义 icon 请参见[react-icons](https://github.com/react-icons/react-icons)。
+
+## Basic Usage
 
 <Playground>
-  <Icon type="loading" spinning color="" />
+  <Icon type="info" />
 </Playground>
+
+## API
+
+| 属性      | 说明           | 类型                                         | 默认值      |
+| --------- | -------------- | -------------------------------------------- | ----------- |
+| type      | 内置 icon 类型 | 'success','error','info','warning','loading' | 'info'      |
+| size      | icon 大小      | 'xxs','xs','sm','md','lg'                    | 'md'        |
+| color     | icon 颜色      | String                                       | '#000'      |
+| spinning  | 是否旋转       | Boolean                                      | false       |
+| prefixCls | 类名前缀       | String                                       | 'dora-icon' |
+| className | 自定义类名     | String                                       | -           |
+| onClick   | 点击事件       | Function                                     | () => {}    |

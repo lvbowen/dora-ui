@@ -1,37 +1,43 @@
 import React from 'react';
 import cx from 'classnames';
-import { IconProps } from './interface';
-import { FiVolume2, FiLoader, FiCheckCircle, FiXCircle, FiAlertCircle } from 'react-icons/fi';
+import { IconPropsShape } from './interface';
+import { FiLoader } from 'react-icons/fi';
+import { IoIosCheckmarkCircleOutline, IoIosInformationCircleOutline } from 'react-icons/io';
+import { GoX } from 'react-icons/go';
+import { TiWarningOutline } from 'react-icons/ti';
 
-const typeMap: any = {
-  success: FiCheckCircle,
-  error: FiXCircle,
-  info: FiVolume2,
-  warning: FiAlertCircle,
+interface RealIconMapShape {
+  [key: string]: typeof IoIosCheckmarkCircleOutline;
+}
+
+const realIconMap: RealIconMapShape = {
+  success: IoIosCheckmarkCircleOutline,
+  error: GoX,
+  info: IoIosInformationCircleOutline,
+  warning: TiWarningOutline,
   loading: FiLoader
 };
 
-const defaultProps = {
+const defaultProps: IconPropsShape = {
+  type: 'info',
   prefixCls: 'dora-icon',
   size: 'md',
-  spinning: false
+  color: '#000',
+  spinning: false,
+  onClick: () => {}
 };
 
-const Icon: React.FC<IconProps> = userProps => {
-  const arr: number[] = [1, 2, 3];
-  console.log(arr.includes(1), Array.isArray(arr));
-
+const Icon: React.FC<IconPropsShape> = userProps => {
   const props = { ...defaultProps, ...userProps };
-  const { prefixCls, type, size, color, className, spinning, ...restProps } = props;
-  const RealIcon = typeMap[type];
+  const { prefixCls, type, size, color, className, spinning, onClick, ...restProps } = props;
+  const RealIcon = realIconMap[type];
   const cls = cx(prefixCls, `${prefixCls}-${size}`, className, {
     [`${prefixCls}-spinning`]: spinning
   });
-  const style: React.CSSProperties = {};
-  if (color) {
-    style.color = color;
-  }
-  return <RealIcon {...restProps} className={cls} style={style} />;
+  const style: React.CSSProperties = {
+    color
+  };
+  return <RealIcon {...restProps} onClick={onClick} className={cls} style={style} />;
 };
 
 export default Icon;
