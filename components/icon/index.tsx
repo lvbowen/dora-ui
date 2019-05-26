@@ -7,7 +7,7 @@ import { GoX } from 'react-icons/go';
 import { TiWarningOutline } from 'react-icons/ti';
 
 interface RealIconMapShape {
-  [key: string]: typeof IoIosCheckmarkCircleOutline;
+  [key: string]: typeof GoX;
 }
 
 const realIconMap: RealIconMapShape = {
