@@ -2,8 +2,9 @@ const path = require('path');
 
 module.exports = {
   dest: '/site',
-  base: '/dora-ui',
+  base: '/dora-ui/',
   title: 'Dora UI',
+  hashRouter: true,
   codeSandbox: false,
   themeConfig: {
     showPlaygroundEditor: true

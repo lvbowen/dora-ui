@@ -3,7 +3,7 @@ export type toastFnType = (
   duration?: number,
   onClose?: () => void,
   mask?: boolean
-) => void;
+) => number | null;
 
 export type innerShowFnType = (
   type: string,
@@ -11,4 +11,4 @@ export type innerShowFnType = (
   duration?: number,
   onClose?: () => void,
   mask?: boolean
-) => void;
+) => number | null;
