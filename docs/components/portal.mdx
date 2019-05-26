@@ -17,8 +17,15 @@ import { Portal } from 'components';
 <Playground>
   <div>the text in Playground container</div>
   <Portal>
-    <div style={{ color: 'red' }}>
-      the text out of the root container(滑到最底部，并检查看看这段文字在文档流何处？)
+    <div
+      style={{
+        color: 'blue',
+        position: 'absolute',
+        left: '30%',
+        bottom: '0'
+      }}
+    >
+      the text out of the root container(检查看看这段文字在文档流何处？)
     </div>
   </Portal>
 </Playground>
