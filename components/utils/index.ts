@@ -3,3 +3,5 @@ export const isBrowser = !!(
   window.document &&
   window.document.createElement
 );
+
+export { isType, isUndefined, isArray, isString, isFunction, isNumber } from './isType';

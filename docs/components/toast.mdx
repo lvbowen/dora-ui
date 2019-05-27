@@ -1,0 +1,107 @@
+---
+name: Toast 轻提示
+menu: Components
+---
+
+import { Playground } from 'docz';
+import { Toast } from 'components';
+import 'components/toast/style.less';
+import 'components/icon/style.less';
+
+# Toast 轻提示
+
+提供四种调用方式：
+
+- Toast.success
+- Toast.error
+- Toast.info
+- Toast.loading
+
+另外提供一个销毁方法：
+
+- Toast.destroy
+
+注意： Toast.loading 不会自动消失，需要手动调用 Toast.destroy
+
+## Usage
+
+### 只有文字提示的 toast
+
+<Playground>
+  <button
+    onClick={() => {
+      Toast.info('this is a toast with only text');
+    }}
+  >
+    only text
+  </button>
+</Playground>
+
+### 持续时间为 3s 的 toast
+
+<Playground>
+  <button
+    onClick={() => {
+      Toast.success('3s success toast', 3000);
+    }}
+  >
+    toast keep 3s
+  </button>
+</Playground>
+
+### 带回调的 toast
+
+<Playground>
+  <button
+    onClick={() => {
+      Toast.error(
+        'error toast',
+        2000,
+        () => {
+          console.log('关闭后的回调');
+        },
+        false
+      );
+    }}
+  >
+    toast with callback
+  </button>
+</Playground>
+
+### 带遮罩的 toast
+
+<Playground>
+  <button
+    onClick={() => {
+      Toast.success('good!', 2000, undefined, true);
+    }}
+  >
+    toast with mask
+  </button>
+</Playground>
+
+### loading
+
+<Playground>
+  <button
+    onClick={() => {
+      Toast.loading(
+        <div>
+          <p>loading text</p>
+          <button onClick={Toast.destroy}>hide loading</button>
+        </div>
+      );
+    }}
+  >
+    show loading
+  </button>
+</Playground>
+
+## API
+
+| 属性     | 说明             | 类型      | 默认值            |
+| -------- | ---------------- | --------- | ----------------- |
+| content  | toast 内容       | ReactNode | -                 |
+| duration | 持续时间（毫秒） | Number    | 2000,loading 无效 |
+| onClose  | 关闭回调         | Function  | ()=>{}            |
+| mask     | 是否展示遮罩     | Boolean   | false             |

@@ -1,0 +1,36 @@
+@import '../styles/mixins';
+@import '../styles//themes/default';
+
+.dora-toast-container {
+  .dora-toast {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: @toast-zindex;
+    font-size: @font-size-base;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__mask {
+      background-color: @fill-mask;
+    }
+  }
+
+  .toast-content {
+    min-width: 60 * @hd;
+    border-radius: @radius-sm;
+    color: @color-text-base-inverse;
+    background-color: @toast-fill;
+    line-height: @line-height-paragraph;
+    padding: @v-spacing-md @h-spacing-lg;
+  }
+
+  .toast-icon {
+    border-radius: @radius-md;
+    margin-bottom: @v-spacing-sm;
+  }
+}

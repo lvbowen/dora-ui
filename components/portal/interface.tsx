@@ -1,4 +1,4 @@
 export interface PortalPropsShape {
-  node?: HTMLElement;
+  node?: HTMLElement | null;
   children: React.ReactNode;
 }

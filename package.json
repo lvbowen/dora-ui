@@ -1,6 +1,6 @@
 {
   "name": "@xmly/dora-ui",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A React.js Mobile UI Library",
   "repository": "https://github.com/worldzhao/dora-ui",
   "homepage": "https://worldzhao.github.io/dora-ui",
@@ -79,8 +79,8 @@
     "conventional-changelog-cli": "^2.0.21",
     "css-loader": "^2.1.1",
     "cz-conventional-changelog": "^2.1.0",
-    "docz": "0.13.7",
-    "docz-theme-default": "0.13.7",
+    "docz": "1.2.0",
+    "docz-theme-default": "1.2.0",
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^4.3.0",
     "eslint-config-react-app": "^4.0.1",
@@ -135,6 +135,7 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "react-icons": "^3.7.0",
+    "react-spring": "^8.0.20",
     "tslib": "^1.9.3"
   },
   "config": {
