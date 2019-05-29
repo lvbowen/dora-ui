@@ -1,9 +1,9 @@
 /* do not import this file except components/style/index.less */
-.am {
+.dora {
   .effect() {
-    animation-duration: .2s;
+    animation-duration: 0.2s;
     animation-fill-mode: both;
-    animation-timing-function: cubic-bezier(.55, 0, .55, .2);
+    animation-timing-function: cubic-bezier(0.55, 0, 0.55, 0.2);
   }
 
   &-fade-enter,
@@ -14,7 +14,7 @@
     animation-play-state: paused;
   }
 
-  &-fade-leave {
+  &-fade-exit {
     .effect();
 
     animation-play-state: paused;
@@ -26,7 +26,7 @@
     animation-play-state: running;
   }
 
-  &-fade-leave&-fade-leave-active {
+  &-fade-exit&-fade-exit-active {
     animation-name: amFadeOut;
     animation-play-state: running;
   }
@@ -58,7 +58,7 @@
 
   &-slide-up-enter,
   &-slide-up-appear,
-  &-slide-up-leave {
+  &-slide-up-exit {
     .effect();
 
     animation-play-state: paused;
@@ -70,7 +70,7 @@
     animation-play-state: running;
   }
 
-  &-slide-up-leave&-slide-up-leave-active {
+  &-slide-up-exit&-slide-up-exit-active {
     animation-name: amSlideUpOut;
     animation-play-state: running;
   }
@@ -96,7 +96,7 @@
   }
 
   &&-zoom-enter,
-  &&-zoom-leave {
+  &&-zoom-exit {
     display: block;
   }
 
@@ -109,7 +109,7 @@
     animation-play-state: paused;
   }
 
-  &-zoom-leave {
+  &-zoom-exit {
     .effect();
 
     animation-timing-function: cubic-bezier(0.6, -0.3, 0.74, 0.05);
@@ -122,7 +122,7 @@
     animation-play-state: running;
   }
 
-  &-zoom-leave&-zoom-leave-active {
+  &-zoom-exit&-zoom-exit-active {
     animation-name: amZoomOut;
     animation-play-state: running;
   }
@@ -162,7 +162,7 @@
 
   &-slide-down-enter,
   &-slide-down-appear,
-  &-slide-down-leave {
+  &-slide-down-exit {
     .effect();
 
     animation-play-state: paused;
@@ -174,7 +174,7 @@
     animation-play-state: running;
   }
 
-  &-slide-down-leave&-slide-down-leave-active {
+  &-slide-down-exit&-slide-down-exit-active {
     animation-name: amSlideDownOut;
     animation-play-state: running;
   }

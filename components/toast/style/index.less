@@ -1,8 +1,9 @@
-@import '../../style/mixins';
-@import '../../style/themes/default';
+@import '../../style/index';
 
-.dora-toast-container {
-  .dora-toast {
+@prefixCls: dora-toast;
+
+.@{prefixCls}-container {
+  .@{prefixCls} {
     position: fixed;
     left: 0;
     top: 0;
@@ -15,12 +16,12 @@
     justify-content: center;
     align-items: center;
 
-    &__mask {
+    &-mask {
       background-color: @fill-mask;
     }
   }
 
-  .toast-content {
+  .@{prefixCls}-content {
     min-width: 60 * @hd;
     border-radius: @radius-sm;
     color: @color-text-base-inverse;
@@ -29,7 +30,7 @@
     padding: @v-spacing-md @h-spacing-lg;
   }
 
-  .toast-icon {
+  .@{prefixCls}-icon {
     border-radius: @radius-md;
     margin-bottom: @v-spacing-sm;
   }

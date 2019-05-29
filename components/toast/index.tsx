@@ -43,13 +43,23 @@ const show: innerShowFnType = (type, content, duration = 2000, onClose = () => {
   if (!isBrowser || isShowing) return;
   !container && createContainer();
   ReactDOM.render(
-    <ToastContent container={container} type={type} content={content} mask={mask} />,
+    <ToastContent container={container} type={type} content={content} mask={mask} isIn />,
     container
   );
   isShowing = true;
   if (type !== TOAST_TYPES.LOADING) {
     setTimeout(() => {
-      destroy(onClose);
+      ReactDOM.render(
+        <ToastContent
+          container={container}
+          type={type}
+          content={content}
+          mask={mask}
+          isIn={false}
+          close={() => destroy(onClose)}
+        />,
+        container
+      );
     }, duration);
   }
 };
