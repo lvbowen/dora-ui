@@ -41,7 +41,7 @@ function less2Css() {
       })
     )
     .pipe(autoprefixer({ browsers: browserList }))
-    .pipe(cssnano())
+    .pipe(cssnano({ zindex: false, reduceIdents: false }))
     .pipe(gulp.dest(paths.dest.lib))
     .pipe(gulp.dest(paths.dest.es));
 }
@@ -61,7 +61,7 @@ function fullStyles() {
     .pipe(sourcemaps.write())
     .pipe(rename(`${name}.css.map`))
     .pipe(gulp.dest(paths.dest.dist))
-    .pipe(cssnano())
+    .pipe(cssnano({ zindex: false, reduceIdents: false }))
     .pipe(concat(`${name}.min.css`))
     .pipe(gulp.dest(paths.dest.dist))
     .pipe(sourcemaps.write())

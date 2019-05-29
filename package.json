@@ -1,6 +1,6 @@
 {
   "name": "@xmly/dora-ui",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "A React.js Mobile UI Library",
   "repository": "https://github.com/worldzhao/dora-ui",
   "homepage": "https://worldzhao.github.io/dora-ui",
@@ -85,6 +85,7 @@
     "commitlint": "^7.6.1",
     "conventional-changelog": "^3.1.8",
     "conventional-changelog-cli": "^2.0.21",
+    "cpr": "^3.0.1",
     "cross-env": "^5.2.0",
     "css-loader": "^2.1.1",
     "cz-conventional-changelog": "^2.1.0",
@@ -146,7 +147,6 @@
   "dependencies": {
     "@babel/runtime": "^7.4.5",
     "classnames": "^2.2.6",
-    "cpr": "^3.0.1",
     "react-icons": "^3.7.0",
     "react-spring": "^8.0.20"
   },
