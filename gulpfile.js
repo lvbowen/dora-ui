@@ -17,8 +17,7 @@ const getFilesPath = str => path.resolve(__dirname, str);
 const paths = {
   dest: {
     lib: getFilesPath('./lib'),
-    es: getFilesPath('./es'),
-    dist: getFilesPath('./dist')
+    es: getFilesPath('./es')
   },
   styles: getFilesPath('./components/**/*.less'),
   scripts: [getFilesPath('./components/**/*.ts'), getFilesPath('./components/**/*.tsx')]
@@ -47,8 +46,15 @@ function less2Css() {
 }
 
 function fullStyles() {
+  /* 避免重复打包css 公共styles只打包index.less（其他已被引入无需重复打包） */
+  const styleSrc = [
+    'components/**/*.less',
+    '!components/style/animate.less',
+    '!components/style/normalize.less'
+  ];
+  const dest = 'dist';
   return gulp
-    .src(paths.styles)
+    .src(styleSrc)
     .pipe(sourcemaps.init())
     .pipe(
       less({
@@ -57,16 +63,16 @@ function fullStyles() {
     )
     .pipe(autoprefixer({ browsers: browserList }))
     .pipe(concat(`${name}.css`))
-    .pipe(gulp.dest(paths.dest.dist))
+    .pipe(gulp.dest(dest))
     .pipe(sourcemaps.write())
     .pipe(rename(`${name}.css.map`))
-    .pipe(gulp.dest(paths.dest.dist))
+    .pipe(gulp.dest(dest))
     .pipe(cssnano({ zindex: false, reduceIdents: false }))
     .pipe(concat(`${name}.min.css`))
-    .pipe(gulp.dest(paths.dest.dist))
+    .pipe(gulp.dest(dest))
     .pipe(sourcemaps.write())
     .pipe(rename(`${name}.min.css.map`))
-    .pipe(gulp.dest(paths.dest.dist));
+    .pipe(gulp.dest(dest));
 }
 
 /**
