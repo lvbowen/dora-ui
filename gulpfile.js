@@ -1,42 +1,39 @@
-/**
- * @name gulpfile.js
- * @description 打包项目css依赖
- * 参考
- * https://github.com/JeromeLin/dragon-ui/blob/dev/scripts/gulp/gulpfile.js
- */
-
 const path = require('path');
 const gulp = require('gulp');
 const concat = require('gulp-concat');
 const less = require('gulp-less');
 const autoprefixer = require('gulp-autoprefixer');
 const cssnano = require('gulp-cssnano');
-const size = require('gulp-filesize');
 const sourcemaps = require('gulp-sourcemaps');
 const browserList = ['last 2 versions', 'Android >= 4.0', 'Firefox ESR', 'not ie < 9'];
 const rename = require('gulp-rename');
+const babel = require('gulp-babel');
+const through2 = require('through2');
+const { getBabelConfig, style2css } = require('./utils');
 const name = 'dora-ui';
-const DIR = {
-  less: path.resolve(__dirname, './components/**/*.less'),
-  buildSrc: [
-    path.resolve(__dirname, './components/**/*/*.less'),
-    path.resolve(__dirname, './components/**/*.less')
-  ],
-  lib: path.resolve(__dirname, './lib'),
-  es: path.resolve(__dirname, './es'),
-  styles: path.resolve(__dirname, './dist')
+
+const getFilesPath = str => path.resolve(__dirname, str);
+
+const paths = {
+  dest: {
+    lib: getFilesPath('./lib'),
+    es: getFilesPath('./es'),
+    dist: getFilesPath('./dist')
+  },
+  styles: getFilesPath('./components/**/*.less'),
+  scripts: [getFilesPath('./components/**/*.ts'), getFilesPath('./components/**/*.tsx')]
 };
 
-gulp.task('copyLess', () => {
+function copyLess() {
   return gulp
-    .src(DIR.less)
-    .pipe(gulp.dest(DIR.lib))
-    .pipe(gulp.dest(DIR.es));
-});
+    .src(paths.styles)
+    .pipe(gulp.dest(paths.dest.lib))
+    .pipe(gulp.dest(paths.dest.es));
+}
 
-gulp.task('copyCss', () => {
+function less2Css() {
   return gulp
-    .src(DIR.buildSrc)
+    .src(paths.styles)
     .pipe(sourcemaps.init())
     .pipe(
       less({
@@ -44,15 +41,14 @@ gulp.task('copyCss', () => {
       })
     )
     .pipe(autoprefixer({ browsers: browserList }))
-    .pipe(size())
     .pipe(cssnano())
-    .pipe(gulp.dest(DIR.lib))
-    .pipe(gulp.dest(DIR.es));
-});
+    .pipe(gulp.dest(paths.dest.lib))
+    .pipe(gulp.dest(paths.dest.es));
+}
 
-gulp.task('styles', () => {
+function fullStyles() {
   return gulp
-    .src(DIR.buildSrc)
+    .src(paths.styles)
     .pipe(sourcemaps.init())
     .pipe(
       less({
@@ -61,21 +57,55 @@ gulp.task('styles', () => {
     )
     .pipe(autoprefixer({ browsers: browserList }))
     .pipe(concat(`${name}.css`))
-    .pipe(size())
-    .pipe(gulp.dest(DIR.styles))
+    .pipe(gulp.dest(paths.dest.dist))
     .pipe(sourcemaps.write())
     .pipe(rename(`${name}.css.map`))
-    .pipe(size())
-    .pipe(gulp.dest(DIR.styles))
-
+    .pipe(gulp.dest(paths.dest.dist))
     .pipe(cssnano())
     .pipe(concat(`${name}.min.css`))
-    .pipe(size())
-    .pipe(gulp.dest(DIR.styles))
+    .pipe(gulp.dest(paths.dest.dist))
     .pipe(sourcemaps.write())
     .pipe(rename(`${name}.min.css.map`))
-    .pipe(size())
-    .pipe(gulp.dest(DIR.styles));
-});
+    .pipe(gulp.dest(paths.dest.dist));
+}
 
-gulp.task('default', ['copyLess', 'copyCss', 'styles']);
+/**
+ * 转译typescript 生成不同类型module(commonjs esmodule)
+ * 同时根据component/style/index.js 生成component/style/css.js 以便css按需加载
+ */
+function compile(modules) {
+  const babelConfig = getBabelConfig(modules);
+  const { dest, scripts } = paths;
+  return gulp
+    .src(scripts)
+    .pipe(babel(babelConfig))
+    .pipe(
+      through2.obj(function z(file, encoding, next) {
+        this.push(file.clone());
+        if (file.path.match(/(\/|\\)style(\/|\\)index\.js/)) {
+          const content = file.contents.toString(encoding);
+          file.contents = Buffer.from(style2css(content));
+          file.path = file.path.replace(/index\.js/, 'css.js');
+          this.push(file);
+          next();
+        } else {
+          next();
+        }
+      })
+    )
+    .pipe(gulp.dest(modules === false ? dest.es : dest.lib));
+}
+
+function compileLib() {
+  return compile();
+}
+
+function compileEs() {
+  return compile(false);
+}
+
+const build = gulp.parallel(copyLess, less2Css, fullStyles, compileLib, compileEs);
+
+exports.build = build;
+
+exports.default = build;

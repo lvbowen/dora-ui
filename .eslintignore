@@ -1,5 +1,6 @@
 gulpfile.js
 doczrc.js
+utils/
 dist/
 lib/
 es/
