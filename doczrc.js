@@ -1,41 +1,19 @@
 const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { css } = require('docz-plugin-css');
 const webpackMerge = require('webpack-merge');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const doczPluginNetlify = require('docz-plugin-netlify');
 
 const modifyBundlerConfig = (config, dev) => {
-  const styleLoaders = ['css-loader'];
-  styleLoaders.unshift(dev ? 'style-loader' : MiniCssExtractPlugin.loader);
   return webpackMerge(config, {
     resolve: {
       alias: {
         components: path.resolve(__dirname, './components') // 配置alias
       }
-    },
-    module: {
-      rules: [
-        {
-          test: /\.css$/,
-          use: styleLoaders
-        },
-        { test: /\.less$/, use: [...styleLoaders, 'less-loader'] }
-      ]
-    },
-    optimization: {
-      minimizer: [new OptimizeCSSAssetsPlugin({})]
-    },
-    plugins: [
-      dev
-        ? () => {}
-        : new MiniCssExtractPlugin({
-            filename: '[name].css'
-          })
-    ]
+    }
   });
 };
 
 module.exports = {
-  base: '/dora-ui/', // public path
   title: 'Dora UI', // 网站名称
   codeSandbox: false, // 是否开启codeSandbox
   htmlContext: {
@@ -60,6 +38,12 @@ module.exports = {
   filterComponents: files =>
     files.filter(filepath => /components\/.*\/*\.(js|jsx|ts|tsx)$/.test(filepath)),
   modifyBundlerConfig,
+  plugins: [
+    doczPluginNetlify(),
+    css({
+      preprocessor: 'less'
+    })
+  ],
   menu: [
     'Introduction', // auto ordered menu "Introduction"
     'Quick Start',
