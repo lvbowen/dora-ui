@@ -1,4 +1,4 @@
-## 0.1.6 (2019-05-30)
+## [0.1.7](https://github.com/worldzhao/dora-ui/compare/4e54fd6...v0.1.7) (2019-05-30)
 
 
 ### Bug Fixes
