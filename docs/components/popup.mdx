@@ -1,0 +1,77 @@
+---
+name: Popup 弹层
+menu: Components
+---
+
+import { Playground } from 'docz';
+import { Popup } from 'components';
+import '../style/index.less';
+
+# Popup 弹层
+
+底层弹层组件，Portal 组件的上层封装，参考 cube-ui（[基于 Vue.js 实现的精致移动端组件库](https://didi.github.io/cube-ui/#/zh-CN)）API。。
+
+可以理解为提供基础功能的传送门：是否有蒙层（mask）以及定位（position），并处理了处理了滚动穿透等问题。
+
+## 示例
+
+### 基本用法
+
+<Playground>
+  {() => {
+    class App extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = {
+          visible: false
+        };
+        this.open=this.open.bind(this);        
+        this.hide=this.hide.bind(this)
+
+      }
+
+      open() {
+        this.setState({
+          visible: true
+        });
+      }
+
+      hide() {
+        this.setState({
+          visible: false
+        });
+      }
+
+      render() {
+        const { visible } = this.state;
+        return (
+          <div>
+            <button onClick={this.open}>popup!</button>
+            <Popup
+              mask
+              maskClosable
+              position="center"
+              visible={visible}
+              hide={this.hide}
+            >
+              Popup
+            </Popup>
+          </div>
+        );
+      }
+    }
+    return <App />;
+
+}}
+
+</Playground>
+
+## API
+
+| 属性         | 说明               | 类型      | 默认值 |
+| ------------ | ------------------ | --------- | ------ |
+| visible      | 显示状态，是否可见 | Boolean   | false  |
+| children     | 内容               | ReactNode | null   |
+| mask         | 是否展示蒙层       | Boolean   | true   |
+| maskClosable | 点击蒙层是否隐藏   | Boolean   | false  |
+| hide         | 关闭方法           | Function  | ()=>{} |

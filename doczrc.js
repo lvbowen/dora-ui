@@ -61,7 +61,7 @@ module.exports = {
   },
   themeConfig: {
     // 主题配置
-    showPlaygroundEditor: true, // 展示Playground编辑器
+    showPlaygroundEditor: false, // 展示Playground编辑器
     codemirrorTheme: 'material' // 代码主题
   },
   typescript: true, // 支持typescript组件

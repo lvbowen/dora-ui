@@ -23,6 +23,7 @@ module.exports = {
     'value-list-max-empty-lines': null,
     'unit-case': null,
     'color-hex-case': null,
-    'max-empty-lines': null
+    'max-empty-lines': null,
+    'no-duplicate-selectors': null
   }
 };

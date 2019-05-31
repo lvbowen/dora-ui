@@ -1,9 +1,9 @@
 @import '../../style/vars.less';
 
-@prefixCls: dora-toast;
+@toastPrefix: dora-toast;
 
-.@{prefixCls}-container {
-  .@{prefixCls} {
+.@{toastPrefix}-container {
+  .@{toastPrefix} {
     position: fixed;
     left: 0;
     top: 0;
@@ -21,7 +21,7 @@
     }
   }
 
-  .@{prefixCls}-content {
+  .@{toastPrefix}-content {
     min-width: 60 * @hd;
     border-radius: @radius-sm;
     color: @color-text-base-inverse;
@@ -30,7 +30,7 @@
     padding: @v-spacing-md @h-spacing-lg;
   }
 
-  .@{prefixCls}-icon {
+  .@{toastPrefix}-icon {
     border-radius: @radius-md;
     margin-bottom: @v-spacing-sm;
   }

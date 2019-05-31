@@ -1,0 +1,113 @@
+@import '../../style/vars.less';
+
+@popupPrefix: dora-popup;
+
+.@{popupPrefix} {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: @popup-zindex;
+  pointer-events: none; // amazing 能够穿透该元素 即使fixed铺满 该属性会被子元素继承
+
+  &__hide {
+    display: none;
+  }
+
+  .@{popupPrefix}-mask,
+  .@{popupPrefix}-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  .@{popupPrefix}-mask {
+    display: none; // mask 默认隐藏
+    overflow: hidden;
+    background-color: @fill-mask;
+    pointer-events: auto;
+
+    // fix some android webview opacity render bug
+    &::before {
+      content: '.';
+      display: block;
+      width: 1px;
+      height: 1px;
+      background-color: rgba(0, 0, 0, 0.1);
+      margin-left: -10px;
+    }
+  }
+
+  &__mask {
+    pointer-events: auto;
+    .@{popupPrefix}-mask {
+      display: block; // 根类具有mask属性时展示mask
+    }
+  }
+
+  .@{popupPrefix}-container {
+    transform: translate(100%, 100%);
+  }
+
+  .@{popupPrefix}-container {
+    .@{popupPrefix}-content {
+      background-color: @toast-fill;
+      color: @color-text-base-inverse;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      box-sizing: border-box;
+      transform: translate(-100%, -100%);
+      pointer-events: auto;
+    }
+
+    &__left,
+    &__right,
+    &__center {
+      .@{popupPrefix}-content {
+        top: -50%;
+        left: -50%;
+        width: auto;
+        max-width: 100%;
+        transform: translate(0, 0);
+      }
+    }
+
+    &__left,
+    &__right {
+      .@{popupPrefix}-content {
+        height: 100%;
+        top: -100%;
+      }
+    }
+
+    &__center {
+      .@{popupPrefix}-content {
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    &__top {
+      .@{popupPrefix}-content {
+        top: -100%;
+        left: -100%;
+        transform: translate(0, 0);
+      }
+    }
+
+    &__left {
+      .@{popupPrefix}-content {
+        left: -100%;
+      }
+    }
+
+    &__right {
+      .@{popupPrefix}-content {
+        top: -100%;
+        right: 100%;
+      }
+    }
+  }
+}
