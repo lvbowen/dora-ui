@@ -1,0 +1,45 @@
+---
+name: Toggler 切换器
+menu: Components
+---
+
+import { Playground } from 'docz';
+import { Toggler } from 'components';
+
+# Toggler 切换器
+
+Toggler 是一个用于控制切换（一个布尔值）的 render props 组件，受[smooth UI-Toggler](https://smooth-ui.smooth-code.com/docs-utilities-toggler)启发
+
+## 示例
+
+### 基本使用
+
+<Playground>
+  <Toggler>
+    {([toggled, onToggle]) => <button onClick={onToggle}>{toggled ? 'ON' : 'OFF'}</button>}
+  </Toggler>
+</Playground>
+
+### 设置默认状态
+
+<Playground>
+  <Toggler defaultToggled>
+    {([toggled, onToggle]) => <button onClick={onToggle}>{toggled ? 'ON' : 'OFF'}</button>}
+  </Toggler>
+</Playground>
+
+### 监听切换事件
+
+<Playground>
+  <Toggler afterToggled={toggled => console.log('Toggled', toggled)}>
+    {([toggled, onToggle]) => <button onClick={onToggle}>{toggled ? 'ON' : 'OFF'}</button>}
+  </Toggler>
+</Playground>
+
+## API
+
+| 属性           | 说明                       | 类型     | 默认值                |
+| -------------- | -------------------------- | -------- | --------------------- |
+| children       | renderProps 所需函数，必需 | Function | -                     |
+| defaultToggled | 默认状态值                 | Boolean  | false                 |
+| afterToggled   | 当切换行为发生后触发的回调 | Function | (toggled:boolean)=>{} |

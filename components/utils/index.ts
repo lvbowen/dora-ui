@@ -5,3 +5,5 @@ export const isBrowser = !!(
 );
 
 export { isType, isUndefined, isArray, isString, isFunction, isNumber } from './isType';
+
+export { withDefaultProps } from './withDefaultProps';
