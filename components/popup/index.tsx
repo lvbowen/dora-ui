@@ -1,23 +1,27 @@
 import React, { Component } from 'react';
 import cx from 'classnames';
 import Portal from '../portal';
-import { PopupShape } from './interface';
+import { PopupShape, positionType } from './interface';
+import { withDefaultProps } from '../utils';
 
 const prefixCls = 'dora-popup';
 const preventScroll = (ev: TouchEvent) => {
   ev.preventDefault();
 };
 
-class Popup extends Component<PopupShape, {}> {
-  private static defaultProps = {
-    visible: false,
-    mask: true,
-    children: null,
-    position: 'center',
-    maskClosable: false,
-    hide: () => {}
-  };
+const defaultProps = {
+  visible: false,
+  mask: true,
+  children: null,
+  position: 'center' as positionType,
+  maskClosable: false,
+  hide: () => {}
+};
 
+type DefaultProps = typeof defaultProps;
+type Props = PopupShape & DefaultProps;
+
+class Popup extends Component<Props, {}> {
   /**
    * 初次渲染挂载节点(visible:true => mount)
    * 后续只会隐藏(visible:false => display:none)
@@ -79,4 +83,4 @@ class Popup extends Component<PopupShape, {}> {
   }
 }
 
-export default Popup;
+export default withDefaultProps(defaultProps, Popup);

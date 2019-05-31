@@ -1,8 +1,10 @@
+export type positionType = 'top' | 'right' | 'bottom' | 'left' | 'center';
+
 export interface PopupShape {
-  visible: boolean;
-  children: React.ReactNode;
+  visible?: boolean;
+  children?: React.ReactNode;
   mask?: boolean;
-  position?: 'top' | 'right' | 'bottom' | 'left' | 'center';
+  position?: positionType;
   maskClosable?: boolean;
-  hide: () => void;
+  hide?: () => void;
 }

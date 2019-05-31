@@ -17,7 +17,7 @@ const ToastTransition = (props: any) => {
   );
 };
 
-class ToastContent extends Component<ToastContentShape, {}> {
+class ToastContent extends Component<ToastContentShape> {
   private static defaultProps = {
     mask: false,
     content: ''

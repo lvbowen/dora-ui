@@ -4,14 +4,14 @@ menu: Components
 ---
 
 import { Playground } from 'docz';
-import { Popup } from 'components';
+import { Popup, Toggler } from 'components';
 import '../style/index.less';
 
 # Popup 弹层
 
 底层弹层组件，Portal 组件的上层封装，参考 cube-ui（[基于 Vue.js 实现的精致移动端组件库](https://didi.github.io/cube-ui/#/zh-CN)）API。。
 
-可以理解为提供基础功能的传送门：是否有蒙层（mask）以及定位（position），并处理了处理了滚动穿透等问题。
+可以理解为提供基础功能的传送门：是否有蒙层（mask）以及定位（position），并处理了滚动穿透等问题。
 
 ## 示例
 
@@ -64,6 +64,23 @@ import '../style/index.less';
 
 }}
 
+</Playground>
+
+### 与 Toggler 一起使用
+
+<Playground>
+  <Toggler>
+    {([toggled, onToggle]) => {
+      return (
+        <>
+          <button onClick={() => onToggle(true)}>popup!</button>
+          <Popup maskClosable visible={toggled} position="bottom" hide={() => onToggle(false)}>
+            hhhhhh
+          </Popup>
+        </>
+      );
+    }}
+  </Toggler>
 </Playground>
 
 ## API

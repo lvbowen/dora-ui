@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { TogglerShape } from './interface';
-import { withDefaultProps } from '../utils';
+import { withDefaultProps, isBoolean } from '../utils';
 
 interface StateShape {
   toggled: boolean;
@@ -22,12 +22,12 @@ class Toggler extends Component<Props, StateShape> {
     };
   }
 
-  private onToggle = () => {
+  private onToggle = (flag?: boolean) => {
     const { afterToggled } = this.props;
     this.setState(
-      {
-        toggled: !this.state.toggled
-      },
+      prevState => ({
+        toggled: isBoolean(flag) ? flag : !prevState.toggled
+      }),
       () => {
         afterToggled(this.state.toggled);
       }

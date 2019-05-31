@@ -9,4 +9,6 @@ export const isString = isType('String');
 
 export const isFunction = isType('Function');
 
-export const isNumber = (x: any) => typeof x === 'number' && !isNaN(x);
+export const isNumber = (x: any): x is number => typeof x === 'number' && !isNaN(x);
+
+export const isBoolean = (x: any): x is boolean => typeof x === 'boolean';

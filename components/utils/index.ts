@@ -4,6 +4,6 @@ export const isBrowser = !!(
   window.document.createElement
 );
 
-export { isType, isUndefined, isArray, isString, isFunction, isNumber } from './isType';
+export { isType, isUndefined, isArray, isString, isFunction, isNumber, isBoolean } from './isType';
 
 export { withDefaultProps } from './withDefaultProps';
