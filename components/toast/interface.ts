@@ -16,10 +16,8 @@ export type innerShowFnType = (
 ) => void;
 
 export interface ToastContentShape {
-  container: HTMLElement | null;
+  container: HTMLElement;
   content: React.ReactNode;
   type: toastType;
   mask?: boolean;
-  isIn: boolean;
-  close?: () => void;
 }

@@ -6,7 +6,7 @@ import { toastFnType, innerShowFnType, toastType } from './interface';
 import { isBrowser, isFunction } from '../utils';
 
 // 容器节点
-let container: HTMLElement | null = null;
+let container: HTMLElement;
 
 // 是否存在正在展示的toast
 let isShowing = false;
@@ -39,27 +39,23 @@ const destroy = (onClose: () => void) => {
  * @param onClose 关闭后回调方法
  * @param mask 是否展示mask
  */
-const show: innerShowFnType = (type, content, duration = 2000, onClose = () => {}, mask) => {
+const show: innerShowFnType = (
+  type,
+  content,
+  duration = 2000,
+  onClose = () => {},
+  mask = false
+) => {
   if (!isBrowser || isShowing) return;
   !container && createContainer();
   ReactDOM.render(
-    <ToastContent container={container} type={type} content={content} mask={mask} isIn />,
+    <ToastContent container={container} type={type} content={content} mask={mask} />,
     container
   );
   isShowing = true;
   if (type !== TOAST_TYPES.LOADING) {
     setTimeout(() => {
-      ReactDOM.render(
-        <ToastContent
-          container={container}
-          type={type}
-          content={content}
-          mask={mask}
-          isIn={false}
-          close={() => destroy(onClose)}
-        />,
-        container
-      );
+      destroy(onClose);
     }, duration);
   }
 };

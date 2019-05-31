@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom';
 import { PortalPropsShape } from './interface';
 import { isBrowser } from '../utils';
 
-class Portal extends React.Component<PortalPropsShape, {}> {
-  private defaultNode: HTMLDivElement | null = null;
+class Portal extends React.Component<PortalPropsShape> {
+  private defaultNode?: HTMLDivElement;
 
   public constructor(props: PortalPropsShape) {
     super(props);
-    if (!this.props.node) {
+    if (!props.node) {
       this.defaultNode = document.createElement('div');
       document.body.appendChild(this.defaultNode);
     }
@@ -17,15 +17,15 @@ class Portal extends React.Component<PortalPropsShape, {}> {
   public componentWillUnmount() {
     if (this.defaultNode) {
       document.body.removeChild(this.defaultNode);
-      this.defaultNode = null;
+      this.defaultNode = undefined;
     }
   }
 
   public render() {
     if (!isBrowser) return null;
     const { children, node } = this.props;
-    const container = (node || this.defaultNode) as HTMLElement;
-    return ReactDOM.createPortal(children, container);
+    const container = node || this.defaultNode;
+    return ReactDOM.createPortal(children, container as HTMLDivElement);
   }
 }
 

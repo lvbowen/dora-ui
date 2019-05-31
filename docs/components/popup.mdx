@@ -85,10 +85,11 @@ import '../style/index.less';
 
 ## API
 
-| 属性         | 说明               | 类型      | 默认值 |
-| ------------ | ------------------ | --------- | ------ |
-| visible      | 显示状态，是否可见 | Boolean   | false  |
-| children     | 内容               | ReactNode | null   |
-| mask         | 是否展示蒙层       | Boolean   | true   |
-| maskClosable | 点击蒙层是否隐藏   | Boolean   | false  |
-| hide         | 关闭方法           | Function  | ()=>{} |
+| 属性         | 说明               | 类型        | 默认值                                                                               |
+| ------------ | ------------------ | ----------- | ------------------------------------------------------------------------------------ |
+| visible      | 显示状态，是否可见 | Boolean     | false                                                                                |
+| children     | 内容               | ReactNode   | null                                                                                 |
+| mask         | 是否展示蒙层       | Boolean     | true                                                                                 |
+| maskClosable | 点击蒙层是否隐藏   | Boolean     | false                                                                                |
+| hide         | 关闭方法           | Function    | ()=>{}                                                                               |
+| node         | 挂载节点           | HTMLElement | 无，不传时会在 body 尾部下 创建 div，存在多个 Popup 时可选择同一个 node 进行单例控制 |

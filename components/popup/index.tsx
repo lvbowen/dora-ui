@@ -12,7 +12,6 @@ const preventScroll = (ev: TouchEvent) => {
 const defaultProps = {
   visible: false,
   mask: true,
-  children: null,
   position: 'center' as positionType,
   maskClosable: false,
   hide: () => {}
@@ -30,7 +29,7 @@ class Popup extends Component<Props, {}> {
    */
   private hasFirstRendered: boolean = false;
   private disableScroll: boolean = false;
-  private rootNode: HTMLElement | null = null;
+  private rootNode?: HTMLElement;
 
   public componentDidUpdate() {
     if (this.props.visible && !this.disableScroll) {
@@ -62,7 +61,7 @@ class Popup extends Component<Props, {}> {
   };
 
   public render() {
-    const { visible, mask, position, children } = this.props;
+    const { visible, mask, position, children, node } = this.props;
     if (!this.hasFirstRendered && !visible) return null;
     this.hasFirstRendered = true;
     const rootCls = cx(prefixCls, `${prefixCls}__${position}`, {
@@ -71,7 +70,7 @@ class Popup extends Component<Props, {}> {
     });
     const containerCls = cx(`${prefixCls}-container`, `${prefixCls}-container__${position}`);
     return (
-      <Portal>
+      <Portal node={node}>
         <div className={rootCls}>
           <div className={`${prefixCls}-mask`} onClick={this.handleMaskClick} />
           <div className={containerCls}>
