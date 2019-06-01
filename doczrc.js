@@ -3,6 +3,7 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpackMerge = require('webpack-merge');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const { getLocalIP } = require('./utils');
 
 const modifyBundlerConfig = (config, dev) => {
   const styleLoaders = ['css-loader'];
@@ -46,6 +47,7 @@ const modifyBundlerConfig = (config, dev) => {
 };
 
 module.exports = {
+  host: getLocalIP(),
   title: 'Dora UI', // 网站名称
   codeSandbox: false, // 是否开启codeSandbox
   htmlContext: {
