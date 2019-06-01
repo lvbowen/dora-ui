@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import cx from 'classnames';
 import Portal from '../portal';
 import { PopupShape, positionType } from './interface';
-import { withDefaultProps } from '../utils';
+import { withDefaultProps, stopBodyScroll } from '../utils';
 
 const prefixCls = 'dora-popup';
 
@@ -10,8 +10,10 @@ const defaultProps = {
   visible: false,
   mask: true,
   position: 'center' as positionType,
-  maskClosable: false,
-  hide: () => {}
+  maskClosable: true,
+  onCancel: () => {},
+  wrapClassName: '',
+  stopScrollUnderMask: true
 };
 
 type DefaultProps = typeof defaultProps;
@@ -26,18 +28,31 @@ class Popup extends Component<Props, {}> {
    */
   private hasFirstRendered: boolean = false;
 
+  public componentDidUpdate(prevProps: Props) {
+    const { visible, mask, stopScrollUnderMask } = this.props;
+    if (mask && stopScrollUnderMask) {
+      if (prevProps.visible !== visible && visible) stopBodyScroll(true);
+      if (prevProps.visible !== visible && !visible) stopBodyScroll(false);
+    }
+  }
+
+  public componentWillUnmount() {
+    const { mask, stopScrollUnderMask } = this.props;
+    if (mask && stopScrollUnderMask) stopBodyScroll(false);
+  }
+
   private handleMaskClick = () => {
-    const { hide, maskClosable } = this.props;
+    const { onCancel, maskClosable } = this.props;
     if (maskClosable) {
-      hide();
+      onCancel();
     }
   };
 
   public render() {
-    const { visible, mask, position, children, node } = this.props;
+    const { visible, mask, position, children, node, wrapClassName } = this.props;
     if (!this.hasFirstRendered && !visible) return null;
     this.hasFirstRendered = true;
-    const rootCls = cx(prefixCls, `${prefixCls}__${position}`, {
+    const rootCls = cx(wrapClassName, prefixCls, `${prefixCls}__${position}`, {
       [`${prefixCls}__mask`]: mask,
       [`${prefixCls}__hide`]: !visible
     });

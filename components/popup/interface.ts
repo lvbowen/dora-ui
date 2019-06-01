@@ -6,6 +6,8 @@ export interface PopupShape {
   mask?: boolean;
   position?: positionType;
   maskClosable?: boolean;
-  hide?: () => void;
+  onCancel?: () => void;
   node?: HTMLElement;
+  wrapClassName?: string;
+  stopScrollUnderMask?: boolean;
 }

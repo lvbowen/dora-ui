@@ -7,3 +7,5 @@ export const isBrowser = !!(
 export { isType, isUndefined, isArray, isString, isFunction, isNumber, isBoolean } from './isType';
 
 export { withDefaultProps } from './withDefaultProps';
+
+export { stopBodyScroll } from './dom';

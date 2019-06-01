@@ -61,6 +61,7 @@
       box-sizing: border-box;
       transform: translate(-100%, -100%);
       pointer-events: auto;
+      overflow: hidden;
     }
 
     &__left,
@@ -86,6 +87,7 @@
     &__center {
       .@{popupPrefix}-content {
         transform: translate(-50%, -50%);
+        border-radius: @radius-sm;
       }
     }
 
@@ -107,6 +109,12 @@
       .@{popupPrefix}-content {
         top: -100%;
         right: 100%;
+      }
+    }
+
+    &__bottom {
+      .@{popupPrefix}-content {
+        border-radius: @radius-md @radius-md 0 0;
       }
     }
   }

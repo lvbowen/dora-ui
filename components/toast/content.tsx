@@ -30,11 +30,9 @@ class ToastContent extends Component<Props> {
     return (
       <CSSTransition appear in timeout={100} classNames="dora-fade">
         <Popup visible node={container} mask={mask} maskClosable={false}>
-          <div className={prefixCls}>
-            <div className={`${prefixCls}-content`}>
-              {this.renderIcon()}
-              <div className={`${prefixCls}-text`}>{content}</div>
-            </div>
+          <div className={`${prefixCls}-content`}>
+            {this.renderIcon()}
+            <div className={`${prefixCls}-text`}>{content}</div>
           </div>
         </Popup>
       </CSSTransition>
