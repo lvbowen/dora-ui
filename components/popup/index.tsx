@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import cx from 'classnames';
+import { CSSTransition } from 'react-transition-group';
 import Portal from '../portal';
 import { PopupShape, positionType } from './interface';
-import { withDefaultProps, stopBodyScroll } from '../utils';
+import { withDefaultProps, stopBodyScroll, isFunction } from '../utils';
 
 const prefixCls = 'dora-popup';
 
@@ -11,9 +12,10 @@ const defaultProps = {
   mask: true,
   position: 'center' as positionType,
   maskClosable: true,
-  onCancel: () => {},
+  onClose: () => {},
   wrapClassName: '',
-  stopScrollUnderMask: true
+  stopScrollUnderMask: true,
+  destroyOnClose: false
 };
 
 type DefaultProps = typeof defaultProps;
@@ -38,34 +40,55 @@ class Popup extends Component<Props, {}> {
 
   public componentWillUnmount() {
     const { mask, stopScrollUnderMask } = this.props;
-    if (mask && stopScrollUnderMask) stopBodyScroll(false);
+    if (mask && stopScrollUnderMask) {
+      stopBodyScroll(false);
+    }
   }
 
   private handleMaskClick = () => {
-    const { onCancel, maskClosable } = this.props;
-    if (maskClosable) {
-      onCancel();
+    const { onClose, maskClosable } = this.props;
+    if (maskClosable && isFunction(onClose)) {
+      onClose();
     }
   };
 
+  public get animationName(): string {
+    const { position } = this.props;
+    const animationNames = {
+      bottom: 'dora-popup-slide-up',
+      right: 'dora-popup-slide-left',
+      left: 'dora-slide-right',
+      top: 'dora-slide-down',
+      center: 'dora-fade'
+    };
+    return animationNames[position];
+  }
+
   public render() {
-    const { visible, mask, position, children, node, wrapClassName } = this.props;
+    const { visible, mask, position, children, node, wrapClassName, destroyOnClose } = this.props;
     if (!this.hasFirstRendered && !visible) return null;
     this.hasFirstRendered = true;
     const rootCls = cx(wrapClassName, prefixCls, `${prefixCls}__${position}`, {
       [`${prefixCls}__mask`]: mask,
       [`${prefixCls}__hide`]: !visible
     });
-    const containerCls = cx(`${prefixCls}-container`, `${prefixCls}-container__${position}`);
     return (
-      <Portal node={node}>
-        <div className={rootCls}>
-          <div className={`${prefixCls}-mask`} onClick={this.handleMaskClick} />
-          <div className={containerCls}>
-            <div className={`${prefixCls}-content`}>{children}</div>
+      <CSSTransition
+        in={visible}
+        timeout={200}
+        classNames="dora-fade"
+        unmountOnExit={destroyOnClose}
+        appear
+      >
+        <Portal node={node}>
+          <div className={rootCls}>
+            <div className={`${prefixCls}-mask`} onClick={this.handleMaskClick} />
+            <CSSTransition in={visible} timeout={200} classNames={this.animationName} appear>
+              <div className={`${prefixCls}-content`}>{children}</div>
+            </CSSTransition>
           </div>
-        </div>
-      </Portal>
+        </Portal>
+      </CSSTransition>
     );
   }
 }

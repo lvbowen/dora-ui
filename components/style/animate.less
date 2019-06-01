@@ -6,6 +6,8 @@
     animation-timing-function: cubic-bezier(0.55, 0, 0.55, 0.2);
   }
 
+  /* opacity */
+
   &-fade-enter,
   &-fade-appear {
     opacity: 0;
@@ -22,16 +24,16 @@
 
   &-fade-enter&-fade-enter-active,
   &-fade-appear&-fade-appear-active {
-    animation-name: amFadeIn;
+    animation-name: DoraFadeIn;
     animation-play-state: running;
   }
 
   &-fade-exit&-fade-exit-active {
-    animation-name: amFadeOut;
+    animation-name: DoraFadeOut;
     animation-play-state: running;
   }
 
-  @keyframes amFadeIn {
+  @keyframes DoraFadeIn {
     0% {
       opacity: 0;
     }
@@ -41,7 +43,7 @@
     }
   }
 
-  @keyframes amFadeOut {
+  @keyframes DoraFadeOut {
     0% {
       opacity: 1;
     }
@@ -51,49 +53,7 @@
     }
   }
 
-  &-slide-up-enter,
-  &-slide-up-appear {
-    transform: translate(0, 100%);
-  }
-
-  &-slide-up-enter,
-  &-slide-up-appear,
-  &-slide-up-exit {
-    .effect();
-
-    animation-play-state: paused;
-  }
-
-  &-slide-up-enter&-slide-up-enter-active,
-  &-slide-up-appear&-slide-up-appear-active {
-    animation-name: amSlideUpIn;
-    animation-play-state: running;
-  }
-
-  &-slide-up-exit&-slide-up-exit-active {
-    animation-name: amSlideUpOut;
-    animation-play-state: running;
-  }
-
-  @keyframes amSlideUpIn {
-    0% {
-      transform: translate(0, 100%);
-    }
-
-    100% {
-      transform: translate(0, 0);
-    }
-  }
-
-  @keyframes amSlideUpOut {
-    0% {
-      transform: translate(0, 0);
-    }
-
-    100% {
-      transform: translate(0, 100%);
-    }
-  }
+  /* zoom */
 
   &&-zoom-enter,
   &&-zoom-exit {
@@ -118,16 +78,16 @@
 
   &-zoom-enter&-zoom-enter-active,
   &-zoom-appear&-zoom-appear-active {
-    animation-name: amZoomIn;
+    animation-name: DoraZoomIn;
     animation-play-state: running;
   }
 
   &-zoom-exit&-zoom-exit-active {
-    animation-name: amZoomOut;
+    animation-name: DoraZoomOut;
     animation-play-state: running;
   }
 
-  @keyframes amZoomIn {
+  @keyframes DoraZoomIn {
     0% {
       opacity: 0;
       transform-origin: 50% 50%;
@@ -141,7 +101,7 @@
     }
   }
 
-  @keyframes amZoomOut {
+  @keyframes DoraZoomOut {
     0% {
       opacity: 1;
       transform-origin: 50% 50%;
@@ -154,6 +114,54 @@
       transform: scale(0, 0);
     }
   }
+
+  /* bottom => top */
+
+  &-slide-up-enter,
+  &-slide-up-appear {
+    transform: translate(0, 100%);
+  }
+
+  &-slide-up-enter,
+  &-slide-up-appear,
+  &-slide-up-exit {
+    .effect();
+
+    animation-play-state: paused;
+  }
+
+  &-slide-up-enter&-slide-up-enter-active,
+  &-slide-up-appear&-slide-up-appear-active {
+    animation-name: DoraSlideUpIn;
+    animation-play-state: running;
+  }
+
+  &-slide-up-exit&-slide-up-exit-active {
+    animation-name: DoraSlideUpOut;
+    animation-play-state: running;
+  }
+
+  @keyframes DoraSlideUpIn {
+    0% {
+      transform: translate(0, 100%);
+    }
+
+    100% {
+      transform: translate(0, 0);
+    }
+  }
+
+  @keyframes DoraSlideUpOut {
+    0% {
+      transform: translate(0, 0);
+    }
+
+    100% {
+      transform: translate(0, 100%);
+    }
+  }
+
+  /* top => bottom */
 
   &-slide-down-enter,
   &-slide-down-appear {
@@ -170,16 +178,16 @@
 
   &-slide-down-enter&-slide-down-enter-active,
   &-slide-down-appear&-slide-down-appear-active {
-    animation-name: amSlideDownIn;
+    animation-name: DoraSlideDownIn;
     animation-play-state: running;
   }
 
   &-slide-down-exit&-slide-down-exit-active {
-    animation-name: amSlideDownOut;
+    animation-name: DoraSlideDownOut;
     animation-play-state: running;
   }
 
-  @keyframes amSlideDownIn {
+  @keyframes DoraSlideDownIn {
     0% {
       transform: translate(0, -100%);
     }
@@ -189,13 +197,105 @@
     }
   }
 
-  @keyframes amSlideDownOut {
+  @keyframes DoraSlideDownOut {
     0% {
       transform: translate(0, 0);
     }
 
     100% {
       transform: translate(0, -100%);
+    }
+  }
+
+  /* left => right */
+
+  &-slide-right-enter,
+  &-slide-right-appear {
+    transform: translate(-100%, 0);
+  }
+
+  &-slide-right-enter,
+  &-slide-right-appear,
+  &-slide-right-exit {
+    .effect();
+
+    animation-play-state: paused;
+  }
+
+  &-slide-right-enter&-slide-right-enter-active,
+  &-slide-right-appear&-slide-right-appear-active {
+    animation-name: DoraSlideRightIn;
+    animation-play-state: running;
+  }
+
+  &-slide-right-exit&-slide-right-exit-active {
+    animation-name: DoraSlideRightOut;
+    animation-play-state: running;
+  }
+
+  @keyframes DoraSlideRightIn {
+    0% {
+      transform: translate(-100%, 0);
+    }
+
+    100% {
+      transform: translate(0, 0);
+    }
+  }
+
+  @keyframes DoraSlideRightOut {
+    0% {
+      transform: translate(0, 0);
+    }
+
+    100% {
+      transform: translate(-100%, 0);
+    }
+  }
+
+  /* right => left */
+
+  &-slide-left-enter,
+  &-slide-left-appear {
+    transform: translate(100%, 0);
+  }
+
+  &-slide-left-enter,
+  &-slide-left-appear,
+  &-slide-left-exit {
+    .effect();
+
+    animation-play-state: paused;
+  }
+
+  &-slide-left-enter&-slide-left-enter-active,
+  &-slide-left-appear&-slide-left-appear-active {
+    animation-name: DoraSlideLeftIn;
+    animation-play-state: running;
+  }
+
+  &-slide-left-exit&-slide-left-exit-active {
+    animation-name: DoraSlideLeftOut;
+    animation-play-state: running;
+  }
+
+  @keyframes DoraSlideLeftIn {
+    0% {
+      transform: translate(100%, 0);
+    }
+
+    100% {
+      transform: translate(0, 0);
+    }
+  }
+
+  @keyframes DoraSlideLeftOut {
+    0% {
+      transform: translate(0, 0);
+    }
+
+    100% {
+      transform: translate(100%, 0);
     }
   }
 }
