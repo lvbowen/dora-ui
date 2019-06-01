@@ -20,4 +20,6 @@ export interface ToastContentShape {
   content: React.ReactNode;
   type: toastType;
   mask?: boolean;
+  duration?: number;
+  onClose?: () => void;
 }

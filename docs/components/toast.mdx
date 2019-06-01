@@ -9,9 +9,9 @@ import '../style/index.less';
 
 # Toast 轻提示
 
-提供四种调用方式：
+基于 Popup 组件（position:center），提供 success/error/info/loading 等形态。
 
-- Toast.success
+- Toast.success(content,duration,callback,mask)
 - Toast.error
 - Toast.info
 - Toast.loading
@@ -22,7 +22,7 @@ import '../style/index.less';
 
 注意： Toast.loading 不会自动消失，需要手动调用 Toast.destroy
 
-## Usage
+## 示例
 
 ### 只有文字提示的 toast
 
@@ -67,7 +67,7 @@ import '../style/index.less';
   </button>
 </Playground>
 
-### 带遮罩的 toast
+### 带蒙层的 toast
 
 <Playground>
   <button
@@ -101,6 +101,6 @@ import '../style/index.less';
 | 属性     | 说明             | 类型      | 默认值            |
 | -------- | ---------------- | --------- | ----------------- |
 | content  | toast 内容       | ReactNode | -                 |
-| duration | 持续时间（毫秒） | Number    | 2000,loading 无效 |
-| onClose  | 关闭回调         | Function  | ()=>{}            |
-| mask     | 是否展示遮罩     | Boolean   | false             |
+| duration | 持续时间（毫秒） | Number?   | 1500,loading 无效 |
+| onClose  | 关闭回调         | Function? | ()=>{}            |
+| mask     | 是否展示蒙层     | Boolean?  | false             |

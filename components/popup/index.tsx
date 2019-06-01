@@ -23,12 +23,17 @@ type Props = PopupShape & DefaultProps;
 
 class Popup extends Component<Props, {}> {
   /**
-   * 初次渲染挂载节点(visible:true => mount)
-   * 后续只会隐藏(visible:false => display:none)
-   * 或显示(visible:true => display:block)节点
-   * 不会卸载节点（除非父组件卸载）
+   * 初次渲染节点(visible:true => mount)
+   * 后续只会隐藏(visible:false => visibility+opacity)
+   * 或显示(visible:true => visibility+opacity)节点
+   * 不会删除节点（除非父组件卸载或destroyOnClose为true）
    */
   private hasFirstRendered: boolean = false;
+
+  public componentDidMount() {
+    const { visible, mask, stopScrollUnderMask } = this.props;
+    if (visible && mask && stopScrollUnderMask) stopBodyScroll(true);
+  }
 
   public componentDidUpdate(prevProps: Props) {
     const { visible, mask, stopScrollUnderMask } = this.props;
