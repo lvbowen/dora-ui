@@ -43,7 +43,7 @@ class ToastContent extends Component<Props, { visible: boolean }> {
           },
           () => {
             this.isExecClose = true;
-            setTimeout(onClose, 200); // 执行完动画后再卸载组件并执行回调, visble:false时触发动画预留的时间：200
+            setTimeout(onClose, 300); // 执行完动画后再卸载组件并执行回调, visble:false时触发动画预留的时间：200
           }
         );
       }, duration);

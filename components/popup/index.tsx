@@ -15,7 +15,8 @@ const defaultProps = {
   onClose: () => {},
   wrapClassName: '',
   stopScrollUnderMask: true,
-  destroyOnClose: false
+  destroyOnClose: false,
+  animated: true
 };
 
 type DefaultProps = typeof defaultProps;
@@ -60,8 +61,8 @@ class Popup extends Component<Props, {}> {
   public get animationName(): string {
     const { position } = this.props;
     const animationNames = {
-      bottom: 'dora-popup-slide-up',
-      right: 'dora-popup-slide-left',
+      bottom: 'dora-slide-up',
+      right: 'dora-slide-left',
       left: 'dora-slide-right',
       top: 'dora-slide-down',
       center: 'dora-fade'
@@ -70,17 +71,27 @@ class Popup extends Component<Props, {}> {
   }
 
   public render() {
-    const { visible, mask, position, children, node, wrapClassName, destroyOnClose } = this.props;
+    const {
+      visible,
+      mask,
+      position,
+      children,
+      node,
+      wrapClassName,
+      destroyOnClose,
+      animated
+    } = this.props;
     if (!this.hasFirstRendered && !visible) return null;
     this.hasFirstRendered = true;
     const rootCls = cx(wrapClassName, prefixCls, `${prefixCls}__${position}`, {
-      [`${prefixCls}__mask`]: mask,
-      [`${prefixCls}__hide`]: !visible
+      [`${prefixCls}__mask`]: mask
     });
+    const animationDuration = animated ? 300 : 0;
+
     return (
       <CSSTransition
         in={visible}
-        timeout={200}
+        timeout={animationDuration}
         classNames="dora-fade"
         unmountOnExit={destroyOnClose}
         appear
@@ -88,7 +99,12 @@ class Popup extends Component<Props, {}> {
         <Portal node={node}>
           <div className={rootCls}>
             <div className={`${prefixCls}-mask`} onClick={this.handleMaskClick} />
-            <CSSTransition in={visible} timeout={200} classNames={this.animationName} appear>
+            <CSSTransition
+              in={visible}
+              timeout={animationDuration}
+              classNames={this.animationName}
+              appear
+            >
               <div className={`${prefixCls}-content`}>{children}</div>
             </CSSTransition>
           </div>

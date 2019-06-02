@@ -10,16 +10,6 @@
   bottom: 0;
   z-index: @popup-zindex;
   pointer-events: none; // amazing! 为none时可以产生点透的效果
-  visibility: visible;
-  opacity: 1;
-
-  &__hide {
-    // 为了离场动画效果 不能直接设置为display:none
-    // opacity:0 visibility:hidden 约等于 display:none （文档流除外）
-    opacity: 0;
-    transition: all 0.2s;
-    visibility: hidden; // magic! 也可以实现点透 包括子元素
-  }
 
   .@{popupPrefix}-mask {
     display: none; // mask 默认隐藏
@@ -57,6 +47,9 @@
     pointer-events: auto;
     overflow: scroll;
     -webkit-overflow-scrolling: touch; /* ios5+ */
+    ::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   &__left,
@@ -84,10 +77,21 @@
     }
   }
 
+  &__left {
+    .@{popupPrefix}-content {
+      right: 100%;
+    }
+  }
+
   &__right {
     .@{popupPrefix}-content {
       left: 100%;
-      transform: translate(-100%, 0);
+    }
+  }
+
+  &__top {
+    .@{popupPrefix}-content {
+      bottom: 100%;
     }
   }
 
@@ -95,107 +99,6 @@
     .@{popupPrefix}-content {
       border-radius: @radius-md @radius-md 0 0;
       top: 100%;
-      transform: translate(0, -100%);
-    }
-  }
-
-  /*
-   * 全局动画transform与popup自带的transform矛盾，要对动画参数进行细微订正
-   */
-
-  /* bottom => top */
-  .effect() {
-    animation-duration: 0.2s;
-    animation-fill-mode: both;
-    animation-timing-function: cubic-bezier(0.55, 0, 0.55, 0.2);
-  }
-
-  &-slide-up-enter,
-  &-slide-up-appear {
-    transform: translate(0, 0);
-  }
-
-  &-slide-up-enter,
-  &-slide-up-appear,
-  &-slide-up-exit {
-    .effect();
-
-    animation-play-state: paused;
-  }
-
-  &-slide-up-enter&-slide-up-enter-active,
-  &-slide-up-appear&-slide-up-appear-active {
-    animation-name: DoraPopupSlideUpIn;
-    animation-play-state: running;
-  }
-
-  &-slide-up-exit&-slide-up-exit-active {
-    animation-name: DoraPopupSlideUpOut;
-    animation-play-state: running;
-  }
-
-  @keyframes DoraPopupSlideUpIn {
-    0% {
-      transform: translate(0, 0);
-    }
-
-    100% {
-      transform: translate(0, -100%);
-    }
-  }
-
-  @keyframes DoraPopupSlideUpOut {
-    0% {
-      transform: translate(0, -100%);
-    }
-
-    100% {
-      transform: translate(0, 0);
-    }
-  }
-
-  /* right => left */
-  &-slide-left-enter,
-  &-slide-left-appear {
-    transform: translate(0, 0);
-  }
-
-  &-slide-left-enter,
-  &-slide-left-appear,
-  &-slide-left-exit {
-    .effect();
-
-    animation-play-state: paused;
-  }
-
-  &-slide-left-enter&-slide-left-enter-active,
-  &-slide-left-appear&-slide-left-appear-active {
-    animation-name: DoraPopupSlideLeftIn;
-    animation-play-state: running;
-  }
-
-  &-slide-left-exit&-slide-left-exit-active {
-    animation-name: DoraPopupSlideLeftOut;
-    animation-play-state: running;
-  }
-
-  @keyframes DoraPopupSlideLeftIn {
-    0% {
-      transform: translate(0, 0);
-    }
-
-    100% {
-      transform: translate(-100%, 0);
-    }
-  }
-
-  @keyframes DoraPopupSlideLeftOut {
-    0% {
-      transform: translate(-100%, 0);
-    }
-
-    100% {
-      transform: translate(0, 0);
     }
   }
 }

@@ -1,301 +1,143 @@
-/* do not import this file except components/style/index.less */
+@animationDuration: 300ms;
+
 .dora {
-  .effect() {
-    animation-duration: 0.2s;
-    animation-fill-mode: both;
-    animation-timing-function: cubic-bezier(0.55, 0, 0.55, 0.2);
-  }
-
-  /* opacity */
-
+  /* fade visibility:hidden + opacity:0 = display:none */
   &-fade-enter,
-  &-fade-appear {
+  &-fade-appear,
+  &-fade-exit-done {
+    visibility: hidden;
     opacity: 0;
-    .effect();
-
-    animation-play-state: paused;
   }
 
-  &-fade-exit {
-    .effect();
-
-    animation-play-state: paused;
+  &-fade-appear-active,
+  &-fade-enter-active {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity @animationDuration, visibility @animationDuration;
   }
-
-  &-fade-enter&-fade-enter-active,
-  &-fade-appear&-fade-appear-active {
-    animation-name: DoraFadeIn;
-    animation-play-state: running;
+  &-fade-exit,
+  &-fade-enter-done {
+    visibility: visible;
+    opacity: 1;
   }
-
-  &-fade-exit&-fade-exit-active {
-    animation-name: DoraFadeOut;
-    animation-play-state: running;
-  }
-
-  @keyframes DoraFadeIn {
-    0% {
-      opacity: 0;
-    }
-
-    100% {
-      opacity: 1;
-    }
-  }
-
-  @keyframes DoraFadeOut {
-    0% {
-      opacity: 1;
-    }
-
-    100% {
-      opacity: 0;
-    }
+  &-fade-exit-active {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity @animationDuration, visibility @animationDuration;
   }
 
   /* zoom */
-
-  &&-zoom-enter,
-  &&-zoom-exit {
-    display: block;
-  }
-
   &-zoom-enter,
-  &-zoom-appear {
+  &-zoom-appear,
+  &-zoom-exit-done {
     opacity: 0;
-    .effect();
-
-    animation-timing-function: cubic-bezier(0.18, 0.89, 0.32, 1.28);
-    animation-play-state: paused;
+    transform: scale(0, 0);
   }
 
-  &-zoom-exit {
-    .effect();
-
-    animation-timing-function: cubic-bezier(0.6, -0.3, 0.74, 0.05);
-    animation-play-state: paused;
+  &-zoom-appear-active,
+  &-zoom-enter-active {
+    opacity: 1;
+    transform-origin: 50% 50%;
+    transform: scale(1, 1);
+    transition: transform @animationDuration;
   }
 
-  &-zoom-enter&-zoom-enter-active,
-  &-zoom-appear&-zoom-appear-active {
-    animation-name: DoraZoomIn;
-    animation-play-state: running;
+  &-zoom-exit,
+  &-zoom-enter-done {
+    opacity: 1;
+    transform: scale(1, 1);
   }
 
-  &-zoom-exit&-zoom-exit-active {
-    animation-name: DoraZoomOut;
-    animation-play-state: running;
+  &-zoom-exit-active {
+    opacity: 0;
+    transform-origin: 50% 50%;
+    transform: scale(0, 0);
+    transition: transform @animationDuration;
   }
 
-  @keyframes DoraZoomIn {
-    0% {
-      opacity: 0;
-      transform-origin: 50% 50%;
-      transform: scale(0, 0);
-    }
-
-    100% {
-      opacity: 1;
-      transform-origin: 50% 50%;
-      transform: scale(1, 1);
-    }
-  }
-
-  @keyframes DoraZoomOut {
-    0% {
-      opacity: 1;
-      transform-origin: 50% 50%;
-      transform: scale(1, 1);
-    }
-
-    100% {
-      opacity: 0;
-      transform-origin: 50% 50%;
-      transform: scale(0, 0);
-    }
-  }
-
-  /* bottom => top */
-
-  &-slide-up-enter,
-  &-slide-up-appear {
-    transform: translate(0, 100%);
-  }
-
+  /* SlideUp */
   &-slide-up-enter,
   &-slide-up-appear,
-  &-slide-up-exit {
-    .effect();
-
-    animation-play-state: paused;
+  &-slide-up-exit-done {
+    transform: translate(0, 0);
   }
-
-  &-slide-up-enter&-slide-up-enter-active,
-  &-slide-up-appear&-slide-up-appear-active {
-    animation-name: DoraSlideUpIn;
-    animation-play-state: running;
+  &-slide-up-enter-active,
+  &-slide-up-appear-active {
+    transform: translate(0, -100%);
+    transition: transform @animationDuration;
   }
-
-  &-slide-up-exit&-slide-up-exit-active {
-    animation-name: DoraSlideUpOut;
-    animation-play-state: running;
-  }
-
-  @keyframes DoraSlideUpIn {
-    0% {
-      transform: translate(0, 100%);
-    }
-
-    100% {
-      transform: translate(0, 0);
-    }
-  }
-
-  @keyframes DoraSlideUpOut {
-    0% {
-      transform: translate(0, 0);
-    }
-
-    100% {
-      transform: translate(0, 100%);
-    }
-  }
-
-  /* top => bottom */
-
-  &-slide-down-enter,
-  &-slide-down-appear {
+  &-slide-up-exit,
+  &-slide-up-enter-done {
     transform: translate(0, -100%);
   }
+  &-slide-up-exit-active {
+    transform: translate(0, 0);
+    transition: transform @animationDuration;
+  }
 
+  /* SlideDown */
   &-slide-down-enter,
   &-slide-down-appear,
-  &-slide-down-exit {
-    .effect();
-
-    animation-play-state: paused;
+  &-slide-down-exit-done {
+    transform: translate(0, 0);
+  }
+  &-slide-down-enter-active,
+  &-slide-down-appear-active {
+    transform: translate(0, 100%);
+    transition: transform @animationDuration;
+  }
+  &-slide-down-exit,
+  &-slide-down-enter-done {
+    transform: translate(0, 100%);
+  }
+  &-slide-down-exit-active {
+    transform: translate(0, 0);
+    transition: transform @animationDuration;
   }
 
-  &-slide-down-enter&-slide-down-enter-active,
-  &-slide-down-appear&-slide-down-appear-active {
-    animation-name: DoraSlideDownIn;
-    animation-play-state: running;
+  /* SlideLeft */
+  &-slide-left-enter,
+  &-slide-left-appear,
+  &-slide-left-exit-done {
+    transform: translate(0, 0);
   }
 
-  &-slide-down-exit&-slide-down-exit-active {
-    animation-name: DoraSlideDownOut;
-    animation-play-state: running;
+  &-slide-left-enter-active,
+  &-slide-left-appear-active {
+    transform: translate(-100%, 0);
+    transition: transform @animationDuration;
   }
 
-  @keyframes DoraSlideDownIn {
-    0% {
-      transform: translate(0, -100%);
-    }
-
-    100% {
-      transform: translate(0, 0);
-    }
-  }
-
-  @keyframes DoraSlideDownOut {
-    0% {
-      transform: translate(0, 0);
-    }
-
-    100% {
-      transform: translate(0, -100%);
-    }
-  }
-
-  /* left => right */
-
-  &-slide-right-enter,
-  &-slide-right-appear {
+  &-slide-left-exit,
+  &-slide-left-enter-done {
     transform: translate(-100%, 0);
   }
 
+  &-slide-left-exit-active {
+    transform: translate(0, 0);
+    transition: transform @animationDuration;
+  }
+
+  /* SlideRight */
   &-slide-right-enter,
   &-slide-right-appear,
-  &-slide-right-exit {
-    .effect();
-
-    animation-play-state: paused;
+  &-slide-right-exit-done {
+    transform: translate(0, 0);
   }
 
-  &-slide-right-enter&-slide-right-enter-active,
-  &-slide-right-appear&-slide-right-appear-active {
-    animation-name: DoraSlideRightIn;
-    animation-play-state: running;
+  &-slide-right-enter-active,
+  &-slide-right-appear-active {
+    transform: translate(100%, 0);
+    transition: transform @animationDuration;
   }
 
-  &-slide-right-exit&-slide-right-exit-active {
-    animation-name: DoraSlideRightOut;
-    animation-play-state: running;
-  }
-
-  @keyframes DoraSlideRightIn {
-    0% {
-      transform: translate(-100%, 0);
-    }
-
-    100% {
-      transform: translate(0, 0);
-    }
-  }
-
-  @keyframes DoraSlideRightOut {
-    0% {
-      transform: translate(0, 0);
-    }
-
-    100% {
-      transform: translate(-100%, 0);
-    }
-  }
-
-  /* right => left */
-
-  &-slide-left-enter,
-  &-slide-left-appear {
+  &-slide-right-exit,
+  &-slide-right-enter-done {
     transform: translate(100%, 0);
   }
 
-  &-slide-left-enter,
-  &-slide-left-appear,
-  &-slide-left-exit {
-    .effect();
-
-    animation-play-state: paused;
-  }
-
-  &-slide-left-enter&-slide-left-enter-active,
-  &-slide-left-appear&-slide-left-appear-active {
-    animation-name: DoraSlideLeftIn;
-    animation-play-state: running;
-  }
-
-  &-slide-left-exit&-slide-left-exit-active {
-    animation-name: DoraSlideLeftOut;
-    animation-play-state: running;
-  }
-
-  @keyframes DoraSlideLeftIn {
-    0% {
-      transform: translate(100%, 0);
-    }
-
-    100% {
-      transform: translate(0, 0);
-    }
-  }
-
-  @keyframes DoraSlideLeftOut {
-    0% {
-      transform: translate(0, 0);
-    }
-
-    100% {
-      transform: translate(100%, 0);
-    }
+  &-slide-right-exit-active {
+    transform: translate(0, 0);
+    transition: transform @animationDuration;
   }
 }

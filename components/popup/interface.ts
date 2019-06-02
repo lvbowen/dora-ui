@@ -11,4 +11,5 @@ export interface PopupShape {
   wrapClassName?: string;
   stopScrollUnderMask?: boolean;
   destroyOnClose?: boolean;
+  animated?: boolean;
 }
