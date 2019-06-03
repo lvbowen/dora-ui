@@ -16,7 +16,8 @@ const defaultProps = {
   wrapClassName: '',
   stopScrollUnderMask: true,
   destroyOnClose: false,
-  maskTransitionName: 'dora-fade' as transitionType
+  maskTransitionName: 'dora-fade' as transitionType,
+  transitionName: '' as transitionType
 };
 
 type DefaultProps = typeof defaultProps;
