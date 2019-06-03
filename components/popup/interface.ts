@@ -1,15 +1,24 @@
 export type positionType = 'top' | 'right' | 'bottom' | 'left' | 'center';
 
+export type transitionType =
+  | 'dora-fade'
+  | 'dora-zoom'
+  | 'dora-slide-up'
+  | 'dora-slide-down'
+  | 'dora-slide-right'
+  | 'dora-slide-left';
+
 export interface PopupShape {
   visible?: boolean;
   children: React.ReactNode;
-  mask?: boolean;
   position?: positionType;
+  mask?: boolean;
   maskClosable?: boolean;
   onClose?: () => void;
   node?: HTMLElement;
   wrapClassName?: string;
   stopScrollUnderMask?: boolean;
   destroyOnClose?: boolean;
-  animated?: boolean;
+  transitionName?: transitionType;
+  maskTransitionName?: transitionType;
 }

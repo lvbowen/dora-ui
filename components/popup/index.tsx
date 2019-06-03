@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
 import cx from 'classnames';
+import React, { Component } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import Portal from '../portal';
-import { PopupShape, positionType } from './interface';
-import { withDefaultProps, stopBodyScroll, isFunction } from '../utils';
+import { isFunction, stopBodyScroll, withDefaultProps } from '../utils';
+import { PopupShape, positionType, transitionType } from './interface';
 
 const prefixCls = 'dora-popup';
 
@@ -16,7 +16,7 @@ const defaultProps = {
   wrapClassName: '',
   stopScrollUnderMask: true,
   destroyOnClose: false,
-  animated: true
+  maskTransitionName: 'dora-fade' as transitionType
 };
 
 type DefaultProps = typeof defaultProps;
@@ -58,41 +58,42 @@ class Popup extends Component<Props, {}> {
     }
   };
 
-  public get animationName(): string {
-    const { position } = this.props;
-    const animationNames = {
+  public get transitionName(): string {
+    const { position, transitionName } = this.props;
+    if (transitionName) return transitionName;
+    const transitionNames = {
       bottom: 'dora-slide-up',
       right: 'dora-slide-left',
       left: 'dora-slide-right',
       top: 'dora-slide-down',
       center: 'dora-fade'
     };
-    return animationNames[position];
+    return transitionNames[position] as transitionType;
   }
 
   public render() {
     const {
       visible,
       mask,
+      maskTransitionName,
       position,
       children,
       node,
       wrapClassName,
-      destroyOnClose,
-      animated
+      destroyOnClose
     } = this.props;
     if (!this.hasFirstRendered && !visible) return null;
     this.hasFirstRendered = true;
     const rootCls = cx(wrapClassName, prefixCls, `${prefixCls}__${position}`, {
       [`${prefixCls}__mask`]: mask
     });
-    const animationDuration = animated ? 300 : 0;
+    const animationDuration = 300;
 
     return (
       <CSSTransition
         in={visible}
         timeout={animationDuration}
-        classNames="dora-fade"
+        classNames={maskTransitionName}
         unmountOnExit={destroyOnClose}
         appear
       >
@@ -102,7 +103,7 @@ class Popup extends Component<Props, {}> {
             <CSSTransition
               in={visible}
               timeout={animationDuration}
-              classNames={this.animationName}
+              classNames={this.transitionName}
               appear
             >
               <div className={`${prefixCls}-content`}>{children}</div>

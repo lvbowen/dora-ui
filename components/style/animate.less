@@ -1,4 +1,5 @@
 @animationDuration: 300ms;
+@transitionTimingFunction: cubic-bezier(0.55, 0, 0.55, 0.2);
 
 .dora {
   /* fade visibility:hidden + opacity:0 = display:none */
@@ -14,6 +15,7 @@
     visibility: visible;
     opacity: 1;
     transition: opacity @animationDuration, visibility @animationDuration;
+    transition-timing-function: @transitionTimingFunction;
   }
   &-fade-exit,
   &-fade-enter-done {
@@ -24,6 +26,7 @@
     visibility: hidden;
     opacity: 0;
     transition: opacity @animationDuration, visibility @animationDuration;
+    transition-timing-function: @transitionTimingFunction;
   }
 
   /* zoom */
@@ -40,6 +43,7 @@
     transform-origin: 50% 50%;
     transform: scale(1, 1);
     transition: transform @animationDuration;
+    transition-timing-function: cubic-bezier(0.18, 0.89, 0.32, 1.28);
   }
 
   &-zoom-exit,
@@ -53,91 +57,100 @@
     transform-origin: 50% 50%;
     transform: scale(0, 0);
     transition: transform @animationDuration;
+    transition-timing-function: cubic-bezier(0.6, -0.3, 0.74, 0.05);
   }
 
   /* SlideUp */
   &-slide-up-enter,
   &-slide-up-appear,
   &-slide-up-exit-done {
-    transform: translate(0, 0);
+    transform: translate(0, 100%);
   }
   &-slide-up-enter-active,
   &-slide-up-appear-active {
-    transform: translate(0, -100%);
+    transform: translate(0, 0);
     transition: transform @animationDuration;
+    transition-timing-function: @transitionTimingFunction;
   }
   &-slide-up-exit,
   &-slide-up-enter-done {
-    transform: translate(0, -100%);
+    transform: translate(0, 0);
   }
   &-slide-up-exit-active {
-    transform: translate(0, 0);
+    transform: translate(0, 100%);
     transition: transform @animationDuration;
+    transition-timing-function: @transitionTimingFunction;
   }
 
   /* SlideDown */
   &-slide-down-enter,
   &-slide-down-appear,
   &-slide-down-exit-done {
-    transform: translate(0, 0);
+    transform: translate(0, -100%);
   }
   &-slide-down-enter-active,
   &-slide-down-appear-active {
-    transform: translate(0, 100%);
+    transform: translate(0, 0);
     transition: transform @animationDuration;
+    transition-timing-function: @transitionTimingFunction;
   }
   &-slide-down-exit,
   &-slide-down-enter-done {
-    transform: translate(0, 100%);
+    transform: translate(0, 0);
   }
   &-slide-down-exit-active {
-    transform: translate(0, 0);
+    transform: translate(0, -100%);
     transition: transform @animationDuration;
+    transition-timing-function: @transitionTimingFunction;
   }
 
   /* SlideLeft */
   &-slide-left-enter,
   &-slide-left-appear,
   &-slide-left-exit-done {
-    transform: translate(0, 0);
+    transform: translate(100%, 0);
   }
 
   &-slide-left-enter-active,
   &-slide-left-appear-active {
-    transform: translate(-100%, 0);
+    transform: translate(0, 0);
     transition: transform @animationDuration;
+    transition-timing-function: @transitionTimingFunction;
   }
 
   &-slide-left-exit,
   &-slide-left-enter-done {
-    transform: translate(-100%, 0);
+    transform: translate(0, 0);
   }
 
   &-slide-left-exit-active {
-    transform: translate(0, 0);
+    transform: translate(100%, 0);
     transition: transform @animationDuration;
+    transition-timing-function: @transitionTimingFunction;
   }
 
   /* SlideRight */
   &-slide-right-enter,
   &-slide-right-appear,
   &-slide-right-exit-done {
-    transform: translate(0, 0);
+    transform: translate(-100%, 0);
   }
 
   &-slide-right-enter-active,
   &-slide-right-appear-active {
-    transform: translate(100%, 0);
+    transform: translate(0, 0);
     transition: transform @animationDuration;
+    transition-timing-function: @transitionTimingFunction;
   }
 
   &-slide-right-exit,
   &-slide-right-enter-done {
-    transform: translate(100%, 0);
+    transform: translate(0, 0);
   }
 
   &-slide-right-exit-active {
-    transform: translate(0, 0);
+    transform: translate(-100%, 0);
     transition: transform @animationDuration;
+    transition-timing-function: @transitionTimingFunction;
   }
 }
