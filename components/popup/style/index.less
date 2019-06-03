@@ -45,7 +45,6 @@
     width: 100%;
     box-sizing: border-box;
     pointer-events: auto;
-    overflow: scroll;
     -webkit-overflow-scrolling: touch; /* ios5+ */
     ::-webkit-scrollbar {
       display: none;
@@ -69,11 +68,16 @@
   }
 
   &__center {
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
     .@{popupPrefix}-content {
       border-radius: @radius-sm;
+      position: absolute;
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
+      white-space: nowrap;
     }
   }
 
