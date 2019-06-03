@@ -1,3 +1,5 @@
+export { default as Countdown } from './countdown';
+
 export { default as Icon } from './icon';
 
 export { default as Popup } from './popup';
