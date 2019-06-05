@@ -5,6 +5,7 @@ menu: Components
 
 import { Playground } from 'docz';
 import { Countdown } from 'components';
+import '../style/index.less';
 
 # Countdown 倒计时
 
@@ -12,19 +13,44 @@ import { Countdown } from 'components';
 
 ## 示例
 
+背景仅做演示用，样式可自定义。
+
 ### 基本用法
 
 <Playground>
-  <Countdown endTime={new Date().getTime() + 1000 * 60 * 60 * 24 * 3} />
+  <div
+    style={{
+      background: '#FF462C',
+      width: '100%',
+      height: '100%',
+      position: 'absolute',
+      left: '0',
+      top: '0'
+    }}
+  >
+    <Countdown endTime={new Date().getTime() + 1000 * 60 * 60 * 24 * 3} />
+  </div>
 </Playground>
 
 ### 自定义模板
 
 <Playground>
-  <Countdown
-    endTime={new Date().getTime() + 1000 * 60 * 60 * 24 * 3}
-    format="dd-天 hh-h mm-m ss-"
-  />
+  <div
+    style={{
+      background: '#FF462C',
+      width: '100%',
+      height: '100%',
+      position: 'absolute',
+      left: '0',
+      top: '0'
+    }}
+  >
+    <Countdown
+      endTime={new Date().getTime() + 1000 * 60 * 60 * 24 * 3}
+      format="dd-天 hh-h mm-m ss-"
+    />
+
+  </div>
 </Playground>
 
 ## API
