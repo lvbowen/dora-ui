@@ -69,7 +69,7 @@ class Countdown extends Component<Props, { ms: number }> {
       nextTime = 0;
     }
     this.setState({
-      ms: this.state.ms - this.interval
+      ms: Math.max(this.state.ms - this.interval, 0)
     });
     // console.log(
     //   `误差：${offset} ms，下一次执行：${nextTime} ms 后，离活动开始还有：${this.state.ms} ms`
