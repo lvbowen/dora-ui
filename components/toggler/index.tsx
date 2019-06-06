@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import warning from 'warning';
 import { TogglerShape } from './interface';
-import { withDefaultProps, isBoolean } from '../utils';
+import { withDefaultProps, isBoolean, isFunction } from '../utils';
 
 interface StateShape {
   toggled: boolean;
@@ -12,7 +13,7 @@ const defaultProps = {
 };
 
 type DefaultProps = typeof defaultProps;
-type Props = TogglerShape & DefaultProps;
+type Props = TogglerShape & DefaultProps; // 交叉类型 属性全部变成了必填 抹去了组件内部默认属性可能为undefined的情况
 
 class Toggler extends Component<Props, StateShape> {
   public constructor(props: Props) {
@@ -36,8 +37,9 @@ class Toggler extends Component<Props, StateShape> {
 
   public render() {
     const { children } = this.props;
+    warning(isFunction(children), 'Props endTime must be a function which returns JSX.Element');
     const { toggled } = this.state;
-    return children([toggled, this.onToggle]);
+    return isFunction(children) ? children([toggled, this.onToggle]) : null;
   }
 }
 
