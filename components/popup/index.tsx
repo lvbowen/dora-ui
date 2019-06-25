@@ -17,7 +17,10 @@ const defaultProps = {
   stopScrollUnderMask: true,
   destroyOnClose: false,
   maskTransitionName: 'dora-fade' as transitionType,
-  transitionName: '' as transitionType
+  transitionName: '' as transitionType,
+  contentStyle: {},
+  transitionDuration: 300,
+  maskTransitionDuration: 300
 };
 
 type DefaultProps = typeof defaultProps;
@@ -81,19 +84,21 @@ class Popup extends Component<Props, {}> {
       children,
       node,
       wrapClassName,
-      destroyOnClose
+      destroyOnClose,
+      contentStyle,
+      transitionDuration,
+      maskTransitionDuration
     } = this.props;
     if (!this.hasFirstRendered && !visible) return null;
     this.hasFirstRendered = true;
     const rootCls = cx(wrapClassName, prefixCls, `${prefixCls}__${position}`, {
       [`${prefixCls}__mask`]: mask
     });
-    const animationDuration = 300;
 
     return (
       <CSSTransition
         in={visible}
-        timeout={animationDuration}
+        timeout={maskTransitionDuration}
         classNames={maskTransitionName}
         unmountOnExit={destroyOnClose}
         appear
@@ -103,11 +108,13 @@ class Popup extends Component<Props, {}> {
             <div className={`${prefixCls}-mask`} onClick={this.handleMaskClick} />
             <CSSTransition
               in={visible}
-              timeout={animationDuration}
+              timeout={transitionDuration}
               classNames={this.transitionName}
               appear
             >
-              <div className={`${prefixCls}-content`}>{children}</div>
+              <div className={`${prefixCls}-content`} style={{ ...contentStyle }}>
+                {children}
+              </div>
             </CSSTransition>
           </div>
         </Portal>

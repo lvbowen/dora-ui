@@ -17,8 +17,11 @@ export interface PopupShape {
   onClose?: () => void;
   node?: HTMLElement;
   wrapClassName?: string;
+  contentStyle?: React.CSSProperties;
   stopScrollUnderMask?: boolean;
   destroyOnClose?: boolean;
   transitionName?: transitionType;
+  transitionDuration?: number;
   maskTransitionName?: transitionType;
+  maskTransitionDuration?: number;
 }

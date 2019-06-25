@@ -39,7 +39,6 @@
   }
 
   .@{popupPrefix}-content {
-    background-color: @toast-fill;
     color: @color-text-base-inverse;
     position: absolute;
     width: 100%;
@@ -68,16 +67,12 @@
   }
 
   &__center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     .@{popupPrefix}-content {
-      border-radius: @radius-sm;
-      // position: absolute;
-      // left: 50%;
-      // top: 50%;
-      // transform: translate(-50%, -50%);
-      // white-space: nowrap;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      white-space: nowrap;
     }
   }
 
@@ -89,7 +84,6 @@
 
   &__bottom {
     .@{popupPrefix}-content {
-      border-radius: @radius-md @radius-md 0 0;
       bottom: 0;
     }
   }
