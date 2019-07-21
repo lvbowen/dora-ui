@@ -5,3 +5,4 @@
 import './index.less';
 import '../../style';
 import '../../icon/style';
+import '../../popup/style';
