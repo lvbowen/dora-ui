@@ -103,7 +103,7 @@ function compile(modules) {
 }
 
 function compileLib() {
-  return compile();
+  return compile('commonjs');
 }
 
 function compileEs() {
