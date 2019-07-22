@@ -1,43 +1,76 @@
-import React from 'react';
 import cx from 'classnames';
-import { IconPropsShape } from './interface';
-import { FiLoader } from 'react-icons/fi';
-import { IoIosCheckmarkCircleOutline, IoIosInformationCircleOutline } from 'react-icons/io';
-import { GoX } from 'react-icons/go';
-import { TiWarningOutline } from 'react-icons/ti';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 
-interface RealIconMapShape {
-  [key: string]: typeof GoX;
+export interface IconProps {
+  // 图标的名称
+  type: 'success' | 'error' | 'info' | 'warning' | 'loading';
+  // size 大小
+  size?: 'xss' | 'xs' | 'sm' | 'md' | 'lg';
+  // color 图标的颜色
+  color?: string;
+  // 是否旋转 默认为false
+  spinning?: boolean;
+  // prefixCls 类名的前缀
+  prefixCls?: string;
+  // className
+  className?: string;
+  // onClick
+  onClick?: (e: React.MouseEvent) => void;
 }
 
-const realIconMap: RealIconMapShape = {
-  success: IoIosCheckmarkCircleOutline,
-  error: GoX,
-  info: IoIosInformationCircleOutline,
-  warning: TiWarningOutline,
-  loading: FiLoader
-};
+const cacheScript = new Set();
+const url = '//at.alicdn.com/t/font_1307286_wu10fg1zil.js';
 
-const defaultProps: IconPropsShape = {
-  type: 'info',
-  prefixCls: 'dora-icon',
-  size: 'md',
-  color: '#000',
-  spinning: false,
-  onClick: () => {}
-};
-
-const Icon: React.FC<IconPropsShape> = userProps => {
-  const props = { ...defaultProps, ...userProps };
-  const { prefixCls, type, size, color, className, spinning, onClick, ...restProps } = props;
-  const RealIcon = realIconMap[type];
-  const cls = cx(prefixCls, `${prefixCls}-${size}`, className, {
-    [`${prefixCls}-spinning`]: spinning
-  });
-  const style: React.CSSProperties = {
-    color
+class Icon extends Component<IconProps, {}> {
+  static propTypes = {
+    type: PropTypes.oneOf(['success', 'error', 'info', 'warning', 'loading']).isRequired,
+    size: PropTypes.oneOf(['xss', 'xs', 'sm', 'md', 'lg']),
+    color: PropTypes.string,
+    spinning: PropTypes.bool,
+    prefixCls: PropTypes.string,
+    className: PropTypes.string,
+    onClick: PropTypes.func
   };
-  return <RealIcon {...restProps} onClick={onClick} className={cls} style={style} />;
-};
+
+  static defaultProps = {
+    type: 'info',
+    prefixCls: 'dora-icon',
+    size: 'md',
+    color: '#000',
+    onClick: () => {}
+  };
+
+  componentDidMount() {
+    this.createScript();
+  }
+
+  createScript() {
+    if (!cacheScript.has(url)) {
+      const script = document.createElement('script');
+      script.src = url;
+      cacheScript.add(url);
+      document.body.appendChild(script);
+    }
+  }
+
+  render() {
+    const { prefixCls, size, type, spinning, color, className, ...rest } = this.props;
+
+    const cls = cx(prefixCls, className, `${prefixCls}-${size}`, {
+      [`${prefixCls}-spinning`]: spinning
+    });
+
+    const style: React.CSSProperties = {
+      color
+    };
+
+    return (
+      <svg {...rest} className={cls} style={style}>
+        <use xlinkHref={`#icon-${type}`} />
+      </svg>
+    );
+  }
+}
 
 export default Icon;

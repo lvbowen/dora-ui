@@ -4,6 +4,7 @@ module.exports = {
   plugins: ['@typescript-eslint', 'react'],
   rules: {
     '@typescript-eslint/explicit-function-return-type': 0,
-    '@typescript-eslint/indent': ['error', 2]
+    '@typescript-eslint/indent': ['error', 2],
+    '@typescript-eslint/explicit-member-accessibility': 0
   }
 };

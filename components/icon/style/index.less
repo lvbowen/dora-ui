@@ -1,9 +1,8 @@
 @import '../../style/vars.less';
 
 .dora-icon {
-  background-size: cover;
-  width: @icon-size-md;
-  height: @icon-size-md;
+  fill: currentColor;
+  overflow: hidden;
 
   &-xxs {
     width: @icon-size-xxs;
@@ -31,11 +30,11 @@
   }
 
   &-spinning {
-    animation: cirle-anim 1s linear infinite;
+    animation: spin 2s linear infinite;
   }
 
-  @keyframes cirle-anim {
-    100% {
+  @keyframes spin {
+    to {
       transform: rotate(360deg);
     }
   }
