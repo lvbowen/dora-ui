@@ -6,7 +6,7 @@ export interface IconProps {
   // 图标的名称
   type: 'success' | 'error' | 'info' | 'warning' | 'loading';
   // size 大小
-  size?: 'xss' | 'xs' | 'sm' | 'md' | 'lg';
+  size?: 'sm' | 'md' | 'lg';
   // color 图标的颜色
   color?: string;
   // 是否旋转 默认为false
@@ -25,7 +25,7 @@ const url = '//at.alicdn.com/t/font_1307286_wu10fg1zil.js';
 class Icon extends Component<IconProps, {}> {
   static propTypes = {
     type: PropTypes.oneOf(['success', 'error', 'info', 'warning', 'loading']).isRequired,
-    size: PropTypes.oneOf(['xss', 'xs', 'sm', 'md', 'lg']),
+    size: PropTypes.oneOf(['sm', 'md', 'lg']),
     color: PropTypes.string,
     spinning: PropTypes.bool,
     prefixCls: PropTypes.string,

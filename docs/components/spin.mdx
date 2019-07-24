@@ -1,0 +1,74 @@
+---
+name: Spin 加载中
+menu: Components
+---
+
+import { Playground } from 'docz';
+import { Spin } from 'components';
+import { Button } from '../utils';
+import { BounceLoader, ClipLoader, RingLoader } from 'react-spinners';
+import '../style/index.less';
+
+<Playground>
+  {() => {
+    class App extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = {
+          loading: false,
+          size:'md',
+          spinner: undefined,
+        };
+        this.spinnerIndex = -1;
+        this.toggleLoading = this.toggleLoading.bind(this);
+        this.changeSize = this.changeSize.bind(this);
+        this.changeSpinner = this.changeSpinner.bind(this);
+      }
+
+      toggleLoading(){
+        this.setState({
+          loading:!this.state.loading
+        })
+      }
+
+      changeSize(){
+        const sizeArr = ['sm', 'md', 'lg'];
+        const { size } = this.state;
+        const index = sizeArr.indexOf(size);
+        const nextIndex = index + 1 === sizeArr.length ? 0 : index + 1;
+        this.setState({
+          size: sizeArr[nextIndex],
+          loading: true,
+        })
+      }
+
+      changeSpinner(){
+        const spinners = [BounceLoader, ClipLoader, RingLoader].map(Spinner=> <Spinner color="#fff"></Spinner>).concat(undefined);
+        this.spinnerIndex = this.spinnerIndex + 1 === spinners.length ? 0 : this.spinnerIndex + 1
+        index = this.spinnerIndex
+        this.setState({
+          spinner: spinners[index],
+          loading: true,
+        })
+      }
+
+      render() {
+        const { loading, size, spinner } = this.state;
+        return (
+          <div>
+            <div>
+            <Spin spinning={loading} spinner={spinner} size={size}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta, nesciunt aliquam. Eligendi suscipit ab natus magni, corrupti impedit autem vitae aut molestiae sunt, fugit, illum possimus voluptate at enim ullam.</Spin>
+            </div>
+            <Button onClick={this.toggleLoading}>显示隐藏</Button>
+            <Button onClick={this.changeSize}>切换大小</Button>
+            <Button onClick={this.changeSpinner}>自定义加载样式</Button>
+          </div>
+        );
+      }
+    }
+
+    return <App />;
+
+}}
+
+</Playground>

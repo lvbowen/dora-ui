@@ -1,0 +1,26 @@
+@import '../../style/vars.less';
+
+@spin-prefix-cls: dora-spin;
+@spinner-prefix-cls: dora-spin-spinner;
+
+.@{spin-prefix-cls} {
+  position: relative;
+  &-spinner-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: @fill-mask;
+  }
+
+  &-text {
+    padding-top: 5px;
+    color: #fff;
+    line-height: 21px;
+  }
+}

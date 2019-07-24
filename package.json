@@ -120,6 +120,7 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-hot-loader": "4.8",
+    "react-spinners": "0.5.13",
     "rimraf": "^2.6.3",
     "style-loader": "0.23.1",
     "stylelint": "^10.0.1",
