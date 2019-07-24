@@ -1,11 +1,13 @@
-import React, { Component } from 'react';
 import cx from 'classnames';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import Portal from '../portal';
 import { isUndefined } from '../utils';
 import DefaultSpinner, { SpinnerProps } from './spinner';
-import PropTypes from 'prop-types';
 
 interface SpinProps extends SpinnerProps {
   spinning: boolean;
+  fullScreen?: boolean;
   children: React.ReactNode;
   spinner?: React.ReactElement;
   tip?: string;
@@ -16,34 +18,43 @@ interface SpinProps extends SpinnerProps {
 class Spin extends Component<SpinProps, {}> {
   static propTypes = {
     spinning: PropTypes.bool.isRequired,
+    fullScreen: PropTypes.bool,
     size: PropTypes.oneOf(['sm', 'md', 'lg']),
     children: PropTypes.node,
     spinner: PropTypes.element,
     tip: PropTypes.string,
     wrapperClassName: PropTypes.string,
     prefixCls: PropTypes.string,
-    delay: PropTypes.number,
     style: PropTypes.object
   };
 
   static defaultProps = {
+    fullScreen: false,
     size: 'lg',
     tip: '',
     wrapperClassName: '',
     prefixCls: 'dora-spin',
-    delay: 0
+    style: {}
   };
 
   getSpinElement() {
-    const { spinner, tip, prefixCls, size } = this.props;
-    const realSpinner = isUndefined(spinner) ? <DefaultSpinner size={size} /> : spinner;
+    const { spinner, tip, prefixCls, size, fullScreen } = this.props;
+    let realSpinner = isUndefined(spinner) ? <DefaultSpinner size={size} /> : spinner;
 
-    return (
-      <div className={`${prefixCls}-spinner-container`}>
+    const spinnerContainerCls = cx(`${prefixCls}-spinner-container`, {
+      [`${prefixCls}-spinner-container__full`]: fullScreen
+    });
+    const tipCls = cx(`${prefixCls}-text`, `${prefixCls}-text-${size}`);
+    const spinElement = (
+      <div className={spinnerContainerCls}>
         {realSpinner}
-        {tip && <div className={`${prefixCls}-text`}>{tip}</div>}
+        {tip && <div className={tipCls}>{tip}</div>}
       </div>
     );
+    if (fullScreen) {
+      return <Portal>{spinElement}</Portal>;
+    }
+    return spinElement;
   }
 
   render() {

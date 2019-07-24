@@ -6,8 +6,14 @@ menu: Components
 import { Playground } from 'docz';
 import { Spin } from 'components';
 import { Button } from '../utils';
-import { BounceLoader, ClipLoader, RingLoader } from 'react-spinners';
+import { BounceLoader, ClipLoader, ScaleLoader } from 'react-spinners';
 import '../style/index.less';
+
+# Spin 加载中
+
+用于页面和区块的加载中状态。
+
+## 示例
 
 <Playground>
   {() => {
@@ -18,11 +24,13 @@ import '../style/index.less';
           loading: false,
           size:'md',
           spinner: undefined,
+          full: false,
         };
         this.spinnerIndex = -1;
         this.toggleLoading = this.toggleLoading.bind(this);
         this.changeSize = this.changeSize.bind(this);
         this.changeSpinner = this.changeSpinner.bind(this);
+        this.showFullScreen = this.showFullScreen.bind(this);
       }
 
       toggleLoading(){
@@ -43,7 +51,7 @@ import '../style/index.less';
       }
 
       changeSpinner(){
-        const spinners = [BounceLoader, ClipLoader, RingLoader].map(Spinner=> <Spinner color="#fff"></Spinner>).concat(undefined);
+        const spinners = [BounceLoader, ClipLoader, ScaleLoader].map(Spinner=> <Spinner color="#fff"></Spinner>).concat(undefined);
         this.spinnerIndex = this.spinnerIndex + 1 === spinners.length ? 0 : this.spinnerIndex + 1
         index = this.spinnerIndex
         this.setState({
@@ -52,16 +60,37 @@ import '../style/index.less';
         })
       }
 
+      showFullScreen(){
+        this.setState({
+          loading: true,
+          full: true
+        }, () => {
+          setTimeout(()=>{
+            this.setState({
+              loading: false,
+              full: false
+            })
+          }, 3000)
+        })
+      }
+
       render() {
-        const { loading, size, spinner } = this.state;
+        const { loading, size, spinner, full } = this.state;
+        console.log(full);
         return (
           <div>
             <div>
-            <Spin spinning={loading} spinner={spinner} size={size}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta, nesciunt aliquam. Eligendi suscipit ab natus magni, corrupti impedit autem vitae aut molestiae sunt, fugit, illum possimus voluptate at enim ullam.</Spin>
+            <Spin spinning={loading} spinner={spinner} size={size} fullScreen={full} tip="正在加载">
+              <h2>标题</h2>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum tempora illum soluta, ipsum quod libero reiciendis consequuntur incidunt ipsa pariatur, quaerat eligendi. Commodi earum quos culpa animi, libero minima eligendi!</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis voluptas qui, a incidunt porro doloremque magni debitis dolorem quo deleniti quas, at nemo nisi. Earum voluptate libero in modi possimus.</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum ut voluptates cupiditate odio atque alias, aspernatur qui! Porro ad nesciunt totam reiciendis minima, quas sit veniam excepturi a, asperiores autem!</p>
+            </Spin>
             </div>
             <Button onClick={this.toggleLoading}>显示隐藏</Button>
             <Button onClick={this.changeSize}>切换大小</Button>
             <Button onClick={this.changeSpinner}>自定义加载样式</Button>
+            <Button onClick={this.showFullScreen}>全屏加载</Button>
           </div>
         );
       }
@@ -72,3 +101,17 @@ import '../style/index.less';
 }}
 
 </Playground>
+
+## API
+
+| 属性             | 说明                                               | 类型                 | 默认值                  |
+| ---------------- | -------------------------------------------------- | -------------------- | ----------------------- |
+| spinning         | 是否展示 Spin                                      | Boolean              | -                       |
+| fullScreen       | 是否一屏（如果加载的内容高于一屏，建议设置此选项） | Boolean?             | false                   |
+| children         | 被包裹的内容                                       | ReactNode            | -                       |
+| tip              | 描述文案                                           | String?              | ''                      |
+| spinner          | 自定义 Spinner                                     | ReactElement?        | `<Icon type="loading">` |
+| size             | Spinner 大小，仅对默认 Spinner 有效                | 'sm'/'md'/'lg'?      | 'md'                    |
+| wrapperClassName | 包装器的类属性                                     | String?              | ''                      |
+| prefixCls        | 包装器的类名前缀                                   | String?              | 'dora-spin'             |
+| style            | 包装器的行内样式                                   | React.CSSProperties? | {}                      |
