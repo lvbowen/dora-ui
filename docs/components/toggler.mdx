@@ -5,6 +5,7 @@ menu: Components
 
 import { Playground } from 'docz';
 import { Toggler } from 'components';
+import { Button } from '../utils';
 
 # Toggler 切换器
 
@@ -18,7 +19,7 @@ Toggler 是一个用于控制切换（一个布尔值）的 render props 组件�
 
 <Playground>
   <Toggler>
-    {([toggled, onToggle]) => <button onClick={onToggle}>{toggled ? 'ON' : 'OFF'}</button>}
+    {([toggled, onToggle]) => <Button onClick={onToggle}>{toggled ? 'ON' : 'OFF'}</Button>}
   </Toggler>
 </Playground>
 
@@ -26,7 +27,7 @@ Toggler 是一个用于控制切换（一个布尔值）的 render props 组件�
 
 <Playground>
   <Toggler defaultToggled>
-    {([toggled, onToggle]) => <button onClick={onToggle}>{toggled ? 'ON' : 'OFF'}</button>}
+    {([toggled, onToggle]) => <Button onClick={onToggle}>{toggled ? 'ON' : 'OFF'}</Button>}
   </Toggler>
 </Playground>
 
@@ -34,7 +35,7 @@ Toggler 是一个用于控制切换（一个布尔值）的 render props 组件�
 
 <Playground>
   <Toggler afterToggled={toggled => console.log('Toggled', toggled)}>
-    {([toggled, onToggle]) => <button onClick={onToggle}>{toggled ? 'ON' : 'OFF'}</button>}
+    {([toggled, onToggle]) => <Button onClick={onToggle}>{toggled ? 'ON' : 'OFF'}</Button>}
   </Toggler>
 </Playground>
 

@@ -5,6 +5,7 @@ menu: Components
 
 import { Playground } from 'docz';
 import { Popup, Toggler } from 'components';
+import { Button } from '../utils';
 import '../style/index.less';
 
 # Popup 弹层
@@ -47,7 +48,7 @@ import '../style/index.less';
         const { visible } = this.state;
         return (
           <div>
-            <button onClick={this.open}>popup!</button>
+            <Button onClick={this.open}>popup!</Button>
             <Popup
               position="center"
               visible={visible}
@@ -72,7 +73,7 @@ import '../style/index.less';
     {([toggled, onToggle]) => {
       return (
         <>
-          <button onClick={() => onToggle(true)}>popup!</button>
+          <Button onClick={() => onToggle(true)}>popup!</Button>
           <Popup visible={toggled} position="top" onClose={() => onToggle(false)}>
             从上弹出
           </Popup>
@@ -89,10 +90,10 @@ import '../style/index.less';
     {([toggled, onToggle]) => {
       return (
         <>
-          <button onClick={() => onToggle(true)}>popup!</button>
+          <Button onClick={() => onToggle(true)}>popup!</Button>
           <Popup mask={false} visible={toggled} position="bottom">
             从下弹出 <br />
-            <button onClick={() => onToggle(false)}>点我关闭</button> <br />
+            <Button onClick={() => onToggle(false)}>点我关闭</Button> <br />
             从下弹出 <br />
           </Popup>
         </>
@@ -108,7 +109,7 @@ import '../style/index.less';
     {([toggled, onToggle]) => {
       return (
         <>
-          <button onClick={() => onToggle(true)}>popup!</button>
+          <Button onClick={() => onToggle(true)}>popup!</Button>
           <Popup
             maskTransitionName="dora-zoom"
             transitionName="dora-slide-up"

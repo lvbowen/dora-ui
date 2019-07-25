@@ -5,6 +5,7 @@ menu: Components
 
 import { Playground } from 'docz';
 import { Toast } from 'components';
+import { Button } from '../utils';
 import '../style/index.less';
 
 # Toast 轻提示
@@ -27,31 +28,31 @@ import '../style/index.less';
 ### 只有文字提示的 toast
 
 <Playground>
-  <button
+  <Button
     onClick={() => {
       Toast.info('系统升级中，分享功能暂停使用', 1000);
     }}
   >
     only text
-  </button>
+  </Button>
 </Playground>
 
 ### 持续时间为 3s 的 toast
 
 <Playground>
-  <button
+  <Button
     onClick={() => {
       Toast.success('3s success toast', 3000);
     }}
   >
     toast keep 3s
-  </button>
+  </Button>
 </Playground>
 
 ### 带回调的 toast
 
 <Playground>
-  <button
+  <Button
     onClick={() => {
       Toast.error(
         'error toast',
@@ -64,36 +65,36 @@ import '../style/index.less';
     }}
   >
     toast with callback
-  </button>
+  </Button>
 </Playground>
 
 ### 带蒙层的 toast
 
 <Playground>
-  <button
+  <Button
     onClick={() => {
       Toast.success('good!', 2000, undefined, true);
     }}
   >
     toast with mask
-  </button>
+  </Button>
 </Playground>
 
 ### loading
 
 <Playground>
-  <button
+  <Button
     onClick={() => {
       Toast.loading(
         <div>
           <p>loading text</p>
-          <button onClick={Toast.destroy}>hide loading</button>
+          <Button onClick={Toast.destroy}>hide loading</Button>
         </div>
       );
     }}
   >
     show loading
-  </button>
+  </Button>
 </Playground>
 
 ## API
