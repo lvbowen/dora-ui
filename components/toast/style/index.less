@@ -4,14 +4,17 @@
 
 .@{toastPrefix}-container {
   .@{toastPrefix}-content {
-    background-color: @toast-fill;
-    border-radius: @radius-sm;
-    min-width: 60 * @hd;
-    color: @color-text-base-inverse;
-    line-height: @line-height-paragraph;
-    padding: @v-spacing-md @h-spacing-lg;
+    background-color: rgba(0, 0, 0, 0.72);
+    border-radius: 4px;
+    min-width: 44px;
+    max-width: 311px;
+    font-family: PingFangSC-Regular; /* stylelint-disable-line */
+    font-weight: 400;
+    color: rgba(255, 255, 255, 1);
+    line-height: 23px;
+    padding: 10px 16px;
     text-align: center;
-    font-size: 14px;
+    font-size: 15px;
   }
 
   .@{toastPrefix}-icon {

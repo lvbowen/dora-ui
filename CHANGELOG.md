@@ -19,7 +19,6 @@
 
 * **countdown:** add component countdown ([b824a25](https://github.com/worldzhao/dora-ui/commit/b824a25))
 * **countdown:** add default countdown style ([4969d2a](https://github.com/worldzhao/dora-ui/commit/4969d2a))
-* Popup组件增加动画效果 ([63bf662](https://github.com/worldzhao/dora-ui/commit/63bf662))
 * **icon:** add Icon ([4e54fd6](https://github.com/worldzhao/dora-ui/commit/4e54fd6))
 * **package.json:** react-spring => react-transition-group ([e836a8a](https://github.com/worldzhao/dora-ui/commit/e836a8a))
 * **popup:** add component - popup ([0c3f736](https://github.com/worldzhao/dora-ui/commit/0c3f736))
@@ -30,6 +29,8 @@
 * **spin:** 完成spin组件基本功能 ([17b82ac](https://github.com/worldzhao/dora-ui/commit/17b82ac))
 * **toast:** add component toast ([d0081ef](https://github.com/worldzhao/dora-ui/commit/d0081ef))
 * **toast:** Toast组件基于Popup重构,支持离场动画 ([79a6036](https://github.com/worldzhao/dora-ui/commit/79a6036))
+* **toast:** 根据UI规范优化Toast样式 ([d302fd9](https://github.com/worldzhao/dora-ui/commit/d302fd9))
+* Popup组件增加动画效果 ([63bf662](https://github.com/worldzhao/dora-ui/commit/63bf662))
 * **toggler:** add component-toggler ([843be6e](https://github.com/worldzhao/dora-ui/commit/843be6e))
 
 
