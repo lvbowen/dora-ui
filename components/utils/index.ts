@@ -17,6 +17,6 @@ export {
   isNull
 } from './isType';
 
-export { withDefaultProps } from './withDefaultProps';
+export { withDefaultProps, createPropsGetter } from './withDefaultProps';
 
 export { stopBodyScroll } from './dom';
