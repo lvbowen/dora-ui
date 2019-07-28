@@ -4,15 +4,16 @@ import React, { Component } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import debounce from 'lodash/debounce';
 import Portal from '../portal';
-import { isUndefined } from '../utils';
-import DefaultSpinner, { SpinnerProps } from './spinner';
+import { withDefaultProps } from '../utils';
+import DefaultSpinner, { SpinnerSize } from './spinner';
 
-interface SpinProps extends SpinnerProps {
+interface SpinProps {
   spinning: boolean;
   fullScreen?: boolean;
-  children: React.ReactNode;
   spinner?: React.ReactElement;
+  size?: SpinnerSize;
   tip?: string;
+  prefixCls?: string;
   wrapperClassName?: string;
   transition?: boolean;
   delay?: number;
@@ -22,13 +23,27 @@ interface SpinState {
   spinning: boolean;
 }
 
+const defaultProps = {
+  fullScreen: false,
+  size: 'lg' as SpinnerSize,
+  tip: '',
+  wrapperClassName: '',
+  prefixCls: 'dora-spin',
+  transition: true,
+  delay: 0,
+  spinner: (null as any) as React.ReactElement
+};
+
+type DefaultProps = typeof defaultProps;
+type Props = SpinProps & DefaultProps;
+
 // 是否延迟spinning
 function shouldDelay(spinning?: boolean, delay?: number): boolean {
   return !!spinning && !!delay && !isNaN(Number(delay));
 }
 
-class Spin extends Component<SpinProps, SpinState> {
-  static propTypes = {
+class Spin extends Component<Props, SpinState> {
+  static propTypes: { [propName: string]: any } = {
     spinning: PropTypes.bool.isRequired,
     fullScreen: PropTypes.bool,
     size: PropTypes.oneOf(['sm', 'md', 'lg']),
@@ -41,17 +56,7 @@ class Spin extends Component<SpinProps, SpinState> {
     delay: PropTypes.number
   };
 
-  static defaultProps = {
-    fullScreen: false,
-    size: 'lg',
-    tip: '',
-    wrapperClassName: '',
-    prefixCls: 'dora-spin',
-    transition: true,
-    delay: 0
-  };
-
-  constructor(props: SpinProps) {
+  constructor(props: Props) {
     super(props);
 
     const { spinning, delay } = props;
@@ -111,7 +116,7 @@ class Spin extends Component<SpinProps, SpinState> {
     const { spinner, tip, prefixCls, size, fullScreen, transition } = this.props;
     const { spinning } = this.state;
     /* 是否存在自定义spinner */
-    let realSpinner = isUndefined(spinner) ? <DefaultSpinner size={size} /> : spinner;
+    let realSpinner = spinner == null ? <DefaultSpinner size={size} /> : spinner;
     const spinnerContainerCls = cx(`${prefixCls}-spinner-container`, {
       [`${prefixCls}-spinner-container__full`]: fullScreen
     });
@@ -152,4 +157,4 @@ class Spin extends Component<SpinProps, SpinState> {
   }
 }
 
-export default Spin;
+export default withDefaultProps(defaultProps, Spin);

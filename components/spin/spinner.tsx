@@ -1,21 +1,16 @@
 import React from 'react';
 import Icon from '../icon';
 
-enum SpinSizes {
-  sm = 'sm',
-  md = 'md',
-  lg = 'lg'
-}
-
-export interface SpinnerProps {
-  size: SpinSizes;
-  prefixCls?: string;
-}
+export type SpinnerSize = 'sm' | 'md' | 'lg';
 
 const defaultProps = {
   prefixCls: 'dora-spin',
-  size: 'lg'
+  size: 'lg' as SpinnerSize
 };
+
+type DefaultProps = Readonly<typeof defaultProps>;
+
+type SpinnerProps = Partial<DefaultProps>;
 
 const Spinner: React.SFC<SpinnerProps> = userProps => {
   const props = { ...defaultProps, ...userProps };
