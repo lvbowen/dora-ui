@@ -5,7 +5,6 @@ const less = require('gulp-less');
 const autoprefixer = require('gulp-autoprefixer');
 const cssnano = require('gulp-cssnano');
 const sourcemaps = require('gulp-sourcemaps');
-const browserList = ['last 2 versions', 'Android >= 4.0', 'Firefox ESR', 'not ie < 9', 'iOS >= 9'];
 const rename = require('gulp-rename');
 const babel = require('gulp-babel');
 const through2 = require('through2');
@@ -39,7 +38,7 @@ function less2Css() {
         outputStyle: 'compressed'
       })
     )
-    .pipe(autoprefixer({ browsers: browserList }))
+    .pipe(autoprefixer())
     .pipe(cssnano({ zindex: false, reduceIdents: false }))
     .pipe(gulp.dest(paths.dest.lib))
     .pipe(gulp.dest(paths.dest.es));
@@ -61,7 +60,7 @@ function fullStyles() {
         outputStyle: 'compressed'
       })
     )
-    .pipe(autoprefixer({ browsers: browserList }))
+    .pipe(autoprefixer())
     .pipe(concat(`${name}.css`))
     .pipe(gulp.dest(dest))
     .pipe(sourcemaps.write())
