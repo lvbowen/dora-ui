@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import Portal from '../portal';
 import { isFunction, stopBodyScroll, withDefaultProps } from '../utils';
+import { isIOS, iosBigVersion } from '../utils/env';
 import { PopupShape, positionType, transitionType } from './interface';
 
 const prefixCls = 'dora-popup';
@@ -92,7 +93,8 @@ class Popup extends Component<Props, {}> {
     if (!this.hasFirstRendered && !visible) return null;
     this.hasFirstRendered = true;
     const rootCls = cx(wrapClassName, prefixCls, `${prefixCls}__${position}`, {
-      [`${prefixCls}__mask`]: mask
+      [`${prefixCls}__mask`]: mask,
+      [`${prefixCls}__center-fix`]: position === 'center' && isIOS && iosBigVersion < 11
     });
 
     return (
