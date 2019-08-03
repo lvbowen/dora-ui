@@ -1,62 +1,48 @@
-# 快速开始
+<h1 align="center">Welcome to dora-ui 👋</h1>
+<p>
+  <img alt="Site" src="https://api.netlify.com/api/v1/badges/dfb73836-3b67-4c85-922a-aca4b9122c89/deploy-status" />
+  <img alt="Version" src="https://img.shields.io/badge/version-0.0.1-blue.svg?cacheSeconds=2592000" />
+  <a href="https://dora-ui.netlify.com">
+    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" target="_blank" />
+  </a>
+  <a href="https://github.com/worldzhao/dora-ui/blob/master/LICENSE">
+    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" target="_blank" />
+  </a>
+</p>
 
-文档地址：https://dora-ui.netlify.com/docs-quick-start
+> A React.js Mobile UI Library
 
-## 安装
+### 🏠 [Homepage](https://dora-ui.netlify.com/)
 
-使用 npm
+## Install
 
-```
-npm i dora-ui -S
-```
-
-使用 yarn
-
-```
+```sh
 yarn add dora-ui
 ```
 
-## 如何使用
+## Usage
 
-全部引入
+[Documentation](https://dora-ui.netlify.com/)
 
-```jsx
-import { Toast } from 'dora-ui';
-import 'dora-ui/dist/dora-ui.min.css';
-```
+## Author
 
-按需引入
+👤 **海秋**
 
-手动按需引入
+- Github: [@worldzhao](https://github.com/worldzhao)
 
-```jsx
-import Toast from 'dora-ui/lib/toast';
-// less (需项目支持less)
-import 'dora-ui/lib/toast/style';
-// or css
-import 'dora-ui/lib/toast/style/css';
-```
+## 🤝 Contributing
 
-使用[babel-plugin-import](https://www.npmjs.com/package/babel-plugin-import)
+Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/worldzhao/dora-ui/issues).
 
-```js
-// .babelrc.js
-module.exports = {
-  plugins: [
-    [
-      'import',
-      {
-        libraryName: 'dora-ui',
-        libraryDirectory: 'es', // default: lib, es有利于tree shakeing
-        style: true // 引入less(需项目支持less) or 'css' 引入css
-      }
-    ]
-  ]
-};
-```
+## Show your support
 
-直接如下引入组件即可
+Give a ⭐️ if this project helped you!
 
-```jsx
-import { Toast } from 'dora-ui';
-```
+## 📝 License
+
+Copyright © 2019 [海秋](https://github.com/worldzhao).<br />
+This project is [MIT](https://github.com/worldzhao/dora-ui/blob/master/LICENSE) licensed.
+
+---
+
+_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_

@@ -55,13 +55,16 @@
     "start": "yarn dev",
     "dev": "docz dev",
     "clean": "rimraf lib es dist",
-    "build:doc": "yarn changelog && docz build",
     "commit": "git cz",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "type-check": "tsc --noEmit",
-    "type-check:watch": "yarn type-check --watch",
+    "build:changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
+    "prebuild:doc": "yarn build:changelog",
+    "build:doc": "docz build",
     "build:types": "tsc --emitDeclarationOnly --outDir lib && cpr lib es",
-    "build": "yarn build:doc && yarn clean && yarn build:types && gulp"
+    "prebuild:comps": "yarn build:types",
+    "build:comps": "gulp",
+    "prebuild": "yarn clean",
+    "build": "run-p build:doc build:comps"
   },
   "devDependencies": {
     "@babel/cli": "7.2.3",
@@ -115,6 +118,7 @@
     "less-loader": "5.0.0",
     "lint-staged": "^8.1.7",
     "mini-css-extract-plugin": "0.7.0",
+    "npm-run-all": "4.1.5",
     "optimize-css-assets-webpack-plugin": "5.0.1",
     "prettier": "^1.17.1",
     "react": "^16.8.6",

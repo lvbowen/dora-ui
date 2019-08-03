@@ -1,5 +1,7 @@
 import { ComponentType } from 'react';
 
+type Omit<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>>;
+
 // https://medium.com/@martin_hotell/react-typescript-and-defaultprops-dilemma-ca7f81c661c7
 
 /**

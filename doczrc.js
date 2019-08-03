@@ -40,7 +40,7 @@ const modifyBundlerConfig = (config, dev) => {
       dev
         ? () => {}
         : new MiniCssExtractPlugin({
-            chunkFilename: 'static/css/common.[hash].css'
+            chunkFilename: 'static/css/index.[contenthash:8].css'
           })
     ]
   });

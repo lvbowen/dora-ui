@@ -1,4 +1,4 @@
-## 0.0.1 (2019-07-25)
+## 0.0.1 (2019-08-03)
 
 
 ### Bug Fixes
@@ -29,9 +29,10 @@
 * **spin:** 完成spin组件基本功能 ([17b82ac](https://github.com/worldzhao/dora-ui/commit/17b82ac))
 * **toast:** add component toast ([d0081ef](https://github.com/worldzhao/dora-ui/commit/d0081ef))
 * **toast:** Toast组件基于Popup重构,支持离场动画 ([79a6036](https://github.com/worldzhao/dora-ui/commit/79a6036))
-* **toast:** 根据UI规范优化Toast样式 ([d302fd9](https://github.com/worldzhao/dora-ui/commit/d302fd9))
+* **toast:** 根据UI规范优化Toast样式 ([47371be](https://github.com/worldzhao/dora-ui/commit/47371be))
 * Popup组件增加动画效果 ([63bf662](https://github.com/worldzhao/dora-ui/commit/63bf662))
 * **toggler:** add component-toggler ([843be6e](https://github.com/worldzhao/dora-ui/commit/843be6e))
+* **utils:** 增加createPropsGetter方法,实现默认属性的另外一种方式 ([f5542c5](https://github.com/worldzhao/dora-ui/commit/f5542c5))
 
 
 
