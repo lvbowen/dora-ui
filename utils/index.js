@@ -1,9 +1,9 @@
 const getBabelConfig = require('./getBabelConfig');
 const style2css = require('./style2css');
-const getLocalIP = require('./getLocalIP');
+const prepareUrls = require('./prepareUrls');
 
 module.exports = {
   getBabelConfig,
   style2css,
-  getLocalIP
+  prepareUrls
 };

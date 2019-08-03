@@ -3,7 +3,7 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpackMerge = require('webpack-merge');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const { getLocalIP } = require('./utils');
+const { prepareUrls } = require('./utils');
 
 const modifyBundlerConfig = (config, dev) => {
   const styleLoaders = ['css-loader'];
@@ -47,7 +47,7 @@ const modifyBundlerConfig = (config, dev) => {
 };
 
 module.exports = {
-  host: getLocalIP(),
+  host: prepareUrls('http', '0.0.0.0', 3000).lanUrl,
   title: 'Dora UI', // 网站名称
   codeSandbox: false, // 是否开启codeSandbox
   htmlContext: {
@@ -74,11 +74,11 @@ module.exports = {
   modifyBundlerConfig,
   plugins: [doczPluginNetlify()],
   menu: [
-    'Introduction', // auto ordered menu "Introduction"
-    'Quick Start',
-    'Changelog',
+    { name: '介绍', route: '/introduction' },
+    { name: '快速开始', route: '/quick-start' },
+    { name: '更新日志', route: '/changelog' },
     {
-      name: 'Components' // manually oredered menu "Components"
+      name: '组件'
     }
   ]
 };
