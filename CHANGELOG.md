@@ -3,11 +3,12 @@
 
 ### Bug Fixes
 
-* docs style ([60e60e1](https://github.com/worldzhao/dora-ui/commit/60e60e1))
 * **countdown:** 倒计时结束后为-1 ([6adb281](https://github.com/worldzhao/dora-ui/commit/6adb281))
 * **gulpfile.js:** css-nano change the zIndex ([7589535](https://github.com/worldzhao/dora-ui/commit/7589535))
 * **gulpfile.js:** 修复cjs模式使用esm形式babel-helpers的问题 ([9863b72](https://github.com/worldzhao/dora-ui/commit/9863b72))
 * **index.less:** 删除body全局样式 ([446a6a8](https://github.com/worldzhao/dora-ui/commit/446a6a8))
+* **popup:** ios10及以下版本系统的flex布局对脱离文档流的元素不生效 ([c9ceb6a](https://github.com/worldzhao/dora-ui/commit/c9ceb6a))
+* docs style ([60e60e1](https://github.com/worldzhao/dora-ui/commit/60e60e1))
 * **popup:** transform导致文本换行 ([756b84e](https://github.com/worldzhao/dora-ui/commit/756b84e))
 * **popup:** 移除popup默认样式,并处理Toast flex居中在低版本webview的兼容性问题 ([1c519c5](https://github.com/worldzhao/dora-ui/commit/1c519c5))
 * **popup:** 采用js处理滚动穿透问题 ([4475650](https://github.com/worldzhao/dora-ui/commit/4475650))

@@ -1,7 +1,6 @@
 <h1 align="center">Welcome to dora-ui 👋</h1>
 <p>
   <img alt="Site" src="https://api.netlify.com/api/v1/badges/dfb73836-3b67-4c85-922a-aca4b9122c89/deploy-status" />
-  <img alt="Version" src="https://img.shields.io/badge/version-0.0.1-blue.svg?cacheSeconds=2592000" />
   <a href="https://dora-ui.netlify.com">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" target="_blank" />
   </a>
