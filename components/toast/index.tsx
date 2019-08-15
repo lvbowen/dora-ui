@@ -1,9 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ToastContent from './content';
+import ToastContent, { toastType } from './content';
 import { TOAST_TYPES } from './config';
-import { toastFnType, innerShowFnType, toastType } from './interface';
 import { isBrowser } from '../utils';
+
+export interface OuterFunc {
+  (content: React.ReactNode, duration?: number, onClose?: () => void, mask?: boolean): void;
+}
+
+export interface InnerFunc {
+  (
+    type: toastType,
+    content: React.ReactNode,
+    duration?: number,
+    onClose?: () => void,
+    mask?: boolean
+  ): void;
+}
 
 // 容器节点
 let container: HTMLElement;
@@ -39,7 +52,7 @@ const destroy = (onClose?: () => void) => {
  * @param onClose 关闭后回调方法
  * @param mask 是否展示mask
  */
-const show: innerShowFnType = (type, content, duration, onClose, mask) => {
+const show: InnerFunc = (type, content, duration, onClose, mask) => {
   if (!isBrowser || isShowing) return;
   isShowing = true;
   !container && createContainer();
@@ -63,13 +76,14 @@ const show: innerShowFnType = (type, content, duration, onClose, mask) => {
  * @param type toast类型
  */
 const createFn = (type: toastType) => {
-  const fn: toastFnType = (content, duration, onClose, mask) => {
+  const fn: OuterFunc = (content, duration, onClose, mask) => {
     show(type, content, duration, onClose, mask);
   };
   return fn;
 };
 
 const Toast = {
+  useIcons: ToastContent.useIcons,
   success: createFn(TOAST_TYPES.SUCCESS),
   error: createFn(TOAST_TYPES.ERROR),
   info: createFn(TOAST_TYPES.INFO),

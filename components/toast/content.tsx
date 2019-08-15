@@ -1,38 +1,62 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Icon from '../icon';
 import Popup from '../popup';
-import { withDefaultProps } from '../utils';
 import { TOAST_TYPES } from './config';
-import { ToastContentShape } from './interface';
 import { isNumber } from '../utils';
 
 const prefixCls = 'dora-toast';
-const defaultProps = {
-  mask: false,
-  duration: 1500,
-  onClose: () => {}
-};
 
-type DefaultProps = typeof defaultProps;
-type Props = ToastContentShape & DefaultProps;
+export type toastType = 'success' | 'error' | 'info' | 'loading';
+
+export interface Props {
+  container: HTMLElement;
+  content: React.ReactNode;
+  type: toastType;
+  mask: boolean;
+  duration: number;
+  onClose: (...args: any[]) => any;
+}
+
 class ToastContent extends Component<Props, { visible: boolean }> {
-  private timer?: any;
-  // 是否执行过关闭函数
-  private isExecClose: boolean = false;
+  static useIcons = function(iconConfig: { [key: string]: React.ReactElement }) {
+    ToastContent.icons = iconConfig;
+  };
 
-  public state = {
+  static icons: { [key: string]: React.ReactElement } = {};
+
+  static propTypes = {
+    container: PropTypes.any.isRequired,
+    type: PropTypes.string.isRequired,
+    content: PropTypes.node,
+    mask: PropTypes.bool,
+    duration: PropTypes.number,
+    onClose: PropTypes.func
+  };
+
+  static defaultProps = {
+    mask: false,
+    duration: 1500,
+    onClose: () => {}
+  };
+
+  timer?: any;
+  // 是否执行过关闭函数
+  isExecClose: boolean = false;
+
+  state = {
     visible: true
   };
 
-  private get isLoading(): boolean {
+  get isLoading(): boolean {
     return this.props.type === TOAST_TYPES.LOADING;
   }
 
-  private get isInfo(): boolean {
+  get isInfo(): boolean {
     return this.props.type === TOAST_TYPES.INFO;
   }
 
-  public componentDidMount() {
+  componentDidMount() {
     const { duration, onClose } = this.props;
     if (!this.isLoading && isNumber(duration)) {
       // 非loading类型存在展示时间
@@ -50,7 +74,7 @@ class ToastContent extends Component<Props, { visible: boolean }> {
     }
   }
 
-  public componentWillUnmount() {
+  componentWillUnmount() {
     if (!this.isExecClose) {
       // 避免强制unmount(Toast.destroy)导致settimeout中的callback不会执行
       this.props.onClose();
@@ -58,18 +82,20 @@ class ToastContent extends Component<Props, { visible: boolean }> {
     clearTimeout(this.timer);
   }
 
-  private renderIcon = () => {
+  renderIcon = () => {
     const { type } = this.props;
-    // info类型没有Icon
-    if (this.isInfo) return null;
+    if (typeof ToastContent.icons[type] !== 'undefined') {
+      return <div className={`${prefixCls}-icon`}>{ToastContent.icons[type]}</div>;
+    }
+    if (this.isInfo) return null; // info类型没有Icon
     return (
-      <div className="toast-icon">
+      <div className={`${prefixCls}-icon`}>
         <Icon type={type} color="#fff" spinning={this.isLoading} size="lg" />
       </div>
     );
   };
 
-  public render() {
+  render() {
     const { visible } = this.state;
     const { container, content, mask } = this.props;
     return (
@@ -83,4 +109,4 @@ class ToastContent extends Component<Props, { visible: boolean }> {
   }
 }
 
-export default withDefaultProps(defaultProps, ToastContent);
+export default ToastContent;

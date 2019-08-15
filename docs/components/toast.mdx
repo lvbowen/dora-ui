@@ -6,11 +6,12 @@ menu: 组件
 import { Playground } from 'docz';
 import { Toast } from 'components';
 import { Button } from 'antd';
+import { BounceLoader } from 'react-spinners';
 import '../style/index.less';
 
 # Toast 轻提示
 
-基于 Popup 组件（position:center），提供 success/error/info/loading 等形态。
+基于 Popup 组件（position:center），提供 success/error/info/loading 等类型 Toast。
 
 - Toast.success(content,duration,callback,mask)
 - Toast.error
@@ -30,7 +31,10 @@ import '../style/index.less';
 <Playground>
   <Button
     onClick={() => {
-      Toast.info('系统升级中，分享功能暂停使用', 1000);
+      Toast.info(
+        '由于法律法规限制，balabalabala，您的发言不符合社区规范，哈哈哈哈哈哈哈哈哈',
+        1500
+      );
     }}
   >
     only text
@@ -94,6 +98,53 @@ import '../style/index.less';
     }}
   >
     show loading
+  </Button>
+</Playground>
+
+### 自定义 Icon
+
+使用自定义 Icon，全局生效。
+
+未设置的 Toast 类型将使用`dora-ui`自带 icon
+
+```js
+Toast.useIcons({
+  [key: ToastType]: ReactElement
+});
+```
+
+例如：
+
+```js
+import { BounceLoader } from 'react-spinners';
+Toast.useIcons({
+  loading: <BounceLoader />
+});
+```
+
+<Playground>
+  <Button
+    onClick={() => {
+      Toast.useIcons({
+        loading: <BounceLoader color="#fff" />
+      });
+    }}
+  >
+    全局设置Loading Icon
+  </Button>
+  <br />
+  <br />
+  <Button
+    onClick={() => {
+      Toast.loading(
+        <div>
+          <p>loading text</p>
+          <Button onClick={Toast.destroy}>hide loading</Button>
+        </div>
+      );
+    }}
+  >
+    展示新的loading
   </Button>
 </Playground>
 
