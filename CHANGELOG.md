@@ -1,3 +1,18 @@
+## [0.0.4](https://github.com/worldzhao/dora-ui/compare/v0.0.2...v0.0.4) (2019-08-15)
+
+
+### Bug Fixes
+
+* **popup:** 遮罩在ios10及以下版本显示异常 ([9e0f7ce](https://github.com/worldzhao/dora-ui/commit/9e0f7ce))
+* **style:** 移除normalize.less ([80a1196](https://github.com/worldzhao/dora-ui/commit/80a1196))
+
+
+### Features
+
+* **popup:** 增加自定义Icon配置方法 ([3a98202](https://github.com/worldzhao/dora-ui/commit/3a98202))
+
+
+
 ## [0.0.2](https://github.com/worldzhao/dora-ui/compare/4e54fd6...v0.0.2) (2019-08-03)
 
 

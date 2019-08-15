@@ -1,6 +1,6 @@
 {
   "name": "dora-ui",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A React.js Mobile UI Library",
   "repository": "https://github.com/worldzhao/dora-ui",
   "homepage": "https://dora-ui.netlify.com/",
@@ -54,17 +54,18 @@
   "scripts": {
     "start": "run-s dev",
     "dev": "docz dev",
-    "clean": "rimraf lib es dist",
-    "commit": "git cz",
+    "clean:doc": "rimraf .docz",
+    "clean:comps": "rimraf lib es dist",
+    "commit": "git add . && git cz",
     "type-check": "tsc --noEmit",
     "build:changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
-    "prebuild:doc": "run-s build:changelog",
+    "prebuild:doc": "run-s clean:doc",
     "build:doc": "docz build",
     "build:types": "tsc --emitDeclarationOnly --outDir lib && cpr lib es",
-    "prebuild:comps": "run-s build:types",
+    "prebuild:comps": "run-s clean:comps build:types",
     "build:comps": "gulp",
-    "prebuild": "run-s clean",
-    "build": "run-p build:doc build:comps"
+    "build": "run-p build:doc build:comps",
+    "postpublish": "run-s build:changelog commit"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
