@@ -1,8 +1,9 @@
-## [0.0.5](https://github.com/worldzhao/dora-ui/compare/v0.0.2...v0.0.5) (2019-08-15)
+## [0.0.6](https://github.com/worldzhao/dora-ui/compare/v0.0.2...v0.0.6) (2019-08-15)
 
 
 ### Bug Fixes
 
+* **package.json:** sideEffects字段导致样式文件生产环境被shake掉 ([67f53c4](https://github.com/worldzhao/dora-ui/commit/67f53c4))
 * **popup:** 遮罩在ios10及以下版本显示异常 ([9e0f7ce](https://github.com/worldzhao/dora-ui/commit/9e0f7ce))
 * **style:** 移除normalize.less ([80a1196](https://github.com/worldzhao/dora-ui/commit/80a1196))
 
