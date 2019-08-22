@@ -17,12 +17,8 @@ import '../style/index.less';
 - Toast.error
 - Toast.info
 - Toast.loading
-
-另外提供一个销毁方法：
-
-- Toast.destroy
-
-注意： Toast.loading 不会自动消失，需要手动调用 Toast.destroy
+- Toast.destroy('success'|'error'|'info'|'loading') 传`undefined`销毁所有 Toast
+- Toast.loaded === Toast.destroy('loading')
 
 ## 示例
 
@@ -32,8 +28,8 @@ import '../style/index.less';
   <Button
     onClick={() => {
       Toast.info(
-        '由于法律法规限制，balabalabala，您的发言不符合社区规范，哈哈哈哈哈哈哈哈哈',
-        1500
+        <p>由于法律法规限制，balabalabala，您的发言不符合社区规范，哈哈哈哈哈哈哈哈哈</p>,
+        2000
       );
     }}
   >
@@ -92,7 +88,7 @@ import '../style/index.less';
       Toast.loading(
         <div>
           <p>loading text</p>
-          <Button onClick={Toast.destroy}>hide loading</Button>
+          <Button onClick={Toast.loaded}>hide loading</Button>
         </div>
       );
     }}
@@ -139,7 +135,7 @@ Toast.useIcons({
       Toast.loading(
         <div>
           <p>loading text</p>
-          <Button onClick={Toast.destroy}>hide loading</Button>
+          <Button onClick={Toast.loaded}>hide loading</Button>
         </div>
       );
     }}

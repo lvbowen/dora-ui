@@ -21,6 +21,9 @@ export interface InnerFunc {
 // 容器节点
 let container: HTMLElement;
 
+// 当前正在展示的Toast类型
+let currentToastType: toastType;
+
 // 是否存在正在展示的toast
 let isShowing = false;
 
@@ -36,8 +39,8 @@ const createContainer = () => {
 /**
  * 销毁toast
  */
-const destroy = (onClose?: () => void) => {
-  if (container) {
+const destroy = (type?: toastType, onClose?: (...args: any[]) => void) => {
+  if (container && (type === currentToastType || typeof type === 'undefined')) {
     ReactDOM.unmountComponentAtNode(container);
   }
   isShowing = false;
@@ -54,7 +57,10 @@ const destroy = (onClose?: () => void) => {
  */
 const show: InnerFunc = (type, content, duration, onClose, mask) => {
   if (!isBrowser || isShowing) return;
+
   isShowing = true;
+  currentToastType = type;
+
   !container && createContainer();
   ReactDOM.render(
     <ToastContent
@@ -64,7 +70,7 @@ const show: InnerFunc = (type, content, duration, onClose, mask) => {
       mask={mask}
       duration={duration}
       onClose={() => {
-        destroy(onClose);
+        destroy(currentToastType, onClose);
       }}
     />,
     container
@@ -88,6 +94,9 @@ const Toast = {
   error: createFn(TOAST_TYPES.ERROR),
   info: createFn(TOAST_TYPES.INFO),
   loading: createFn(TOAST_TYPES.LOADING),
+  loaded: () => {
+    destroy(TOAST_TYPES.LOADING);
+  },
   destroy
 };
 
