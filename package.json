@@ -50,16 +50,16 @@
     "dev": "docz dev",
     "clean:doc": "rimraf .docz",
     "clean:comps": "rimraf lib es dist",
-    "commit": "git cz",
     "type-check": "tsc --noEmit",
-    "build:changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "prebuild:doc": "run-s clean:doc",
     "build:doc": "docz build",
     "build:types": "tsc --emitDeclarationOnly --outDir lib && cpr lib es",
     "prebuild:comps": "run-s clean:comps build:types",
     "build:comps": "gulp",
     "build": "run-p build:doc build:comps",
-    "postpublish": "run-s build:changelog"
+    "commit": "git-cz",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r",
+    "release": "standard-version && git push --follow-tags origin master && npm publish"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
@@ -70,7 +70,10 @@
     "@babel/preset-env": "^7.4.1",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.3.3",
-    "@semantic-release/changelog": "^3.0.2",
+    "@commitlint/cli": "^8.2.0",
+    "@commitlint/config-angular": "^8.2.0",
+    "@commitlint/config-conventional": "^8.2.0",
+    "@semantic-release/changelog": "^3.0.4",
     "@types/classnames": "^2.2.7",
     "@types/react": "^16.8.18",
     "@types/react-dom": "^16.8.4",
@@ -82,14 +85,12 @@
     "antd": "^3.20.7",
     "babel-eslint": "^10.0.1",
     "babel-plugin-import": "^1.12.0",
-    "commitizen": "^3.1.1",
-    "commitlint": "^7.6.1",
-    "conventional-changelog": "^3.1.8",
-    "conventional-changelog-cli": "^2.0.21",
+    "commitizen": "^4.0.3",
+    "conventional-changelog-cli": "^2.0.25",
     "cpr": "^3.0.1",
     "cross-env": "^5.2.0",
     "css-loader": "^2.1.1",
-    "cz-conventional-changelog": "^2.1.0",
+    "cz-conventional-changelog": "^3.0.2",
     "docz": "^1.2.0",
     "docz-plugin-netlify": "^1.1.4",
     "docz-theme-default": "^1.2.0",
@@ -125,6 +126,7 @@
     "react-spinners": "^0.5.13",
     "rimraf": "^2.6.3",
     "semantic-release": "^15.13.19",
+    "standard-version": "^7.0.0",
     "style-loader": "^0.23.1",
     "stylelint": "^10.0.1",
     "stylelint-config-standard": "^18.3.0",
@@ -135,6 +137,14 @@
   "peerDependencies": {
     "react": ">=16.6.0",
     "react-dom": ">=16.6.0"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.4.5",
+    "classnames": "^2.2.6",
+    "lodash": "^4.17.15",
+    "prop-types": "^15.7.2",
+    "react-transition-group": "^4.0.1",
+    "warning": "^4.0.3"
   },
   "lint-staged": {
     "components/**/*.tsx": [
@@ -153,17 +163,24 @@
       "pre-commit": "lint-staged"
     }
   },
-  "dependencies": {
-    "@babel/runtime": "^7.4.5",
-    "classnames": "^2.2.6",
-    "lodash": "^4.17.15",
-    "prop-types": "^15.7.2",
-    "react-transition-group": "^4.0.1",
-    "warning": "^4.0.3"
-  },
   "config": {
     "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
+      "path": "cz-conventional-changelog"
     }
+  },
+  "release": {
+    "prepare": [
+      {
+        "path": "@semantic-release/changelog"
+      },
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "CHANGELOG.md"
+          ]
+        }
+      ]
+    ]
   }
 }
