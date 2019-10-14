@@ -11,3 +11,5 @@ export { default as Spin } from './spin';
 export { default as Toast } from './toast';
 
 export { default as Toggler } from './toggler';
+
+export { default as Spinner } from './spinner';

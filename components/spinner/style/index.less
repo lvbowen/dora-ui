@@ -1,0 +1,86 @@
+.dora-spinner {
+  display: inline-block;
+  position: relative;
+  width: 38px;
+  height: 38px;
+
+  &__sm {
+    transform: scale(0.8);
+  }
+
+  &__md {
+    transform: scale(1);
+  }
+
+  &__lg {
+    transform: scale(1.5);
+  }
+}
+
+.dora-spinner div {
+  transform-origin: 19px 19px;
+  animation: dora-spinner 0.8s linear infinite;
+}
+
+.dora-spinner div:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 2px;
+  left: 18px;
+  width: 4px;
+  height: 8px;
+  border-radius: 4px;
+  background: #fff;
+}
+
+@deg: 45deg;
+
+.dora-spinner div:nth-child(1) {
+  transform: rotate(@deg * 0);
+  animation-delay: -0.7s;
+}
+
+.dora-spinner div:nth-child(2) {
+  transform: rotate(@deg * 1);
+  animation-delay: -0.6s;
+}
+
+.dora-spinner div:nth-child(3) {
+  transform: rotate(@deg * 2);
+  animation-delay: -0.5s;
+}
+
+.dora-spinner div:nth-child(4) {
+  transform: rotate(@deg * 3);
+  animation-delay: -0.4s;
+}
+
+.dora-spinner div:nth-child(5) {
+  transform: rotate(@deg * 4);
+  animation-delay: -0.3s;
+}
+
+.dora-spinner div:nth-child(6) {
+  transform: rotate(@deg * 5);
+  animation-delay: -0.2s;
+}
+
+.dora-spinner div:nth-child(7) {
+  transform: rotate(@deg * 6);
+  animation-delay: -0.1s;
+}
+
+.dora-spinner div:nth-child(8) {
+  transform: rotate(@deg * 7);
+  animation-delay: 0;
+}
+
+@keyframes dora-spinner {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

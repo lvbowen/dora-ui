@@ -3,11 +3,11 @@ name: Spin 加载中
 menu: 组件
 ---
 
-import { Playground } from 'docz';
-import { Spin } from 'components';
-import { Button } from 'antd';
-import { BounceLoader, ClipLoader, ScaleLoader } from 'react-spinners';
-import '../style/index.less';
+import { Playground } from "docz";
+import { Spin, Spinner } from "components";
+import { Button } from "antd";
+import { BounceLoader, ClipLoader, ScaleLoader } from "react-spinners";
+import "../style/index.less";
 
 # Spin 加载中
 
@@ -247,7 +247,7 @@ import '../style/index.less';
       }
 
       changeSpinner(){
-        const spinners = [BounceLoader, ClipLoader, ScaleLoader].map(Spinner=> <Spinner color="#fff"></Spinner>).concat(undefined);
+        const spinners = [BounceLoader, ClipLoader, ScaleLoader, Spinner].map(Spinner=> <Spinner color="#fff"></Spinner>).concat(undefined);
         this.spinnerIndex = this.spinnerIndex + 1 === spinners.length ? 0 : this.spinnerIndex + 1
         index = this.spinnerIndex
         this.setState({
