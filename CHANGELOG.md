@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.9](https://github.com/worldzhao/dora-ui/compare/v0.0.7...v0.0.9) (2019-10-14)
+
+
+### Features
+
+* **toast:** 增加loaded方法 ([ffdf1f3](https://github.com/worldzhao/dora-ui/commit/ffdf1f334a876dc66cc578f556b233d05b15c81d))
+
 ### [0.0.8](https://github.com/worldzhao/dora-ui/compare/v0.0.7...v0.0.8) (2019-10-14)
 
 
