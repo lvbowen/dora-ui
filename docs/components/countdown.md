@@ -1,57 +1,31 @@
----
-name: Countdown 倒计时
-menu: 组件
----
-
-import { Playground } from 'docz';
-import { Countdown } from 'components';
-import '../style/index.less';
-
 # Countdown 倒计时
 
 倒计时组件，根据[该文章](https://juejin.im/post/5badf8305188255c8e728adc)进行了纠偏。
 
 ## 示例
 
-背景仅做演示用，样式可自定义。
+最基础的倒计时组件
 
 ### 基本用法
 
-<Playground>
-  <div
-    style={{
-      background: '#FF462C',
-      width: '100%',
-      height: '100%',
-      position: 'absolute',
-      left: '0',
-      top: '0'
-    }}
-  >
-    <Countdown endTime={new Date().getTime() + 1000 * 60 * 60 * 24 * 3} />
-  </div>
-</Playground>
+```jsx
+import { Countdown } from '../../components';
+
+export default () => <Countdown endTime={new Date().getTime() + 1000 * 60 * 60 * 24 * 3} />;
+```
 
 ### 自定义模板
 
-<Playground>
-  <div
-    style={{
-      background: '#FF462C',
-      width: '100%',
-      height: '100%',
-      position: 'absolute',
-      left: '0',
-      top: '0'
-    }}
-  >
-    <Countdown
-      endTime={new Date().getTime() + 1000 * 60 * 60 * 24 * 3}
-      format="dd-天 hh-h mm-m ss-"
-    />
+```jsx
+import { Countdown } from '../../components';
 
-  </div>
-</Playground>
+export default () => (
+  <Countdown
+    endTime={new Date().getTime() + 1000 * 60 * 60 * 24 * 3}
+    format="dd-天 hh-h mm-m ss-"
+  />
+);
+```
 
 ## API
 

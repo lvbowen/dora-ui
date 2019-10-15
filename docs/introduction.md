@@ -1,8 +1,3 @@
----
-name: 介绍
-route: /
----
-
 # Dora UI
 
 > A React.js Mobile UI Library

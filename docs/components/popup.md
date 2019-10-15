@@ -1,13 +1,3 @@
----
-name: Popup 弹层
-menu: 组件
----
-
-import { Playground } from 'docz';
-import { Popup, Toggler } from 'components';
-import { Button } from 'antd';
-import '../style/index.less';
-
 # Popup 弹层
 
 底层弹层组件，Portal 组件的上层封装，参考 cube-ui（[基于 Vue.js 实现的精致移动端组件库](https://didi.github.io/cube-ui/#/zh-CN)）API。
@@ -18,62 +8,58 @@ import '../style/index.less';
 
 ## 示例
 
-### 基本用法（中间弹出）
+### 基本用法
 
-<Playground>
-  {() => {
-    class App extends React.Component {
-      constructor(props) {
-        super(props);
-        this.state = {
-          visible: false
-        };
-        this.open=this.open.bind(this);        
-        this.hide=this.hide.bind(this)
-      }
+```jsx
+import { Popup, Toggler } from '../../components';
+import '../../components/popup/style';
 
-      open() {
-        this.setState({
-          visible: true
-        });
-      }
+export default class Demo extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      visible: false
+    };
+  }
 
-      hide() {
-        this.setState({
-          visible: false
-        });
-      }
+  open = () => {
+    this.setState({
+      visible: true
+    });
+  };
 
-      render() {
-        const { visible } = this.state;
-        return (
-          <div>
-            <Button onClick={this.open}>popup!</Button>
-            <Popup
-              position="center"
-              visible={visible}
-              onClose={this.hide}
-            >
-              Popup
-            </Popup>
-          </div>
-        );
-      }
-    }
-    return <App />;
+  hide = () => {
+    this.setState({
+      visible: false
+    });
+  };
 
-}}
+  render() {
+    const { visible } = this.state;
+    return (
+      <div>
+        <button onClick={this.open}>popup!</button>
+        <Popup position="center" visible={visible} onClose={this.hide}>
+          Popup
+        </Popup>
+      </div>
+    );
+  }
+}
+```
 
-</Playground>
+### 与 Toggler 一起使用
 
-### 与 Toggler 一起使用（从上弹出）
+```jsx
+import { Popup, Toggler } from '../../components';
+import '../../components/popup/style';
 
-<Playground>
+export default () => (
   <Toggler>
     {([toggled, onToggle]) => {
       return (
         <>
-          <Button onClick={() => onToggle(true)}>popup!</Button>
+          <button onClick={() => onToggle(true)}>popup!</button>
           <Popup visible={toggled} position="top" onClose={() => onToggle(false)}>
             从上弹出
           </Popup>
@@ -81,62 +67,8 @@ import '../style/index.less';
       );
     }}
   </Toggler>
-</Playground>
-
-### 隐藏蒙层（从下弹出）
-
-<Playground>
-  <Toggler>
-    {([toggled, onToggle]) => {
-      return (
-        <>
-          <Button onClick={() => onToggle(true)}>popup!</Button>
-          <Popup mask={false} visible={toggled} position="bottom">
-            从下弹出 <br />
-            <Button onClick={() => onToggle(false)}>点我关闭</Button> <br />
-            从下弹出 <br />
-          </Popup>
-        </>
-      );
-    }}
-  </Toggler>
-</Playground>
-
-### 自定义动画（蒙层、内容）
-
-<Playground>
-  <Toggler>
-    {([toggled, onToggle]) => {
-      return (
-        <>
-          <Button onClick={() => onToggle(true)}>popup!</Button>
-          <Popup
-            maskTransitionName="dora-zoom"
-            transitionName="dora-slide-up"
-            visible={toggled}
-            position="left"
-            onClose={() => onToggle(false)}
-          >
-            <div
-              style={{
-                width: '240px',
-                textAlign: 'center',
-                padding: '20px'
-              }}
-            >
-              {new Array(100)
-                .join()
-                .split(',')
-                .map((e, i) => (
-                  <p key={i}>这里是导航{i}</p>
-                ))}
-            </div>
-          </Popup>
-        </>
-      );
-    }}
-  </Toggler>
-</Playground>
+);
+```
 
 ## API
 

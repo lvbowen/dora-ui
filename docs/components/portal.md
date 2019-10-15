@@ -1,11 +1,3 @@
----
-name: Portal 传送门
-menu: 组件
----
-
-import { Playground } from 'docz';
-import { Portal } from 'components';
-
 # Portal 传送门
 
 传送门组件，不提供样式，Modal/Toast/Popup 等组件的基石。
@@ -14,21 +6,27 @@ import { Portal } from 'components';
 
 ## Basic Usage
 
-<Playground>
-  <div>the text in Playground container</div>
-  <Portal>
-    <div
-      style={{
-        color: 'blue',
-        position: 'absolute',
-        left: '30%',
-        bottom: '0'
-      }}
-    >
-      the text out of the root container(检查看看这段文字在文档流何处？)
-    </div>
-  </Portal>
-</Playground>
+```jsx
+import Portal from '../../components/portal';
+
+export default () => (
+  <>
+    <div>the text in Playground container</div>
+    <Portal>
+      <div
+        style={{
+          color: 'blue',
+          position: 'absolute',
+          left: '30%',
+          bottom: '0'
+        }}
+      >
+        the text out of the root container(检查看看这段文字在文档流何处？)
+      </div>
+    </Portal>
+  </>
+);
+```
 
 ## API
 

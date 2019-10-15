@@ -1,12 +1,3 @@
----
-name: Toggler 切换器
-menu: 组件
----
-
-import { Playground } from 'docz';
-import { Toggler } from 'components';
-import { Button } from 'antd';
-
 # Toggler 切换器
 
 Toggler 是一个用于控制切换（一个布尔值）的 render props 组件，受[smooth UI-Toggler](https://smooth-ui.smooth-code.com/docs-utilities-toggler)启发。
@@ -17,27 +8,39 @@ Toggler 是一个用于控制切换（一个布尔值）的 render props 组件�
 
 ### 基本使用
 
-<Playground>
+```jsx
+import Toggler from '../../components/toggler';
+
+export default () => (
   <Toggler>
-    {([toggled, onToggle]) => <Button onClick={onToggle}>{toggled ? 'ON' : 'OFF'}</Button>}
+    {([toggled, onToggle]) => <button onClick={onToggle}>{toggled ? 'ON' : 'OFF'}</button>}
   </Toggler>
-</Playground>
+);
+```
 
 ### 设置默认状态
 
-<Playground>
+```jsx
+import { Toggler } from '../../components';
+
+export default () => (
   <Toggler defaultToggled>
-    {([toggled, onToggle]) => <Button onClick={onToggle}>{toggled ? 'ON' : 'OFF'}</Button>}
+    {([toggled, onToggle]) => <button onClick={onToggle}>{toggled ? 'ON' : 'OFF'}</button>}
   </Toggler>
-</Playground>
+);
+```
 
 ### 监听切换事件
 
-<Playground>
-  <Toggler afterToggled={toggled => console.log('Toggled', toggled)}>
-    {([toggled, onToggle]) => <Button onClick={onToggle}>{toggled ? 'ON' : 'OFF'}</Button>}
+```jsx
+import Toggler from '../../components/toggler';
+
+export default () => (
+  <Toggler afterToggled={toggled => alert(toggled)}>
+    {([toggled, onToggle]) => <button onClick={onToggle}>{toggled ? 'ON' : 'OFF'}</button>}
   </Toggler>
-</Playground>
+);
+```
 
 ## API
 

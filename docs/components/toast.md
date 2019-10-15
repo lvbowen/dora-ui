@@ -1,14 +1,3 @@
----
-name: Toast 轻提示
-menu: 组件
----
-
-import { Playground } from 'docz';
-import { Toast } from 'components';
-import { Button } from 'antd';
-import { BounceLoader } from 'react-spinners';
-import '../style/index.less';
-
 # Toast 轻提示
 
 基于 Popup 组件（position:center），提供 success/error/info/loading 等类型 Toast。
@@ -24,8 +13,11 @@ import '../style/index.less';
 
 ### 只有文字提示的 toast
 
-<Playground>
-  <Button
+```jsx
+import Toast from '../../components/toast';
+import '../../components/toast/style';
+export default () => (
+  <button
     onClick={() => {
       Toast.info(
         <p>由于法律法规限制，balabalabala，您的发言不符合社区规范，哈哈哈哈哈哈哈哈哈</p>,
@@ -34,25 +26,33 @@ import '../style/index.less';
     }}
   >
     only text
-  </Button>
-</Playground>
+  </button>
+);
+```
 
 ### 持续时间为 3s 的 toast
 
-<Playground>
-  <Button
+```jsx
+import Toast from '../../components/toast';
+import '../../components/toast/style';
+export default () => (
+  <button
     onClick={() => {
       Toast.success('3s success toast', 3000);
     }}
   >
     toast keep 3s
-  </Button>
-</Playground>
+  </button>
+);
+```
 
 ### 带回调的 toast
 
-<Playground>
-  <Button
+```jsx
+import Toast from '../../components/toast';
+import '../../components/toast/style';
+export default () => (
+  <button
     onClick={() => {
       Toast.error(
         'error toast',
@@ -65,37 +65,46 @@ import '../style/index.less';
     }}
   >
     toast with callback
-  </Button>
-</Playground>
+  </button>
+);
+```
 
 ### 带蒙层的 toast
 
-<Playground>
-  <Button
+```jsx
+import Toast from '../../components/toast';
+import '../../components/toast/style';
+export default () => (
+  <button
     onClick={() => {
       Toast.success('good!', 2000, undefined, true);
     }}
   >
     toast with mask
-  </Button>
-</Playground>
+  </button>
+);
+```
 
 ### loading
 
-<Playground>
-  <Button
+```jsx
+import Toast from '../../components/toast';
+import '../../components/toast/style';
+export default () => (
+  <button
     onClick={() => {
       Toast.loading(
         <div>
           <p>loading text</p>
-          <Button onClick={Toast.loaded}>hide loading</Button>
+          <button onClick={Toast.loaded}>hide loading</button>
         </div>
       );
     }}
   >
     show loading
-  </Button>
-</Playground>
+  </button>
+);
+```
 
 ### 自定义 Icon
 
@@ -118,31 +127,39 @@ Toast.useIcons({
 });
 ```
 
-<Playground>
-  <Button
-    onClick={() => {
-      Toast.useIcons({
-        loading: <BounceLoader color="#fff" />
-      });
-    }}
-  >
-    全局设置Loading Icon
-  </Button>
-  <br />
-  <br />
-  <Button
-    onClick={() => {
-      Toast.loading(
-        <div>
-          <p>loading text</p>
-          <Button onClick={Toast.loaded}>hide loading</Button>
-        </div>
-      );
-    }}
-  >
-    展示新的loading
-  </Button>
-</Playground>
+```jsx
+import Toast from '../../components/toast';
+import '../../components/toast/style';
+import { BounceLoader } from 'react-spinners';
+
+export default () => (
+  <>
+    <button
+      onClick={() => {
+        Toast.useIcons({
+          loading: <BounceLoader color="#fff" />
+        });
+      }}
+    >
+      全局设置Loading Icon
+    </button>
+    <br />
+    <br />
+    <button
+      onClick={() => {
+        Toast.loading(
+          <div>
+            <p>loading text</p>
+            <button onClick={Toast.loaded}>hide loading</button>
+          </div>
+        );
+      }}
+    >
+      展示新的loading
+    </button>
+  </>
+);
+```
 
 ## API
 

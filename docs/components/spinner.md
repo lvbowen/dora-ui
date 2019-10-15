@@ -1,12 +1,3 @@
----
-name: Spinner 加载元素
-menu: 组件
----
-
-import { Playground } from "docz";
-import { Spinner } from "components";
-import "../style/index.less";
-
 # Spinner 加载元素
 
 用于页面和区块的加载中状态。
@@ -15,11 +6,15 @@ import "../style/index.less";
 
 ### 基本使用
 
-<Playground>
-  <div style={{ background: "#000", textAlign: "center" }}>
+```jsx
+import Spinner from '../../components/spinner';
+import '../../components/spinner/style';
+export default () => (
+  <div style={{ background: '#000', textAlign: 'center' }}>
     <Spinner />
   </div>
-</Playground>
+);
+```
 
 ## API
 

@@ -1,20 +1,12 @@
----
-name: 快速开始
-route: /quick-start
----
-
 ## 安装
 
-使用 npm
-
-```
+```bash
 npm i dora-ui -S
-```
 
-使用 yarn
+# or
 
-```
 yarn add dora-ui
+
 ```
 
 ## 如何使用

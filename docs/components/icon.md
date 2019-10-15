@@ -1,21 +1,14 @@
----
-name: Icon 图标
-menu: 组件
----
-
-import { Playground } from 'docz';
-import { Icon } from 'components';
-import '../style/index.less';
-
 # Icon 图标
 
 基于 iconfont svg 图标，目前只含五个基本图标。
 
 ## Basic Usage
 
-<Playground>
-  <Icon type="loading" size="lg" color="skyblue" spinning />
-</Playground>
+```jsx
+import Icon from '../../components/icon';
+import '../../components/icon/style';
+export default () => <Icon type="loading" size="lg" color="skyblue" spinning />;
+```
 
 ## API
 
