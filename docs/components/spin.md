@@ -30,7 +30,6 @@ export default class App extends React.Component {
       <div>
         <div>
           <Spin spinning={loading}>
-            <h2>Title</h2>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum tempora illum soluta,
               ipsum quod libero reiciendis consequuntur incidunt ipsa pariatur, quaerat eligendi.
@@ -86,7 +85,6 @@ export default class App extends React.Component {
       <div>
         <div>
           <Spin spinning={loading} fullScreen={full}>
-            <h2>Title</h2>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum tempora illum soluta,
               ipsum quod libero reiciendis consequuntur incidunt ipsa pariatur, quaerat eligendi.
@@ -166,7 +164,6 @@ export default class App extends React.Component {
       <div>
         <div>
           <Spin spinning={loading} transition={transition}>
-            <h2>Title</h2>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum tempora illum soluta,
               ipsum quod libero reiciendis consequuntur incidunt ipsa pariatur, quaerat eligendi.
@@ -216,7 +213,6 @@ export default class App extends React.Component {
       <div>
         <div>
           <Spin spinning={loading} size={size} tip="正在加载">
-            <h2>标题</h2>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum tempora illum soluta,
               ipsum quod libero reiciendis consequuntur incidunt ipsa pariatur, quaerat eligendi.
@@ -269,7 +265,6 @@ export default class App extends React.Component {
       <>
         <div>
           <Spin spinning={loading} spinner={spinner}>
-            <h2>标题</h2>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum tempora illum soluta,
               ipsum quod libero reiciendis consequuntur incidunt ipsa pariatur, quaerat eligendi.
@@ -315,7 +310,6 @@ export default class App extends React.Component {
       <div>
         <div>
           <Spin spinning={loading} delay={1000}>
-            <h2>Title</h2>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum tempora illum soluta,
               ipsum quod libero reiciendis consequuntur incidunt ipsa pariatur, quaerat eligendi.
