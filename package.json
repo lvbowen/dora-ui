@@ -48,13 +48,13 @@
   "scripts": {
     "start": "run-s dev",
     "dev": "node ./scripts/start",
-    "clean": "rimraf lib es dist site",
+    "clean:comps": "rimraf lib es dist",
+    "clean:doc": "rimraf site",
     "type-check": "tsc --noEmit",
-    "build:doc": "node ./scripts/build-doc",
+    "build:doc": "run-s clean:doc && node ./scripts/build-doc",
     "build:types": "tsc --emitDeclarationOnly --outDir lib && cpr lib es",
     "build:comps": "gulp",
-    "prebuild": "run-s clean build:types",
-    "build": "run-p build:doc build:comps",
+    "build": "run-s clean:* build:types && run-p build:doc build:comps",
     "commit": "git-cz",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r",
     "release": "standard-version && git push --follow-tags origin master"
@@ -69,7 +69,6 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.3.3",
     "@commitlint/cli": "^8.2.0",
-    "@commitlint/config-angular": "^8.2.0",
     "@commitlint/config-conventional": "^8.2.0",
     "@semantic-release/changelog": "^3.0.4",
     "@types/classnames": "^2.2.7",
@@ -139,7 +138,7 @@
     "warning": "^4.0.3"
   },
   "lint-staged": {
-    "components/**/*.tsx": [
+    "components/**/*.ts?(x)": [
       "prettier --write",
       "eslint --fix",
       "git add"
