@@ -12,14 +12,6 @@ import { isFunction, stopBodyScroll } from '../utils';
  */
 export type positionType = 'top' | 'right' | 'bottom' | 'left' | 'center';
 
-export type transitionType =
-  | 'dora-fade'
-  | 'dora-zoom'
-  | 'dora-slide-up'
-  | 'dora-slide-down'
-  | 'dora-slide-right'
-  | 'dora-slide-left';
-
 export interface Props {
   node?: HTMLElement;
   visible: boolean;
@@ -31,24 +23,13 @@ export interface Props {
   contentStyle: React.CSSProperties;
   stopScrollUnderMask: boolean;
   destroyOnClose: boolean;
-  transitionName: transitionType;
+  transitionName: string;
   transitionDuration: number;
-  maskTransitionName: transitionType;
-  maskTransitionDuration: number;
 }
 
 const prefixCls = 'dora-popup';
 
 const positions = ['top', 'right', 'bottom', 'left', 'center'];
-
-const transitionNames = [
-  'dora-fade',
-  'dora-zoom',
-  'dora-slide-up',
-  'dora-slide-down',
-  'dora-slide-right',
-  'dora-slide-left'
-];
 
 class Popup extends Component<Props> {
   static propTypes = {
@@ -62,15 +43,13 @@ class Popup extends Component<Props> {
     contentStyle: PropTypes.object,
     stopScrollUnderMask: PropTypes.bool,
     destroyOnClose: PropTypes.bool,
-    transitionName: PropTypes.oneOf(transitionNames),
-    transitionDuration: PropTypes.number,
-    maskTransitionName: PropTypes.oneOf(transitionNames),
-    maskTransitionDuration: PropTypes.number
+    transitionName: PropTypes.string,
+    transitionDuration: PropTypes.number
   };
 
   static defaultProps: Partial<Props> = {
     visible: false,
-    position: 'center' as positionType,
+    position: 'center',
     mask: true,
     maskClosable: true,
     onClose: () => {},
@@ -78,10 +57,8 @@ class Popup extends Component<Props> {
     contentStyle: {},
     stopScrollUnderMask: true,
     destroyOnClose: false,
-    transitionName: '' as transitionType,
-    maskTransitionName: 'dora-fade' as transitionType,
-    transitionDuration: 300,
-    maskTransitionDuration: 300
+    transitionName: '',
+    transitionDuration: 500
   };
 
   /**
@@ -129,22 +106,20 @@ class Popup extends Component<Props> {
       top: 'dora-slide-down',
       center: 'dora-fade'
     };
-    return transitionNames[position] as transitionType;
+    return transitionNames[position];
   }
 
   render() {
     const {
       visible,
       mask,
-      maskTransitionName,
       position,
       children,
       node,
       wrapClassName,
       destroyOnClose,
       contentStyle,
-      transitionDuration,
-      maskTransitionDuration
+      transitionDuration
     } = this.props;
     if (!this.hasFirstRendered && !visible) return null;
     this.hasFirstRendered = true;
@@ -153,29 +128,24 @@ class Popup extends Component<Props> {
     });
 
     return (
-      <CSSTransition
-        in={visible}
-        timeout={maskTransitionDuration}
-        classNames={maskTransitionName}
-        unmountOnExit={destroyOnClose}
-        appear
-      >
-        <Portal node={node}>
-          <div className={rootCls}>
+      <Portal node={node}>
+        <div className={rootCls}>
+          <CSSTransition in={visible} timeout={500} classNames="dora-fade" appear>
             <div className={`${prefixCls}-mask`} onClick={this.handleMaskClick} />
-            <CSSTransition
-              in={visible}
-              timeout={transitionDuration}
-              classNames={this.transitionName}
-              appear
-            >
-              <div className={`${prefixCls}-content`} style={{ ...contentStyle }}>
-                {children}
-              </div>
-            </CSSTransition>
-          </div>
-        </Portal>
-      </CSSTransition>
+          </CSSTransition>
+          <CSSTransition
+            in={visible}
+            timeout={transitionDuration}
+            classNames={this.transitionName}
+            unmountOnExit={destroyOnClose}
+            appear
+          >
+            <div className={`${prefixCls}-content`} style={{ ...contentStyle }}>
+              {children}
+            </div>
+          </CSSTransition>
+        </div>
+      </Portal>
     );
   }
 }

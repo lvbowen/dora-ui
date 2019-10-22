@@ -1,5 +1,4 @@
-@animationDuration: 300ms;
-@transitionTimingFunction: cubic-bezier(0.55, 0, 0.55, 0.2);
+@animationDuration: 500ms;
 
 .dora {
   /* fade visibility:hidden + opacity:0 = display:none */
@@ -15,7 +14,6 @@
     visibility: visible;
     opacity: 1;
     transition: opacity @animationDuration, visibility @animationDuration;
-    transition-timing-function: @transitionTimingFunction;
   }
   &-fade-exit,
   &-fade-enter-done {
@@ -26,7 +24,6 @@
     visibility: hidden;
     opacity: 0;
     transition: opacity @animationDuration, visibility @animationDuration;
-    transition-timing-function: @transitionTimingFunction;
   }
 
   /* zoom */
@@ -70,7 +67,6 @@
   &-slide-up-appear-active {
     transform: translate(0, 0);
     transition: transform @animationDuration;
-    transition-timing-function: @transitionTimingFunction;
   }
   &-slide-up-exit,
   &-slide-up-enter-done {
@@ -79,7 +75,6 @@
   &-slide-up-exit-active {
     transform: translate(0, 100%);
     transition: transform @animationDuration;
-    transition-timing-function: @transitionTimingFunction;
   }
 
   /* SlideDown */
@@ -92,7 +87,6 @@
   &-slide-down-appear-active {
     transform: translate(0, 0);
     transition: transform @animationDuration;
-    transition-timing-function: @transitionTimingFunction;
   }
   &-slide-down-exit,
   &-slide-down-enter-done {
@@ -101,7 +95,6 @@
   &-slide-down-exit-active {
     transform: translate(0, -100%);
     transition: transform @animationDuration;
-    transition-timing-function: @transitionTimingFunction;
   }
 
   /* SlideLeft */
@@ -115,7 +108,6 @@
   &-slide-left-appear-active {
     transform: translate(0, 0);
     transition: transform @animationDuration;
-    transition-timing-function: @transitionTimingFunction;
   }
 
   &-slide-left-exit,
@@ -126,7 +118,6 @@
   &-slide-left-exit-active {
     transform: translate(100%, 0);
     transition: transform @animationDuration;
-    transition-timing-function: @transitionTimingFunction;
   }
 
   /* SlideRight */
@@ -140,7 +131,6 @@
   &-slide-right-appear-active {
     transform: translate(0, 0);
     transition: transform @animationDuration;
-    transition-timing-function: @transitionTimingFunction;
   }
 
   &-slide-right-exit,
@@ -151,6 +141,5 @@
   &-slide-right-exit-active {
     transform: translate(-100%, 0);
     transition: transform @animationDuration;
-    transition-timing-function: @transitionTimingFunction;
   }
 }
