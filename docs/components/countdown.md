@@ -21,8 +21,12 @@ import { Countdown } from '../../components';
 
 export default () => (
   <Countdown
-    endTime={new Date().getTime() + 1000 * 60 * 60 * 24 * 3}
-    format="dd-天 hh-h mm-m ss-"
+    format="dd-天 hh-: mm-: ss-"
+    daysPadding
+    endTime={new Date().getTime() + 1000 * 5}
+    onEnd={() => {
+      console.log(1);
+    }}
   />
 );
 ```
@@ -37,3 +41,4 @@ export default () => (
 | daysPadding   | 天数是否补零     | Boolean?  | false                                                                         |
 | wrapClassName | 自定义容器类名   | String?   | -                                                                             |
 | prefixCls     | 自定义类名前缀   | String?   | 'dora-countdown'                                                              |
+| onEnd         | 倒计时结束回调   | Function? | -                                                                             |

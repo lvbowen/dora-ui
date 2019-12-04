@@ -1,21 +1,36 @@
 import React, { Component } from 'react';
 import cx from 'classnames';
-import warning from 'warning';
-import { CountdownShape } from './interface';
-import { withDefaultProps, isString, isNumber } from '../utils';
+import PropTypes from 'prop-types';
 
-const defaultProps = {
-  prefixCls: 'dora-countdown',
-  wrapClassName: '',
-  format: 'dd-天 hh-时 mm-分 ss-秒',
-  padding: true,
-  daysPadding: false
-};
-
-type DefaultProps = typeof defaultProps;
-type Props = CountdownShape & DefaultProps;
+export interface Props {
+  endTime: number;
+  onEnd?: (...args: any) => any;
+  wrapClassName: string;
+  prefixCls: string;
+  format: string;
+  padding: boolean;
+  daysPadding: boolean;
+}
 
 class Countdown extends Component<Props, { ms: number }> {
+  static propTypes = {
+    endTime: PropTypes.number.isRequired,
+    onEnd: PropTypes.func,
+    prefixCls: PropTypes.string,
+    wrapClassName: PropTypes.string,
+    format: PropTypes.string,
+    padding: PropTypes.bool,
+    daysPadding: PropTypes.bool
+  };
+
+  static defaultProps = {
+    prefixCls: 'dora-countdown',
+    wrapClassName: '',
+    format: 'dd-天 hh-时 mm-分 ss-秒',
+    padding: true,
+    daysPadding: false
+  };
+
   private beginTime = new Date().getTime();
   private interval = 1000;
   /** 计时器句柄 */
@@ -25,7 +40,7 @@ class Countdown extends Component<Props, { ms: number }> {
   public constructor(props: Props) {
     super(props);
     this.state = {
-      ms: 0
+      ms: 1
     };
   }
 
@@ -47,7 +62,6 @@ class Countdown extends Component<Props, { ms: number }> {
   private initCounter = () => {
     if (this.timeCounter) clearTimeout(this.timeCounter);
     const { endTime } = this.props;
-    warning(isNumber(endTime), 'Props endTime must be a timestamp');
     const ms = endTime - this.beginTime;
     if (ms < 0) return;
     this.setState(
@@ -74,8 +88,10 @@ class Countdown extends Component<Props, { ms: number }> {
     // console.log(
     //   `误差：${offset} ms，下一次执行：${nextTime} ms 后，离活动开始还有：${this.state.ms} ms`
     // );
-    if (this.state.ms < 0) {
+
+    if (this.state.ms <= 0) {
       clearTimeout(this.timeCounter);
+      typeof this.props.onEnd === 'function' && this.props.onEnd();
     } else {
       this.timeCounter = setTimeout(this.startCountDown, nextTime);
     }
@@ -102,7 +118,6 @@ class Countdown extends Component<Props, { ms: number }> {
   // 天 时 分 秒 => 展示字符串
   private get formatTime() {
     const { format, prefixCls } = this.props;
-    warning(isString(format), 'Props format must be a string');
     const { days, hours, minutes, seconds } = this.parseTime;
     const timeMap: { [key: string]: number } = {
       dd: days,
@@ -114,7 +129,15 @@ class Countdown extends Component<Props, { ms: number }> {
       const [mark, unit = ''] = item.split('-');
       return (
         <span className={`${prefixCls}-time-block`} key={mark + unit}>
-          <span className={`${prefixCls}-time`}>{this.padNumber(mark, timeMap[mark])}</span>
+          <span className={`${prefixCls}-time`}>
+            {String(this.padNumber(mark, timeMap[mark]))
+              .split('')
+              .map((s, i) => (
+                <span key={i} className={`${prefixCls}-num`}>
+                  {s}
+                </span>
+              ))}
+          </span>
           <span className={`${prefixCls}-unit`}>{unit}</span>
         </span>
       );
@@ -128,4 +151,4 @@ class Countdown extends Component<Props, { ms: number }> {
   }
 }
 
-export default withDefaultProps(defaultProps, Countdown);
+export default Countdown;
