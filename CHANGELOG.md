@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.10](https://github.com/worldzhao/dora-ui/compare/v0.0.9...v0.0.10) (2019-12-04)
+
+
+### Features
+
+* **countdown:** 增加onEnd回调 ([7c279eb](https://github.com/worldzhao/dora-ui/commit/7c279eb3a4a526ff767e77d82352839f449b668c))
+
+
+### Bug Fixes
+
+* **popup:** 将动画时间改为350ms ([6aabd58](https://github.com/worldzhao/dora-ui/commit/6aabd58daddc04a41a42c37d4534c2a6586a7552))
+
 ### [0.0.9](https://github.com/worldzhao/dora-ui/compare/v0.0.8...v0.0.9) (2019-10-22)
 
 
