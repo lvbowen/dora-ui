@@ -58,7 +58,7 @@ class Popup extends Component<Props> {
     stopScrollUnderMask: true,
     destroyOnClose: false,
     transitionName: '',
-    transitionDuration: 500
+    transitionDuration: 350
   };
 
   /**
@@ -130,7 +130,7 @@ class Popup extends Component<Props> {
     return (
       <Portal node={node}>
         <div className={rootCls}>
-          <CSSTransition in={visible} timeout={500} classNames="dora-fade" appear>
+          <CSSTransition in={visible} timeout={350} classNames="dora-fade" appear>
             <div className={`${prefixCls}-mask`} onClick={this.handleMaskClick} />
           </CSSTransition>
           <CSSTransition
