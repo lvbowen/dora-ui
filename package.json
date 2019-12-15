@@ -11,6 +11,7 @@
     "email": "1007326924@qq.com"
   },
   "files": [
+    "types",
     "lib",
     "es",
     "dist",
