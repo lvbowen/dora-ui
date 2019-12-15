@@ -9,7 +9,7 @@ interface StateShape {
 
 const defaultProps = {
   defaultToggled: false,
-  afterToggled: () => {}
+  afterToggled: (flag: boolean) => {}
 };
 
 type DefaultProps = typeof defaultProps;

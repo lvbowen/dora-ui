@@ -1,0 +1,34 @@
+---
+name: Icon 图标
+route: /Icon
+menu: 组件
+---
+
+import CodeBox from '../../utils/CodeBox';
+
+import BasicDemo from './demo/1-demo-basic';
+import BasicDemoCode from '!raw-loader!./demo/1-demo-basic';
+
+# Icon 图标
+
+基于 iconfont svg 图标，目前只含五个基本图标。
+
+## 代码演示
+
+### 基本用法
+
+<CodeBox code={BasicDemoCode}>
+  <BasicDemo></BasicDemo>
+</CodeBox>
+
+## API
+
+| 属性      | 说明           | 类型                                          | 默认值      |
+| --------- | -------------- | --------------------------------------------- | ----------- |
+| type      | 内置 icon 类型 | 'success','error','info','warning','loading'? | 'info'      |
+| size      | icon 大小      | 'sm','md','lg'?                               | 'md'        |
+| color     | icon 颜色      | string?                                       | '#000'      |
+| spinning  | 是否旋转       | boolean?                                      | false       |
+| prefixCls | 类名前缀       | string?                                       | 'dora-icon' |
+| className | 自定义类名     | string?                                       | -           |
+| onClick   | 点击事件       | function?                                     | () => {}    |

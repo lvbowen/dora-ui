@@ -1,0 +1,50 @@
+---
+name: Toggler 切换器
+route: /Toggler
+menu: 组件
+---
+
+import CodeBox from '../../utils/CodeBox';
+
+import BasicDemo from './demo/1-demo-basic';
+import BasicDemoCode from '!raw-loader!./demo/1-demo-basic';
+
+import DefaultDemo from './demo/2-demo-default';
+import DefaultDemoCode from '!raw-loader!./demo/2-demo-default';
+
+import ListenerDemo from './demo/3-demo-listener';
+import ListenerDemoCode from '!raw-loader!./demo/3-demo-listener';
+
+# Toggler 切换器
+
+Toggler 是一个用于控制切换（一个布尔值）的 `render props` 组件。
+
+常见使用场景：show/hide 某个组件，使用较为局限，没有 `hooks` 灵活。
+
+## 代码演示
+
+### 基本用法
+
+<CodeBox code={BasicDemoCode}>
+  <BasicDemo></BasicDemo>
+</CodeBox>
+
+### 设置默认状态
+
+<CodeBox code={DefaultDemoCode}>
+  <DefaultDemo></DefaultDemo>
+</CodeBox>
+
+### 监听切换事件
+
+<CodeBox code={ListenerDemoCode}>
+  <ListenerDemo></ListenerDemo>
+</CodeBox>
+
+## API
+
+| 属性           | 说明                       | 类型      | 默认值                |
+| -------------- | -------------------------- | --------- | --------------------- |
+| children       | renderProps 所需函数       | function  | -                     |
+| defaultToggled | 默认状态值                 | boolean?  | false                 |
+| afterToggled   | 当切换行为发生后触发的回调 | function? | (toggled:boolean)=>{} |

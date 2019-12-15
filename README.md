@@ -11,7 +11,18 @@
 
 > A React.js Mobile UI Library
 
-### 🏠 [Homepage](https://dora-ui.netlify.com/)
+### 🏠 [Homepage](https://dora-ui.now.sh/)
+
+## Components
+
+- Countdown
+- Icon
+- Popup
+- Portal
+- Spin
+- Spinner
+- Toast
+- Toggler
 
 ## Install
 
@@ -21,7 +32,7 @@ yarn add dora-ui
 
 ## Usage
 
-[Documentation](https://dora-ui.netlify.com/)
+[Documentation](https://dora-ui.now.sh/)
 
 ## Author
 

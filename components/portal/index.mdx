@@ -1,0 +1,31 @@
+---
+name: Portal 传送门
+route: /Portal
+menu: 组件
+---
+
+import CodeBox from '../../utils/CodeBox';
+
+import BasicDemo from './demo/1-demo-basic';
+import BasicDemoCode from '!raw-loader!./demo/1-demo-basic';
+
+# Portal 传送门
+
+传送门组件，不提供样式，Toast/Popup 等组件的基石，将此类组件挂载在 body 节点下，避免层级混乱。
+
+基于 createPortal 方法，使用该组件的好处是不需要自己管理动态插入的节点。
+
+## 代码演示
+
+### 基本用法
+
+<CodeBox code={BasicDemoCode}>
+  <BasicDemo></BasicDemo>
+</CodeBox>
+
+## API
+
+| 属性     | 说明           | 类型         | 默认值 |
+| -------- | -------------- | ------------ | ------ |
+| node     | 自定义容器节点 | HTMLElement? | -      |
+| children | 需要传送的内容 | ReactNode    | -      |

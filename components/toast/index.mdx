@@ -1,0 +1,57 @@
+---
+name: Toast 轻提示
+route: /Toast
+menu: 组件
+---
+
+import CodeBox from '../../utils/CodeBox';
+
+import BasicDemo from './demo/1-demo-basic';
+import BasicDemoCode from '!raw-loader!./demo/1-demo-basic';
+
+import CustomizeDemo from './demo/2-demo-customize';
+import CustomizeDemoCode from '!raw-loader!./demo/2-demo-customize';
+
+# Toast 轻提示
+
+基于 Popup 组件（position:center），提供 success/error/info/loading 等类型 Toast。
+
+- Toast.success(content,duration,callback,mask)
+- Toast.error
+- Toast.info
+- Toast.loading
+- Toast.destroy('success'|'error'|'info'|'loading') 传`undefined`销毁所有 Toast
+- Toast.loaded === Toast.destroy('loading')
+
+## 代码演示
+
+### 基本用法
+
+<CodeBox code={BasicDemoCode}>
+  <BasicDemo></BasicDemo>
+</CodeBox>
+
+### 自定义 Icon
+
+使用自定义 Icon，全局生效。
+
+未设置的 Toast 类型将使用`dora-ui`自带 icon。
+
+```ts
+Toast.useIcons({
+  [key: ToastType]: ReactElement
+});
+```
+
+<CodeBox code={CustomizeDemoCode} title="自定义Icon" desc="更换loading默认图标">
+  <CustomizeDemo></CustomizeDemo>
+</CodeBox>
+
+## API
+
+| 属性     | 说明             | 类型      | 默认值            |
+| -------- | ---------------- | --------- | ----------------- |
+| content  | toast 内容       | ReactNode | -                 |
+| duration | 持续时间（毫秒） | numebr?   | 1500,loading 无效 |
+| onClose  | 关闭回调         | function? | ()=>{}            |
+| mask     | 是否展示蒙层     | boolean?  | false             |

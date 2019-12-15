@@ -33,7 +33,7 @@ const positions = ['top', 'right', 'bottom', 'left', 'center'];
 
 class Popup extends Component<Props> {
   static propTypes = {
-    node: PropTypes.instanceOf(Element),
+    node: PropTypes.any,
     visible: PropTypes.bool,
     position: PropTypes.oneOf(positions),
     mask: PropTypes.bool,
