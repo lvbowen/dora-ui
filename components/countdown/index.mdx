@@ -1,0 +1,52 @@
+---
+name: Countdown 倒计时
+route: /Countdown
+menu: 组件
+---
+
+import CodeBox from '../../utils/CodeBox';
+
+import BasicDemo from './demo/1-demo-basic';
+import BasicDemoCode from '!raw-loader!./demo/1-demo-basic.tsx';
+
+import TemplateDemo from './demo/2-demo-template';
+import TemplateDemoCode from '!raw-loader!./demo/2-demo-template.tsx';
+
+# Countdown
+
+用于需要倒计时的场景。
+
+## 代码演示
+
+### 基本用法
+
+<CodeBox code={BasicDemoCode} title="倒计时3天">
+  <BasicDemo></BasicDemo>
+</CodeBox>
+
+### 自定义模板
+
+<CodeBox
+  code={TemplateDemoCode}
+  title="自定义时间模板"
+  desc={
+    <p>
+      dd-天&nbsp;hh-h&nbsp;mm-分&nbsp;ss-s <br />
+      [值]-[单位][空格分隔]
+    </p>
+  }
+>
+  <TemplateDemo></TemplateDemo>
+</CodeBox>
+
+## API
+
+| 属性          | 说明           | 类型      | 默认值                      |
+| ------------- | -------------- | --------- | --------------------------- |
+| endTime       | 结束时间点     | timestamp | -                           |
+| format        | 展示规则       | string?   | **dd-天 hh-时 mm-分 ss-秒** |
+| padding       | 是否补零       | boolean?  | true                        |
+| daysPadding   | 天数是否补零   | boolean?  | false                       |
+| wrapClassName | 自定义容器类名 | string?   | -                           |
+| prefixCls     | 自定义类名前缀 | string?   | **dora-countdown**          |
+| onEnd         | 倒计时结束回调 | function? | -                           |

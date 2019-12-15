@@ -15,11 +15,11 @@ const getFilesPath = str => path.resolve(__dirname, str);
 
 const paths = {
   dest: {
-    lib: getFilesPath('./lib'),
-    es: getFilesPath('./es')
+    lib: 'lib',
+    es: 'es'
   },
-  styles: getFilesPath('./components/**/*.less'),
-  scripts: [getFilesPath('./components/**/*.ts'), getFilesPath('./components/**/*.tsx')]
+  styles: 'components/**/*.less',
+  scripts: ['components/**/*.{ts,tsx}', '!components/**/demo/*.{ts,tsx}']
 };
 
 function copyLess() {

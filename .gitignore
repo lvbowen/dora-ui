@@ -16,7 +16,9 @@
 /dist
 /lib
 /es
-
+/.docz
+/.doc-site
+/types
 
 # misc
 .DS_Store

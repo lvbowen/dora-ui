@@ -1,9 +1,1 @@
-gulpfile.js
-doczrc.js
-utils/
-dist/
-lib/
-es/
-node_modules/
-docs/
-scripts/
+*.js

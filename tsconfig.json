@@ -1,14 +1,18 @@
 {
   "compilerOptions": {
+    "baseUrl": "components",
+    "paths": {
+      "dora-ui/lib/*": ["*"]
+    },
     "target": "esnext",
     "module": "commonjs",
     "jsx": "react",
     "declaration": true,
-    "outDir": "lib",
-    "rootDir": "./components",
+    "outDir": "types",
     "strict": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true
-  }
+  },
+  "exclude": ["components/**/demo", "utils"]
 }
