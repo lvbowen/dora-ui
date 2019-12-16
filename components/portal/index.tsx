@@ -8,7 +8,7 @@ class Portal extends React.Component<PortalPropsShape> {
 
   public constructor(props: PortalPropsShape) {
     super(props);
-    if (!props.node) {
+    if (!props.node && isBrowser) {
       this.defaultNode = document.createElement('div');
       document.body.appendChild(this.defaultNode);
     }

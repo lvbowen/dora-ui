@@ -50,8 +50,8 @@
   "scripts": {
     "start": "npm run dev",
     "dev": "docz dev",
-    "clean": "rimraf types lib es dist .doc-site",
-    "build:doc": "npm run clean && docz build",
+    "clean": "rimraf types lib es dist",
+    "build:doc": "rimraf .doc-site && docz build",
     "preview:doc": "docz serve",
     "publish:doc": "now --prod",
     "now-build": "npm run build:doc",
