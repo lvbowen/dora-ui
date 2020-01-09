@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Portal /> should append node to <body /> by default 1`] = `
+<body>
+  <div />
+  <div>
+    <div>
+      hello,portal
+    </div>
+  </div>
+</body>
+`;
+
+exports[`<Portal /> should append node to custom container by props "node" 1`] = `
+<body>
+  <div
+    class="custom-container"
+  >
+    <div>
+      custom container
+    </div>
+  </div>
+  <div />
+</body>
+`;
+
+exports[`<Portal /> should append node to custom container by props "node" 2`] = `
+<body>
+  <div
+    class="custom-container"
+  />
+  <div />
+</body>
+`;
+
+exports[`<Portal /> should remove the default container when Portal unmounted 1`] = `
+<body>
+  <div />
+  <div>
+    <div>
+      hello,portal
+    </div>
+  </div>
+</body>
+`;
+
+exports[`<Portal /> should remove the default container when Portal unmounted 2`] = `
+<body>
+  <div />
+</body>
+`;
