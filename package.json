@@ -60,7 +60,11 @@
     "build": "npm run clean && npm run build:types && gulp",
     "commit": "git-cz",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r",
-    "release": "standard-version && git push --follow-tags origin master"
+    "release": "standard-version && git push --follow-tags origin master",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:update": "jest --updateSnapshot"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
@@ -74,12 +78,16 @@
     "@commitlint/cli": "^8.2.0",
     "@commitlint/config-conventional": "^8.2.0",
     "@semantic-release/changelog": "^3.0.4",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.4.0",
     "@types/classnames": "^2.2.7",
+    "@types/jest": "^24.0.25",
     "@types/prismjs": "^1.16.0",
     "@types/react": "^16.8.18",
     "@types/react-copy-to-clipboard": "^4.3.0",
     "@types/react-dom": "^16.8.4",
     "@types/react-transition-group": "^2.9.1",
+    "@types/testing-library__react": "^9.1.2",
     "@types/warning": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "^1.9.0",
     "@typescript-eslint/parser": "^1.9.0",
@@ -115,6 +123,8 @@
     "gulp-rename": "^1.4.0",
     "gulp-sourcemaps": "^2.6.5",
     "husky": "^2.3.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^24.9.0",
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
     "lint-staged": "^8.1.7",
@@ -135,6 +145,7 @@
     "stylelint": "^10.0.1",
     "stylelint-config-standard": "^18.3.0",
     "through2": "^3.0.1",
+    "ts-jest": "^24.3.0",
     "typescript": "^3.3.3"
   },
   "peerDependencies": {
@@ -153,6 +164,7 @@
     "components/**/*.ts?(x)": [
       "prettier --write",
       "eslint --fix",
+      "jest --bail --findRelatedTests",
       "git add"
     ],
     "components/**/*.less": [

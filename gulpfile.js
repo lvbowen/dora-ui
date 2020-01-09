@@ -1,4 +1,3 @@
-const path = require('path');
 const gulp = require('gulp');
 const concat = require('gulp-concat');
 const less = require('gulp-less');
@@ -11,15 +10,17 @@ const through2 = require('through2');
 const { getBabelConfig, style2css } = require('./utils');
 const name = 'dora-ui';
 
-const getFilesPath = str => path.resolve(__dirname, str);
-
 const paths = {
   dest: {
     lib: 'lib',
     es: 'es'
   },
   styles: 'components/**/*.less',
-  scripts: ['components/**/*.{ts,tsx}', '!components/**/demo/*.{ts,tsx}']
+  scripts: [
+    'components/**/*.{ts,tsx}',
+    '!components/**/demo/*.{ts,tsx}',
+    '!components/**/__tests__/*.{ts,tsx}'
+  ]
 };
 
 function copyLess() {
