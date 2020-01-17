@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.13](https://github.com/worldzhao/dora-ui/compare/v0.0.12...v0.0.13) (2020-01-17)
+
+
+### Bug Fixes
+
+* **portal:** 服务端打包区分环境 ([bd007fa](https://github.com/worldzhao/dora-ui/commit/bd007fa2466a00e768dbe543e0fcfd0c606cc77d))
+
 ### [0.0.12](https://github.com/worldzhao/dora-ui/compare/v0.0.11...v0.0.12) (2019-12-15)
 
 
