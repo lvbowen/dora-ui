@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Popup /> should render outside container 1`] = `
+<body>
+  <div>
+    <button>
+      toggle modal visible
+    </button>
+    <button>
+      toggle modal destroyOnClose
+    </button>
+    <button>
+      toggle modal mask
+    </button>
+  </div>
+</body>
+`;
+
+exports[`<Popup /> should render outside container 2`] = `
+<body
+  style="position: fixed; top: 0px; left: 0px; right: 0px;"
+>
+  <div>
+    <button>
+      toggle modal visible
+    </button>
+    <button>
+      toggle modal destroyOnClose
+    </button>
+    <button>
+      toggle modal mask
+    </button>
+  </div>
+  <div>
+    <div
+      class="test-wrap-class dora-popup dora-popup__center dora-popup__mask"
+    >
+      <div
+        class="dora-popup-mask"
+      />
+      <div
+        class="dora-popup-content"
+      >
+        content
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`<Popup /> should render outside container 3`] = `
+<body
+  style="top: 0px; left: 0px; right: 0px;"
+>
+  <div>
+    <button>
+      toggle modal visible
+    </button>
+    <button>
+      toggle modal destroyOnClose
+    </button>
+    <button>
+      toggle modal mask
+    </button>
+  </div>
+  <div>
+    <div
+      class="test-wrap-class dora-popup dora-popup__center dora-popup__mask"
+    >
+      <div
+        style="display: none;"
+      >
+        <div
+          class="dora-popup-mask"
+        />
+      </div>
+      <div
+        style="display: none;"
+      >
+        <div
+          class="dora-popup-content"
+        >
+          content
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

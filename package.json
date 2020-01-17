@@ -60,7 +60,7 @@
     "build": "npm run clean && npm run build:types && gulp",
     "commit": "git-cz",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r",
-    "release": "standard-version && git push --follow-tags origin master",
+    "release": "standard-version",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
