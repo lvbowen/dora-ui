@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.14](https://github.com/worldzhao/dora-ui/compare/v0.0.13...v0.0.14) (2020-01-17)
+
+
+### Bug Fixes
+
+* **spinner:** style ([66e7ee5](https://github.com/worldzhao/dora-ui/commit/66e7ee59438256044b767a4f68b88c8f97496eb2))
+
 ### [0.0.13](https://github.com/worldzhao/dora-ui/compare/v0.0.12...v0.0.13) (2020-01-17)
 
 
