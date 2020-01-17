@@ -14,7 +14,7 @@ export interface InnerFunc {
     content: React.ReactNode,
     duration?: number,
     onClose?: () => void,
-    mask?: boolean
+    mask?: boolean,
   ): void;
 }
 
@@ -73,7 +73,7 @@ const show: InnerFunc = (type, content, duration, onClose, mask) => {
         destroy(currentToastType, onClose);
       }}
     />,
-    container
+    container,
   );
 };
 
@@ -97,7 +97,7 @@ const Toast = {
   loaded: () => {
     destroy(TOAST_TYPES.LOADING);
   },
-  destroy
+  destroy,
 };
 
 export default Toast;

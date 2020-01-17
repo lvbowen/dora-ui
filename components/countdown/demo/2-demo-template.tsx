@@ -1,5 +1,6 @@
+/* eslint-disable no-alert */
 import React from 'react';
-import Countdown from 'dora-ui/lib/countdown';
+import Countdown from '../index';
 
 export default () => (
   <Countdown

@@ -44,7 +44,7 @@ class Popup extends Component<Props> {
     stopScrollUnderMask: PropTypes.bool,
     destroyOnClose: PropTypes.bool,
     transitionName: PropTypes.string,
-    transitionDuration: PropTypes.number
+    transitionDuration: PropTypes.number,
   };
 
   static defaultProps: Partial<Props> = {
@@ -58,7 +58,7 @@ class Popup extends Component<Props> {
     stopScrollUnderMask: true,
     destroyOnClose: false,
     transitionName: '',
-    transitionDuration: 350
+    transitionDuration: 350,
   };
 
   /**
@@ -104,7 +104,7 @@ class Popup extends Component<Props> {
       right: 'dora-slide-left',
       left: 'dora-slide-right',
       top: 'dora-slide-down',
-      center: 'dora-fade'
+      center: 'dora-fade',
     };
     return transitionNames[position];
   }
@@ -119,12 +119,12 @@ class Popup extends Component<Props> {
       wrapClassName,
       destroyOnClose,
       contentStyle,
-      transitionDuration
+      transitionDuration,
     } = this.props;
     if (!this.hasFirstRendered && !visible) return null;
     this.hasFirstRendered = true;
     const rootCls = cx(wrapClassName, prefixCls, `${prefixCls}__${position}`, {
-      [`${prefixCls}__mask`]: mask
+      [`${prefixCls}__mask`]: mask,
     });
 
     return (

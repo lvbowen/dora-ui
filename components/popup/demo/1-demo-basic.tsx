@@ -3,8 +3,8 @@ import useToggle from 'react-use/esm/useToggle';
 
 import { Button } from 'antd';
 
-import Popup from 'dora-ui/lib/popup';
-import 'dora-ui/lib/popup/style';
+import Popup from '..';
+import '../style';
 
 export default () => {
   const [visible, toggleVisible] = useToggle(false);

@@ -26,6 +26,7 @@ interface State {
 
 // 是否延迟spinning
 function shouldDelay(spinning?: boolean, delay?: number): boolean {
+  /* eslint-disable-next-line no-restricted-globals */
   return !!spinning && !!delay && !isNaN(Number(delay));
 }
 const prefixCls = 'dora-spin';
@@ -40,7 +41,7 @@ class Spin extends Component<Props, State> {
     tip: PropTypes.string,
     wrapperClassName: PropTypes.string,
     transition: PropTypes.bool,
-    delay: PropTypes.number
+    delay: PropTypes.number,
   };
 
   static defaultProps = {
@@ -50,7 +51,7 @@ class Spin extends Component<Props, State> {
     wrapperClassName: '',
     transition: true,
     delay: 0,
-    spinner: <Spinner type="wave"></Spinner>
+    spinner: <Spinner type="wave"></Spinner>,
   };
 
   constructor(props: Props) {
@@ -59,7 +60,7 @@ class Spin extends Component<Props, State> {
     const { spinning, delay } = props;
     const shouldBeDelayed = shouldDelay(spinning, delay);
     this.state = {
-      spinning: spinning && !shouldBeDelayed
+      spinning: spinning && !shouldBeDelayed,
     };
     this.debouncifyUpdateSpinning(props);
   }
@@ -103,9 +104,10 @@ class Spin extends Component<Props, State> {
   };
 
   cancelExistingSpin() {
-    const updateSpinning: any = this.updateSpinning;
-    if (updateSpinning && updateSpinning.cancel) {
-      updateSpinning.cancel();
+    const { updateSpinning } = this;
+    const copyUpdateSpinning: any = updateSpinning;
+    if (copyUpdateSpinning && copyUpdateSpinning.cancel) {
+      copyUpdateSpinning.cancel();
     }
   }
 
@@ -115,12 +117,12 @@ class Spin extends Component<Props, State> {
 
     const { spinning } = this.state;
     const spinnerContainerCls = cx(`${prefixCls}-spinner-container`, {
-      [`${prefixCls}-spinner-container__full`]: fullScreen
+      [`${prefixCls}-spinner-container__full`]: fullScreen,
     });
     const tipCls = cx(`${prefixCls}-text`, `${prefixCls}-text-${size}`);
     let spinElement = (
       <div className={spinnerContainerCls}>
-        {isDefaultSpinner ? cloneElement(spinner, { size: size }) : spinner}
+        {isDefaultSpinner ? cloneElement(spinner, { size }) : spinner}
         {tip && <div className={tipCls}>{tip}</div>}
       </div>
     );
@@ -133,7 +135,7 @@ class Spin extends Component<Props, State> {
     /* 是否存在过渡效果 */
     if (transition) {
       return (
-        <CSSTransition in={spinning} classNames={'dora-fade'} timeout={300} unmountOnExit>
+        <CSSTransition in={spinning} classNames="dora-fade" timeout={300} unmountOnExit>
           {spinElement}
         </CSSTransition>
       );

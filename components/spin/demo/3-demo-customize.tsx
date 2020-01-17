@@ -1,27 +1,27 @@
 import React from 'react';
-import Spin from '..';
-import '../style';
-
 import { Button } from 'antd';
 import { BounceLoader, ClipLoader, ScaleLoader } from 'react-spinners';
+import Spin from '..';
+import '../style';
 
 export default class extends React.Component {
   state = {
     loading: false,
-    spinner: undefined
+    spinner: undefined,
   };
+
   spinnerIndex = -1;
 
   changeSpinner = () => {
     const spinners: React.ReactNode[] = [
       BounceLoader,
       ClipLoader,
-      ScaleLoader
+      ScaleLoader,
     ].map((Spinner: typeof BounceLoader) => <Spinner></Spinner>);
     this.spinnerIndex = this.spinnerIndex + 1 === spinners.length ? 0 : this.spinnerIndex + 1;
     this.setState({
       spinner: spinners[this.spinnerIndex],
-      loading: true
+      loading: true,
     });
   };
 

@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React from 'react';
 import Editor from 'react-simple-code-editor';
 import CopyToClipboard from 'react-copy-to-clipboard';
@@ -9,7 +8,7 @@ import { highlight, languages } from 'prismjs/components/prism-core';
 import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-markup';
-import './index.css';
+import './index.less';
 
 require('prismjs/components/prism-jsx');
 
@@ -20,7 +19,7 @@ interface Props {
   desc?: React.ReactNode;
 }
 
-export const CodeBox: React.FC<Props> = ({ code, title, desc, children }) => {
+export const HappyBox: React.FC<Props> = ({ code, title, desc, children }) => {
   const [isEditVisible, toggleEditVisible] = useToggle(false);
 
   return (
@@ -33,7 +32,7 @@ export const CodeBox: React.FC<Props> = ({ code, title, desc, children }) => {
         </div>
         <Divider dashed></Divider>
         <div className="code-box-action">
-          <Tooltip placement="top" title={'复制代码'}>
+          <Tooltip placement="top" title="复制代码">
             <CopyToClipboard text={code} onCopy={() => message.success('复制成功')}>
               <Icon type="copy" />
             </CopyToClipboard>
@@ -60,7 +59,7 @@ export const CodeBox: React.FC<Props> = ({ code, title, desc, children }) => {
           className="container__editor"
           style={{
             fontFamily: '"Fira code", "Fira Mono", monospace',
-            fontSize: 14
+            fontSize: 14,
           }}
         />
       </div>
@@ -68,4 +67,4 @@ export const CodeBox: React.FC<Props> = ({ code, title, desc, children }) => {
   }
 };
 
-export default CodeBox;
+export default HappyBox;

@@ -1,14 +1,13 @@
 import React from 'react';
-import Toast from 'dora-ui/lib/toast';
-import 'dora-ui/lib/toast/style';
-
-import Spinner from 'dora-ui/lib/spinner';
-import 'dora-ui/lib/spinner/style';
-
 import { Button } from 'antd';
+import Toast from '..';
+import '../style';
+
+import Spinner from '../../spinner';
+import '../../spinner/style';
 
 Toast.useIcons({
-  loading: <Spinner></Spinner>
+  loading: <Spinner></Spinner>,
 });
 
 export default () => (

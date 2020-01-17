@@ -20,7 +20,7 @@ class Countdown extends Component<Props, { ms: number }> {
     wrapClassName: PropTypes.string,
     format: PropTypes.string,
     padding: PropTypes.bool,
-    daysPadding: PropTypes.bool
+    daysPadding: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -28,62 +28,71 @@ class Countdown extends Component<Props, { ms: number }> {
     wrapClassName: '',
     format: 'dd-天 hh-时 mm-分 ss-秒',
     padding: true,
-    daysPadding: false
+    daysPadding: false,
   };
 
-  private beginTime = new Date().getTime();
-  private interval = 1000;
+  beginTime = new Date().getTime();
+
+  interval = 1000;
+
   /** 计时器句柄 */
-  private timeCounter: any = null;
+  timeCounter: any = null;
+
   /** 计数器用于校正定时器偏差 */
-  private count = 0;
-  public constructor(props: Props) {
+  count = 0;
+
+  constructor(props: Props) {
     super(props);
     this.state = {
-      ms: 1
+      ms: 1,
     };
   }
 
-  public componentDidMount() {
+  componentDidMount() {
     this.initCounter();
   }
 
-  public componentDidUpdate(prevProps: Props) {
+  componentDidUpdate(prevProps: Props) {
     const { endTime } = this.props;
     if (endTime !== prevProps.endTime) {
       this.initCounter();
     }
   }
 
-  public componentWillUnmount() {
+  componentWillUnmount() {
     clearTimeout(this.timeCounter);
   }
 
-  private initCounter = () => {
+  initCounter = () => {
     if (this.timeCounter) clearTimeout(this.timeCounter);
     const { endTime } = this.props;
     const ms = endTime - this.beginTime;
     if (ms < 0) return;
     this.setState(
       {
-        ms
+        ms,
       },
       () => {
         this.timeCounter = setTimeout(this.startCountDown, this.interval);
-      }
+      },
     );
   };
 
-  private startCountDown = () => {
-    this.count++;
+  startCountDown = () => {
+    const { ms } = this.state;
+    const { onEnd } = this.props;
+
+    this.count += 1;
+
     const offset = new Date().getTime() - (this.beginTime + this.count * this.interval);
     // 误差校正
     let nextTime = this.interval - offset;
     if (nextTime < 0) {
       nextTime = 0;
     }
+
     this.setState({
-      ms: Math.max(this.state.ms - this.interval, 0)
+      ms: Math.max(ms - this.interval, 0),
     });
     // console.log(
     //   `误差：${offset} ms，下一次执行：${nextTime} ms 后，离活动开始还有：${this.state.ms} ms`
@@ -91,13 +100,13 @@ class Countdown extends Component<Props, { ms: number }> {
 
     if (this.state.ms <= 0) {
       clearTimeout(this.timeCounter);
-      typeof this.props.onEnd === 'function' && this.props.onEnd();
+      typeof onEnd === 'function' && onEnd();
     } else {
       this.timeCounter = setTimeout(this.startCountDown, nextTime);
     }
   };
 
-  private padNumber = (mark: string, num: number) => {
+  padNumber = (mark: string, num: number) => {
     const { padding, daysPadding } = this.props;
     if (mark === 'dd' && !daysPadding) return num;
     if (padding) return num.toString().padStart(2, '0');
@@ -105,25 +114,25 @@ class Countdown extends Component<Props, { ms: number }> {
   };
 
   // 毫秒 => 天 时 分 秒
-  private get parseTime() {
+  get parseTime() {
     const { ms } = this.state;
     return {
       days: Math.floor(ms / (1000 * 60 * 60 * 24)),
       hours: Math.floor((ms / (1000 * 60 * 60)) % 24),
       minutes: Math.floor((ms / (1000 * 60)) % 60),
-      seconds: Math.floor((ms / 1000) % 60)
+      seconds: Math.floor((ms / 1000) % 60),
     };
   }
 
   // 天 时 分 秒 => 展示字符串
-  private get formatTime() {
+  get formatTime() {
     const { format, prefixCls } = this.props;
     const { days, hours, minutes, seconds } = this.parseTime;
     const timeMap: { [key: string]: number } = {
       dd: days,
       hh: hours,
       mm: minutes,
-      ss: seconds
+      ss: seconds,
     };
     return format.split(' ').map(item => {
       const [mark, unit = ''] = item.split('-');
@@ -133,6 +142,7 @@ class Countdown extends Component<Props, { ms: number }> {
             {String(this.padNumber(mark, timeMap[mark]))
               .split('')
               .map((s, i) => (
+                /* eslint-disable-next-line react/no-array-index-key */
                 <span key={i} className={`${prefixCls}-num`}>
                   {s}
                 </span>
@@ -144,7 +154,7 @@ class Countdown extends Component<Props, { ms: number }> {
     });
   }
 
-  public render() {
+  render() {
     const { prefixCls, wrapClassName } = this.props;
     const rootCls = cx(prefixCls, wrapClassName);
     return <div className={rootCls}>{this.formatTime}</div>;

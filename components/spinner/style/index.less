@@ -17,24 +17,24 @@
     @keyframes animation-dora-spinner__wave {
       0%,
       100% {
-        transform: scaleY(1);
         -webkit-transform: scaleY(1);
+        transform: scaleY(1);
       }
       50% {
-        transform: scaleY(0.2);
         -webkit-transform: scaleY(0.2);
+        transform: scaleY(0.2);
       }
     }
 
-    width: 50px;
-    height: 38px;
     display: flex;
     justify-content: space-between;
+    width: 50px;
+    height: 38px;
 
     .@{spinnerPrefix}-rect {
-      background-color: #f86441;
-      height: 100%;
       width: 4px;
+      height: 100%;
+      background-color: #f86441;
       border-radius: 20px;
       animation: animation-dora-spinner__wave 0.8s linear infinite;
     }
@@ -67,8 +67,8 @@
       }
     }
 
-    display: inline-block;
     position: relative;
+    display: inline-block;
     width: 38px;
     height: 38px;
 
@@ -76,16 +76,16 @@
       transform-origin: 19px 19px;
       animation: animation-dora-spinner__normal 0.8s linear infinite;
 
-      &:after {
-        content: ' ';
-        display: block;
+      &::after {
         position: absolute;
         top: 2px;
         left: 18px;
+        display: block;
         width: 4px;
         height: 8px;
-        border-radius: 4px;
         background: #fff;
+        border-radius: 4px;
+        content: ' ';
       }
 
       &:nth-child(1) {

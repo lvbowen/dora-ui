@@ -4,7 +4,7 @@ route: /Spin
 menu: 组件
 ---
 
-import CodeBox from '../../utils/CodeBox';
+import CodeBox from '../../doc-comps/happy-box';
 
 import BasicDemo from './demo/1-demo-basic';
 import BasicDemoCode from '!raw-loader!./demo/1-demo-basic';
@@ -51,14 +51,14 @@ import CustomizeDemoCode from '!raw-loader!./demo/3-demo-customize';
 
 ## API
 
-| 属性             | 说明                                               | 类型            | 默认值                            |
-| ---------------- | -------------------------------------------------- | --------------- | --------------------------------- |
-| spinning         | 是否展示 Spinner                                   | boolean         | -                                 |
-| fullScreen       | 是否一屏（如果加载的内容高于一屏，建议设置此选项） | boolean?        | true                              |
-| children         | 被包裹的内容                                       | ReactNode       | -                                 |
-| tip              | 描述文案                                           | string?         | ''                                |
-| spinner          | 自定义 Spinner                                     | ReactElement?   | `<Spinner size="md" type="wave">` |
-| size             | Spinner 大小，仅对默认 Spinner 有效                | 'sm'/'md'/'lg'? | 'md'                              |
-| wrapperClassName | 包装器的类属性                                     | string?         | ''                                |
-| transition       | 是否展示过渡动画                                   | boolean?        | true                              |
-| delay            | 延迟显示加载效果的时间，毫秒                       | number?         | 0                                 |
+| 属性 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| spinning | 是否展示 Spinner | boolean | - |
+| fullScreen | 是否一屏（如果加载的内容高于一屏，建议设置此选项） | boolean? | true |
+| children | 被包裹的内容 | ReactNode | - |
+| tip | 描述文案 | string? | '' |
+| spinner | 自定义 Spinner | ReactElement? | `<Spinner size="md" type="wave">` |
+| size | Spinner 大小，仅对默认 Spinner 有效 | 'sm'/'md'/'lg'? | 'md' |
+| wrapperClassName | 包装器的类属性 | string? | '' |
+| transition | 是否展示过渡动画 | boolean? | true |
+| delay | 延迟显示加载效果的时间，毫秒 | number? | 0 |

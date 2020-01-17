@@ -2,19 +2,16 @@ import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
-import { CSSTransition } from 'react-transition-group';
 import Popup from '../index';
 import '../style';
 
 jest.mock('react-transition-group', () => {
   const FakeTransition = jest.fn(({ children }) => children);
-  const FakeCSSTransition = jest.fn(props =>
-    props.in ? (
-      <FakeTransition>{props.children}</FakeTransition>
-    ) : props.unmountOnExit ? null : (
-      <div style={{ display: 'none' }}>{props.children}</div>
-    )
-  );
+  const FakeCSSTransition = jest.fn(props => {
+    if (props.in) return <FakeTransition>{props.children}</FakeTransition>;
+    if (props.unmountOnExit) return null;
+    return <div style={{ display: 'none' }}>{props.children}</div>;
+  });
   return { CSSTransition: FakeCSSTransition, Transition: FakeTransition };
 });
 

@@ -30,29 +30,29 @@
   &-zoom-enter,
   &-zoom-appear,
   &-zoom-exit-done {
-    opacity: 0;
     transform: scale(0, 0);
+    opacity: 0;
   }
 
   &-zoom-appear-active,
   &-zoom-enter-active {
-    opacity: 1;
-    transform-origin: 50% 50%;
     transform: scale(1, 1);
+    transform-origin: 50% 50%;
+    opacity: 1;
     transition: transform @animationDuration;
     transition-timing-function: cubic-bezier(0.18, 0.89, 0.32, 1.28);
   }
 
   &-zoom-exit,
   &-zoom-enter-done {
-    opacity: 1;
     transform: scale(1, 1);
+    opacity: 1;
   }
 
   &-zoom-exit-active {
-    opacity: 0;
-    transform-origin: 50% 50%;
     transform: scale(0, 0);
+    transform-origin: 50% 50%;
+    opacity: 0;
     transition: transform @animationDuration;
     transition-timing-function: cubic-bezier(0.6, -0.3, 0.74, 0.05);
   }

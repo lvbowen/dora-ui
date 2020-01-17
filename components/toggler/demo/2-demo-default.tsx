@@ -1,7 +1,6 @@
 import React from 'react';
-import Toggler from 'dora-ui/lib/toggler';
-
 import { Button } from 'antd';
+import Toggler from '..';
 
 export default () => (
   <Toggler defaultToggled>

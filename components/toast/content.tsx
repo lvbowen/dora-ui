@@ -19,7 +19,7 @@ export interface Props {
 }
 
 class ToastContent extends Component<Props, { visible: boolean }> {
-  static useIcons = function(iconConfig: { [key: string]: React.ReactElement }) {
+  static useIcons = (iconConfig: { [key: string]: React.ReactElement }) => {
     ToastContent.icons = iconConfig;
   };
 
@@ -31,21 +31,22 @@ class ToastContent extends Component<Props, { visible: boolean }> {
     content: PropTypes.node,
     mask: PropTypes.bool,
     duration: PropTypes.number,
-    onClose: PropTypes.func
+    onClose: PropTypes.func,
   };
 
   static defaultProps = {
     mask: false,
     duration: 1500,
-    onClose: () => {}
+    onClose: () => {},
   };
 
   timer?: any;
+
   // 是否执行过关闭函数
   isExecClose: boolean = false;
 
   state = {
-    visible: true
+    visible: true,
   };
 
   get isLoading(): boolean {
@@ -63,12 +64,12 @@ class ToastContent extends Component<Props, { visible: boolean }> {
       this.timer = setTimeout(() => {
         this.setState(
           {
-            visible: false // 隐藏popup
+            visible: false, // 隐藏popup
           },
           () => {
             this.isExecClose = true;
             setTimeout(onClose, 300); // 执行完动画后再卸载组件并执行回调, visble:false时触发动画预留的时间：200
-          }
+          },
         );
       }, duration);
     }

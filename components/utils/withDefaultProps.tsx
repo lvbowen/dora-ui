@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars,no-param-reassign */
 import { ComponentType } from 'react';
 
 type Omit<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>>;
@@ -10,7 +11,7 @@ type Omit<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>>;
  */
 export const withDefaultProps = <P extends object, DP extends Partial<P> = Partial<P>>(
   defaultProps: DP,
-  Cmp: ComponentType<P>
+  Cmp: ComponentType<P>,
 ) => {
   // 抽取出必需的props（不含defaultProps的部分）
   type RequiredProps = Omit<P, keyof DP>;
@@ -27,13 +28,13 @@ export const withDefaultProps = <P extends object, DP extends Partial<P> = Parti
  * 这个Props类型中的defaultProps相关属性就变成了必选的
  * @param defaultProps 默认属性对象
  */
-export const createPropsGetter = <DP extends object>(defaultProps: DP) => {
-  return <P extends Partial<DP>>(props: P) => {
-    // 剔除Props类型中关于defaultProps的部分
-    type RequiredProps = Omit<P, keyof DP>;
-    // 将默认属性的类型DP与剔除了默认属性的Props类型结合在一起 均为必选
-    type Props = DP & RequiredProps;
+export const createPropsGetter = <DP extends object>(defaultProps: DP) => <P extends Partial<DP>>(
+  props: P,
+) => {
+  // 剔除Props类型中关于defaultProps的部分
+  type RequiredProps = Omit<P, keyof DP>;
+  // 将默认属性的类型DP与剔除了默认属性的Props类型结合在一起 均为必选
+  type Props = DP & RequiredProps;
 
-    return (props as any) as Props;
-  };
+  return (props as any) as Props;
 };

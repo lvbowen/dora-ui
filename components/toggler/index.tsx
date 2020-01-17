@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { Component } from 'react';
 import warning from 'warning';
 import { TogglerShape } from './interface';
@@ -9,7 +10,7 @@ interface StateShape {
 
 const defaultProps = {
   defaultToggled: false,
-  afterToggled: (flag: boolean) => {}
+  afterToggled: (flag: boolean) => {},
 };
 
 type DefaultProps = typeof defaultProps;
@@ -19,7 +20,7 @@ class Toggler extends Component<Props, StateShape> {
   public constructor(props: Props) {
     super(props);
     this.state = {
-      toggled: props.defaultToggled
+      toggled: props.defaultToggled,
     };
   }
 
@@ -27,11 +28,11 @@ class Toggler extends Component<Props, StateShape> {
     const { afterToggled } = this.props;
     this.setState(
       prevState => ({
-        toggled: isBoolean(flag) ? flag : !prevState.toggled
+        toggled: isBoolean(flag) ? flag : !prevState.toggled,
       }),
       () => {
         afterToggled(this.state.toggled);
-      }
+      },
     );
   };
 

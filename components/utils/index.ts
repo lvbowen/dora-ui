@@ -1,5 +1,3 @@
-import * as _ from './isType';
-
 export const isBrowser = !!(
   typeof window !== 'undefined' &&
   window.document &&
@@ -14,7 +12,7 @@ export {
   isFunction,
   isNumber,
   isBoolean,
-  isNull
+  isNull,
 } from './isType';
 
 export { withDefaultProps, createPropsGetter } from './withDefaultProps';

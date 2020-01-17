@@ -41,7 +41,7 @@ const Spinner: React.FC<Props> = ({ size = 'md', type = 'normal' }) => {
 // props校验
 Spinner.propTypes = {
   size: PropTypes.oneOf(['sm', 'md', 'lg']),
-  type: PropTypes.oneOf(['normal', 'wave'])
+  type: PropTypes.oneOf(['normal', 'wave']),
 };
 
 export default Spinner;

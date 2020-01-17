@@ -22,6 +22,15 @@ export interface IconProps {
 const cacheScript = new Set();
 const url = '//at.alicdn.com/t/font_1307286_wu10fg1zil.js';
 
+function createScript() {
+  if (!cacheScript.has(url)) {
+    const script = document.createElement('script');
+    script.src = url;
+    cacheScript.add(url);
+    document.body.appendChild(script);
+  }
+}
+
 class Icon extends Component<IconProps, {}> {
   static propTypes = {
     type: PropTypes.oneOf(['success', 'error', 'info', 'warning', 'loading']).isRequired,
@@ -30,39 +39,29 @@ class Icon extends Component<IconProps, {}> {
     spinning: PropTypes.bool,
     prefixCls: PropTypes.string,
     className: PropTypes.string,
-    onClick: PropTypes.func
+    onClick: PropTypes.func,
   };
 
   static defaultProps = {
-    type: 'info',
     prefixCls: 'dora-icon',
     size: 'md',
     color: '#000',
-    onClick: () => {}
+    onClick: () => {},
   };
 
   componentDidMount() {
-    this.createScript();
-  }
-
-  createScript() {
-    if (!cacheScript.has(url)) {
-      const script = document.createElement('script');
-      script.src = url;
-      cacheScript.add(url);
-      document.body.appendChild(script);
-    }
+    createScript();
   }
 
   render() {
     const { prefixCls, size, type, spinning, color, className, ...rest } = this.props;
 
     const cls = cx(prefixCls, className, `${prefixCls}-${size}`, {
-      [`${prefixCls}-spinning`]: spinning
+      [`${prefixCls}-spinning`]: spinning,
     });
 
     const style: React.CSSProperties = {
-      color
+      color,
     };
 
     return (

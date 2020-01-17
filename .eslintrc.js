@@ -1,11 +1,10 @@
 module.exports = {
-  parser: '@typescript-eslint/parser',
-  extends: ['plugin:@typescript-eslint/recommended', 'react-app', 'plugin:prettier/recommended'],
-  plugins: ['@typescript-eslint', 'react'],
+  extends: [require.resolve('@umijs/fabric/dist/eslint')],
   rules: {
-    '@typescript-eslint/explicit-function-return-type': 0,
-    '@typescript-eslint/indent': ['error', 2],
-    '@typescript-eslint/explicit-member-accessibility': 0,
-    '@typescript-eslint/interface-name-prefix': 0
-  }
+    'react/require-default-props': 0,
+    'no-unused-expressions': 0,
+    'react/sort-comp': 0,
+    'react/button-has-type': 0,
+    'import/no-extraneous-dependencies': 0,
+  },
 };

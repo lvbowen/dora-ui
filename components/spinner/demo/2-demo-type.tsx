@@ -9,7 +9,7 @@ export default () => (
       height: 100,
       display: 'flex',
       alignItems: 'center',
-      justifyContent: 'center'
+      justifyContent: 'center',
     }}
   >
     <Spinner type="wave" size="sm" />
