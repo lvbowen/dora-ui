@@ -1,6 +1,6 @@
 import React from 'react';
-import Spin from 'dora-ui/lib/spin';
-import 'dora-ui/lib/spin/style';
+import Spin from '..';
+import '../style';
 
 import { Button } from 'antd';
 import useToggle from 'react-use/lib/useToggle';

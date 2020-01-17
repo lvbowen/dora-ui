@@ -1,6 +1,6 @@
 import React from 'react';
-import Spin from 'dora-ui/lib/spin';
-import 'dora-ui/lib/spin/style';
+import Spin from '..';
+import '../style';
 
 import { Button } from 'antd';
 import { BounceLoader, ClipLoader, ScaleLoader } from 'react-spinners';
@@ -13,9 +13,11 @@ export default class extends React.Component {
   spinnerIndex = -1;
 
   changeSpinner = () => {
-    const spinners: React.ReactNode[] = [BounceLoader, ClipLoader, ScaleLoader].map(
-      (Spinner: typeof BounceLoader) => <Spinner color="#fff"></Spinner>
-    );
+    const spinners: React.ReactNode[] = [
+      BounceLoader,
+      ClipLoader,
+      ScaleLoader
+    ].map((Spinner: typeof BounceLoader) => <Spinner></Spinner>);
     this.spinnerIndex = this.spinnerIndex + 1 === spinners.length ? 0 : this.spinnerIndex + 1;
     this.setState({
       spinner: spinners[this.spinnerIndex],
@@ -28,7 +30,7 @@ export default class extends React.Component {
     return (
       <>
         <div>
-          <Spin spinning={loading} spinner={spinner}>
+          <Spin spinning={loading} spinner={spinner} fullScreen={false}>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum tempora illum soluta,
               ipsum quod libero reiciendis consequuntur incidunt ipsa pariatur, quaerat eligendi.

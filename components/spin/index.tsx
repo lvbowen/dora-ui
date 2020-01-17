@@ -1,49 +1,37 @@
-import cx from 'classnames';
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React, { Component, cloneElement } from 'react';
 import { CSSTransition } from 'react-transition-group';
+import PropTypes from 'prop-types';
+import cx from 'classnames';
 import debounce from 'lodash/debounce';
+
 import Portal from '../portal';
-import { withDefaultProps } from '../utils';
-import DefaultSpinner, { SpinnerSize } from './spinner';
+import Spinner, { Props as SpinnerProps } from '../spinner';
 
-interface SpinProps {
+type SpinnerSize = SpinnerProps['size'];
+
+interface Props {
   spinning: boolean;
-  fullScreen?: boolean;
-  spinner?: React.ReactElement;
-  size?: SpinnerSize;
-  tip?: string;
-  prefixCls?: string;
-  wrapperClassName?: string;
-  transition?: boolean;
-  delay?: number;
+  fullScreen: boolean;
+  spinner: React.ReactElement;
+  size: SpinnerSize;
+  tip: string;
+  wrapperClassName: string;
+  transition: boolean;
+  delay: number;
 }
 
-interface SpinState {
+interface State {
   spinning: boolean;
 }
-
-const defaultProps = {
-  fullScreen: false,
-  size: 'lg' as SpinnerSize,
-  tip: '',
-  wrapperClassName: '',
-  prefixCls: 'dora-spin',
-  transition: true,
-  delay: 0,
-  spinner: (null as any) as React.ReactElement
-};
-
-type DefaultProps = typeof defaultProps;
-type Props = SpinProps & DefaultProps;
 
 // 是否延迟spinning
 function shouldDelay(spinning?: boolean, delay?: number): boolean {
   return !!spinning && !!delay && !isNaN(Number(delay));
 }
+const prefixCls = 'dora-spin';
 
-class Spin extends Component<Props, SpinState> {
-  static propTypes: { [propName: string]: any } = {
+class Spin extends Component<Props, State> {
+  static propTypes = {
     spinning: PropTypes.bool.isRequired,
     fullScreen: PropTypes.bool,
     size: PropTypes.oneOf(['sm', 'md', 'lg']),
@@ -51,9 +39,18 @@ class Spin extends Component<Props, SpinState> {
     spinner: PropTypes.element,
     tip: PropTypes.string,
     wrapperClassName: PropTypes.string,
-    prefixCls: PropTypes.string,
     transition: PropTypes.bool,
     delay: PropTypes.number
+  };
+
+  static defaultProps = {
+    fullScreen: true,
+    size: 'md',
+    tip: '',
+    wrapperClassName: '',
+    transition: true,
+    delay: 0,
+    spinner: <Spinner type="wave"></Spinner>
   };
 
   constructor(props: Props) {
@@ -88,7 +85,7 @@ class Spin extends Component<Props, SpinState> {
     this.cancelExistingSpin();
   }
 
-  debouncifyUpdateSpinning = (props: SpinProps) => {
+  debouncifyUpdateSpinning = (props: Props) => {
     const { delay } = props;
     if (delay) {
       // 取消防抖函数的执行
@@ -113,24 +110,26 @@ class Spin extends Component<Props, SpinState> {
   }
 
   getSpinElement() {
-    const { spinner, tip, prefixCls, size, fullScreen, transition } = this.props;
+    const { spinner, tip, size, fullScreen, transition } = this.props;
+    const isDefaultSpinner = spinner.type === Spinner;
+
     const { spinning } = this.state;
-    /* 是否存在自定义spinner */
-    let realSpinner = spinner == null ? <DefaultSpinner size={size} /> : spinner;
     const spinnerContainerCls = cx(`${prefixCls}-spinner-container`, {
       [`${prefixCls}-spinner-container__full`]: fullScreen
     });
     const tipCls = cx(`${prefixCls}-text`, `${prefixCls}-text-${size}`);
     let spinElement = (
       <div className={spinnerContainerCls}>
-        {realSpinner}
+        {isDefaultSpinner ? cloneElement(spinner, { size: size }) : spinner}
         {tip && <div className={tipCls}>{tip}</div>}
       </div>
     );
+
     /* 是否为全屏展示 */
     if (fullScreen) {
       spinElement = <Portal>{spinElement}</Portal>;
     }
+
     /* 是否存在过渡效果 */
     if (transition) {
       return (
@@ -138,15 +137,17 @@ class Spin extends Component<Props, SpinState> {
           {spinElement}
         </CSSTransition>
       );
-    } else if (spinning) {
-      return spinElement;
-    } else {
-      return null;
     }
+
+    if (spinning) {
+      return spinElement;
+    }
+
+    return null;
   }
 
   render() {
-    const { wrapperClassName, prefixCls, children } = this.props;
+    const { wrapperClassName, children } = this.props;
     const wrapperCls = cx(wrapperClassName, prefixCls);
     return (
       <div className={wrapperCls}>
@@ -157,4 +158,4 @@ class Spin extends Component<Props, SpinState> {
   }
 }
 
-export default withDefaultProps(defaultProps, Spin);
+export default Spin;

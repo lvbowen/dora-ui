@@ -2,25 +2,32 @@ import React from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 
-export interface ISpinner {
+export interface Props {
   size?: 'sm' | 'md' | 'lg';
+  type?: 'normal' | 'wave';
 }
-
-const defaultProps = {
-  size: 'md'
-};
 
 const prefixCls = 'dora-spinner';
 
-const Spinner: React.FC<ISpinner> = userProps => {
-  // 默认props
-  const props = { ...defaultProps, ...userProps };
-  const cls = cx(prefixCls, `${prefixCls}__${props.size}`);
+const Spinner: React.FC<Props> = ({ size = 'md', type = 'normal' }) => {
+  const cls = cx(prefixCls, `${prefixCls}__${size}`, `${prefixCls}__${type}`);
+  if (type === 'normal') {
+    return (
+      <div className={cls}>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    );
+  }
 
   return (
     <div className={cls}>
-      <div></div>
-      <div></div>
       <div></div>
       <div></div>
       <div></div>
@@ -33,7 +40,8 @@ const Spinner: React.FC<ISpinner> = userProps => {
 
 // props校验
 Spinner.propTypes = {
-  size: PropTypes.oneOf(['sm', 'md', 'lg'])
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  type: PropTypes.oneOf(['normal', 'wave'])
 };
 
 export default Spinner;

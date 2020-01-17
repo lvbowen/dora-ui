@@ -5,13 +5,13 @@ import '../style';
 export default () => (
   <div
     style={{
-      background: 'rgba(0, 0, 0, 0.7)',
+      background: 'rgba(255, 255, 255, 0.35)',
       height: 100,
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center'
     }}
   >
-    <Spinner />
+    <Spinner type="wave" size="sm" />
   </div>
 );

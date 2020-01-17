@@ -35,9 +35,7 @@ import CustomizeDemoCode from '!raw-loader!./demo/3-demo-customize';
 
 ### 自定义 Spinner
 
-此处仅使用`react-spinners`库里的部分 spinner 作为演示，可以根据业务需求编写自己的 Spinner，默认 Spinner 为 Icon `type="loading"`组件
-
-关于`react-spinners`，更多可查看https://www.react-spinners.com/
+默认 Spinner 为 `<Spinner size="md" type="wave">`，可以根据业务需求编写自己的 Spinner。
 
 <CodeBox code={CustomizeDemoCode} title="更换Spinner">
   <CustomizeDemo></CustomizeDemo>
@@ -49,19 +47,18 @@ import CustomizeDemoCode from '!raw-loader!./demo/3-demo-customize';
 
 常用于解决异步请求时间过短或较短时间内多个异步请求依次发起结束造成的闪烁。
 
-如设置为 1000ms，请求若在 1000ms 发送并的到响应，不会展示 Spinner。
+如设置为 1000ms，`spinning`属性若在 1000ms 内由`true`变为`false`，不会展示 Spinner。
 
 ## API
 
-| 属性             | 说明                                               | 类型            | 默认值                  |
-| ---------------- | -------------------------------------------------- | --------------- | ----------------------- |
-| spinning         | 是否展示 Spin                                      | boolean         | -                       |
-| fullScreen       | 是否一屏（如果加载的内容高于一屏，建议设置此选项） | boolean?        | false                   |
-| children         | 被包裹的内容                                       | ReactNode       | -                       |
-| tip              | 描述文案                                           | string?         | ''                      |
-| spinner          | 自定义 Spinner                                     | ReactElement?   | `<Icon type="loading">` |
-| size             | Spinner 大小，仅对默认 Spinner 有效                | 'sm'/'md'/'lg'? | 'md'                    |
-| wrapperClassName | 包装器的类属性                                     | string?         | ''                      |
-| prefixCls        | 包装器的类名前缀                                   | string?         | 'dora-spin'             |
-| transition       | 是否展示过渡动画                                   | boolean?        | true                    |
-| delay            | 延迟显示加载效果的时间，毫秒                       | number?         | 0                       |
+| 属性             | 说明                                               | 类型            | 默认值                            |
+| ---------------- | -------------------------------------------------- | --------------- | --------------------------------- |
+| spinning         | 是否展示 Spinner                                   | boolean         | -                                 |
+| fullScreen       | 是否一屏（如果加载的内容高于一屏，建议设置此选项） | boolean?        | true                              |
+| children         | 被包裹的内容                                       | ReactNode       | -                                 |
+| tip              | 描述文案                                           | string?         | ''                                |
+| spinner          | 自定义 Spinner                                     | ReactElement?   | `<Spinner size="md" type="wave">` |
+| size             | Spinner 大小，仅对默认 Spinner 有效                | 'sm'/'md'/'lg'? | 'md'                              |
+| wrapperClassName | 包装器的类属性                                     | string?         | ''                                |
+| transition       | 是否展示过渡动画                                   | boolean?        | true                              |
+| delay            | 延迟显示加载效果的时间，毫秒                       | number?         | 0                                 |

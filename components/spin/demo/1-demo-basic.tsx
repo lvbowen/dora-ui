@@ -1,6 +1,6 @@
 import React from 'react';
-import Spin from 'dora-ui/lib/spin';
-import 'dora-ui/lib/spin/style';
+import Spin from '..';
+import '../style';
 
 import { Button } from 'antd';
 import useToggle from 'react-use/lib/useToggle';
@@ -10,7 +10,7 @@ export default () => {
 
   return (
     <>
-      <Spin spinning={loading}>
+      <Spin spinning={loading} fullScreen={false}>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum tempora illum soluta, ipsum
           quod libero reiciendis consequuntur incidunt ipsa pariatur, quaerat eligendi. Commodi

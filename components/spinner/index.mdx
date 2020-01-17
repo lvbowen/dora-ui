@@ -9,6 +9,9 @@ import CodeBox from '../../utils/CodeBox';
 import BasicDemo from './demo/1-demo-basic';
 import BasicDemoCode from '!raw-loader!./demo/1-demo-basic';
 
+import TypeDemo from './demo/2-demo-type';
+import TypeDemoCode from '!raw-loader!./demo/2-demo-type';
+
 # Spinner 加载元素
 
 用于页面和区块的加载中状态。
@@ -17,12 +20,19 @@ import BasicDemoCode from '!raw-loader!./demo/1-demo-basic';
 
 ### 基本用法
 
-<CodeBox code={BasicDemoCode}>
+<CodeBox code={BasicDemoCode} title="实例" desc="基本用法">
   <BasicDemo></BasicDemo>
+</CodeBox>
+
+### 切换类型
+
+<CodeBox code={TypeDemoCode} title="type" desc="音乐波浪Spinner">
+  <TypeDemo></TypeDemo>
 </CodeBox>
 
 ## API
 
-| 属性 | 说明 | 类型           | 默认值 |
-| ---- | ---- | -------------- | ------ |
-| size | 大小 | 'sm'/'md'/'lg' | 'md'   |
+| 属性 | 说明 | 类型            | 默认值   |
+| ---- | ---- | --------------- | -------- |
+| size | 大小 | 'sm'/'md'/'lg'  | 'md'     |
+| type | 类型 | 'normal'/'wave' | 'normal' |
