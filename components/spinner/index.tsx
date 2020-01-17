@@ -28,12 +28,12 @@ const Spinner: React.FC<Props> = ({ size = 'md', type = 'normal' }) => {
 
   return (
     <div className={cls}>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
+      <div className={cx(`${prefixCls}-rect`, `${prefixCls}-rect1`)}></div>
+      <div className={cx(`${prefixCls}-rect`, `${prefixCls}-rect2`)}></div>
+      <div className={cx(`${prefixCls}-rect`, `${prefixCls}-rect3`)}></div>
+      <div className={cx(`${prefixCls}-rect`, `${prefixCls}-rect3`)}></div>
+      <div className={cx(`${prefixCls}-rect`, `${prefixCls}-rect2`)}></div>
+      <div className={cx(`${prefixCls}-rect`, `${prefixCls}-rect1`)}></div>
     </div>
   );
 };

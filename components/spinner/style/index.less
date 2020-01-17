@@ -1,5 +1,6 @@
-/* stylelint-disable no-descending-specificity */
-.dora-spinner {
+@spinnerPrefix: dora-spinner;
+
+.@{spinnerPrefix} {
   &__sm {
     transform: scale(0.8);
   }
@@ -13,7 +14,7 @@
   }
 
   &__wave {
-    @keyframes sk-stretchdelay {
+    @keyframes animation-dora-spinner__wave {
       0%,
       100% {
         transform: scaleY(1);
@@ -30,44 +31,34 @@
     display: flex;
     justify-content: space-between;
 
-    & > div {
+    .@{spinnerPrefix}-rect {
       background-color: #f86441;
       height: 100%;
       width: 4px;
       border-radius: 20px;
-      animation: sk-stretchdelay 0.8s linear infinite;
+      animation: animation-dora-spinner__wave 0.8s linear infinite;
+    }
 
-      &:nth-child(1) {
-        -webkit-animation-delay: -0.2s;
-        animation-delay: -0.2s;
-      }
-      &:nth-child(2) {
-        -webkit-animation-delay: -0.4s;
-        animation-delay: -0.4s;
-      }
-      &:nth-child(3) {
-        -webkit-animation-delay: -0.6s;
-        animation-delay: -0.6s;
-      }
-      &:nth-child(4) {
-        -webkit-animation-delay: -0.6s;
-        animation-delay: -0.6s;
-      }
-      &:nth-child(5) {
-        -webkit-animation-delay: -0.4s;
-        animation-delay: -0.4s;
-      }
-      &:nth-child(6) {
-        -webkit-animation-delay: -0.2s;
-        animation-delay: -0.2s;
-      }
+    .@{spinnerPrefix}-rect1 {
+      -webkit-animation-delay: -0.2s;
+      animation-delay: -0.2s;
+    }
+
+    .@{spinnerPrefix}-rect2 {
+      -webkit-animation-delay: -0.4s;
+      animation-delay: -0.4s;
+    }
+
+    .@{spinnerPrefix}-rect3 {
+      -webkit-animation-delay: -0.6s;
+      animation-delay: -0.6s;
     }
   }
 
   &__normal {
     @deg: 45deg;
 
-    @keyframes dora-spinner__normal {
+    @keyframes animation-dora-spinner__normal {
       0% {
         opacity: 1;
       }
@@ -83,7 +74,7 @@
 
     & > div {
       transform-origin: 19px 19px;
-      animation: dora-spinner__normal 0.8s linear infinite;
+      animation: animation-dora-spinner__normal 0.8s linear infinite;
 
       &:after {
         content: ' ';
